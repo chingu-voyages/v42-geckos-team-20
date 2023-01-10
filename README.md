@@ -1,11 +1,24 @@
 # Nearby Market
 Developed by: Voyage 42-geckos.20 - 
-[Mateo Cruz](https://github.com/cruzma) [Julie Evans](https://github.com/mailauki) [Nicholas Koblitz](https://github.com/NicholasKoblitz) [Garam Jung](https://github.com/info3170garamjung) [Matt Rueter](https://github.com/MattRueter)
+* [Mateo Cruz](https://github.com/cruzma) 
+* [Julie Evans](https://github.com/mailauki) 
+* [Nicholas Koblitz](https://github.com/NicholasKoblitz) 
+* [Garam Jung](https://github.com/info3170garamjung) 
+* [Matt Rueter](https://github.com/MattRueter)
+
+## Contents
+* [OVERVIEW](#overview)
+* [USERS](#users)
+* [DEVELOPMENT](#development)
 
 ## OVERVIEW
 Nearby Market is an e-commerce app which connects buyers with sellers locally. Its purpose is to make it easier to sell used items and to find good deals when buying second-hand.
 
 ## USERS
+* [Account creation](#account-creation)
+* [Buying](#buying)
+* [Selling](#selling)
+* [Rating](#rating)
 ### Account creation:
 As a user of this app you are either a buyer or seller. Anyone can browse what sellers have put up for sale on the site without creating an account. However, to get in touch with the seller or to save items to a 'shopping cart' it is necessary to create a password secured profile. This facilitates communication as buyers aren't required to make their email, phone number or address public. Additionally buyers and sellers can rate each other and having an account is necessary to allow this option. 
 
