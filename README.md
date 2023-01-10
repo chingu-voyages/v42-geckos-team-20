@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Nearby Market
+Developed by: Voyage 42-geckos.20 - 
+[Mateo Cruz](https://github.com/cruzma) [Julie Evans](https://github.com/mailauki) [Nicholas Koblitz](https://github.com/NicholasKoblitz) [Garam Jung](https://github.com/info3170garamjung) [Matt Rueter](https://github.com/MattRueter)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+---
+
+## This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
