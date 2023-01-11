@@ -2,10 +2,15 @@
 	border: 5px dotted red;
 	display:flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content:space-between;
 	width: 326px;
 	height: 386px;
 	left: 0px;
 	top: 0px;
 	margin: 1%;
+}
+
+img{
+	max-height: 75%;
+	max-width: 100%;
 }
