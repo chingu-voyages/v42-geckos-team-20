@@ -1,0 +1,8 @@
+#productCard{
+	border: 5px dotted red;
+	position: absolute;
+	width: 326px;
+	height: 386px;
+	left: 0px;
+	top: 0px;
+}
