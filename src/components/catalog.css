@@ -5,8 +5,8 @@
 	flex-wrap:wrap;
 	overflow:scroll;
 	position: absolute;
-	width: 1400px;
-	height: 792px;
-	left: 20px;
-	top: 201px;
+	width: 50%;
+	height: 80%;
+	margin-left: 5%;
+	margin-top:5%;
 }
