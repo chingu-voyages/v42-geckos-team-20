@@ -1,5 +1,5 @@
 #productCard{
-	border: 5px dotted red;
+	border: 1px solid black;
 	display:flex;
 	flex-direction: column;
 	justify-content:space-between;
@@ -8,6 +8,7 @@
 	left: 0px;
 	top: 0px;
 	margin: 1%;
+	padding:1%;
 }
 
 img{
