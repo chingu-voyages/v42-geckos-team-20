@@ -1,5 +1,8 @@
 #catalog {
 	border: 3px solid black;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap:wrap;
 	position: absolute;
 	width: 1400px;
 	height: 792px;

@@ -1,8 +1,11 @@
 #productCard{
 	border: 5px dotted red;
-	position: absolute;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 	width: 326px;
 	height: 386px;
 	left: 0px;
 	top: 0px;
+	margin: 1%;
 }
