@@ -1,14 +1,14 @@
 import './productCard.css';
 
-export default function ProductCard () {
+export default function ProductCard ({name,seller,image}) {
 	return(
 		<div id='productCard'>
-			<div>IMAGE GOES HERE</div>
+			<img src={image} alt="image unavailable"></img>
 			<div>
-				<div>PRODUCT name here</div>
+				<div>{name}</div>
 				<div>
 					<div>PRICE here</div>
-					<div>SELLER name here</div>
+					<div>{seller}</div>
 				</div>
 			</div>
 		</div>

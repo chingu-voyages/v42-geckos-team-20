@@ -5,21 +5,15 @@ import './catalog.css';
 
 console.log(products);
 export  default function Catalog (){
+	
+	const allProducts = products.map((product)=>
+		<ProductCard  
+		name={product.name} 
+		seller={product.seller.name} 
+		image={product.images[0]}/>
+	);
+
 	return (
-		<div id='catalog'>
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-			<ProductCard />
-		</div>
+		<div id='catalog'>{allProducts}</div>
 	)
 }
