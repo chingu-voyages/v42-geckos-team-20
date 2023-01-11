@@ -1,5 +1,6 @@
 #productCard{
 	border: 1px solid black;
+	border-radius:20px;
 	display:flex;
 	flex-direction: column;
 	justify-content:space-between;
@@ -9,6 +10,9 @@
 	top: 0px;
 	margin: 1%;
 	padding:1%;
+}
+#productLabel >*{
+	padding:2%;
 }
 
 img{
