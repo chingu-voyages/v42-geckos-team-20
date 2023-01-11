@@ -1,0 +1,12 @@
+#catalog {
+	border: 3px solid black;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap:wrap;
+	overflow:scroll;
+	position: absolute;
+	width: 50%;
+	height: 80%;
+	margin-left: 5%;
+	margin-top:5%;
+}
