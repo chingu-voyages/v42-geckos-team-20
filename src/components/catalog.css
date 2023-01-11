@@ -3,6 +3,7 @@
 	display: flex;
 	justify-content: space-evenly;
 	flex-wrap:wrap;
+	overflow:scroll;
 	position: absolute;
 	width: 1400px;
 	height: 792px;
