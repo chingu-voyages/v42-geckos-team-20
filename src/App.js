@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 
 import Catalog from './components/Catalog.js';
 import Heading  from './components/Heading.js';
+import CategoryFilters from './components/CategoryFilters';
 
 import products from './data/products'
 
@@ -16,6 +16,7 @@ function App() {
 
     <div className="App">
       <Heading />
+      <CategoryFilters />
       <Catalog />
     </div>
   );
