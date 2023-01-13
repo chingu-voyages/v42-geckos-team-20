@@ -1,5 +1,6 @@
 import products from "../data/products.json";
 import Button from '@mui/material/Button';
+import "./categoryFilters.css";
 
 
 const CategoryFilters = () => {
@@ -16,9 +17,9 @@ const CategoryFilters = () => {
 
 
     return (
-        <div>
+        <div id="Category-buttons">
             {productCategories.map(category => 
-            <Button variant="outline" key={category}>
+            <Button variant="outlined" color="info" className="btn" key={category} href="#" >
                 {category}
             </Button>
             )}
