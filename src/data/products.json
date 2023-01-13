@@ -3,6 +3,7 @@
     "id": 1,
     "name": "Japanese Lucky Cat T-Shirt",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus accumsan tortor posuere ac ut consequat semper. Sagittis aliquam malesuada bibendum arcu. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Suspendisse in est ante in nibh mauris.",
+    "price": 9.99,
     "seller": {
       "id": 1,
       "name": "Alex"
@@ -22,6 +23,7 @@
     "id": 2,
     "name": "Nike AirJordan 1",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 29.99,
     "seller": {
       "id": 2,
       "name": "Eric"
@@ -39,6 +41,7 @@
     "id": 3,
     "name": "Colorful Sneakers",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed arcu non odio euismod lacinia at quis risus sed. Pellentesque habitant morbi tristique senectus et netus et.",
+    "price": 20.50,
     "seller": {
       "id": 4,
       "name": "Irene"
@@ -56,6 +59,7 @@
     "id": 4,
     "name": "Pink Sneakers",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales neque sodales. Nibh nisl condimentum id venenatis a condimentum vitae sapien.",
+    "price": 20.00,
     "seller": {
       "id": 4,
       "name": "Irene"
@@ -74,6 +78,7 @@
     "id": 5,
     "name": "Green T-Shirt",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 12.50,
     "seller": {
       "id": 2,
       "name": "Eric"
@@ -93,6 +98,7 @@
     "id": 6,
     "name": "Golden Beats Headphones",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Netus et malesuada fames ac turpis. Tortor pretium viverra suspendisse potenti. Posuere lorem ipsum dolor sit amet consectetur adipiscing.",
+    "price": 99.99,
     "seller": {
       "id": 3,
       "name": "Jenifer"
@@ -111,6 +117,7 @@
     "id": 7,
     "name": "Ray-Ban Wayfarer Sun Glasses",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 59.99,
     "seller": {
       "id": 2,
       "name": "Eric"
@@ -128,6 +135,7 @@
     "id": 8,
     "name": "3 T-Shirt",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales neque sodales. Nibh nisl condimentum id venenatis a condimentum vitae sapien.",
+    "price": 9.99,
     "seller": {
       "id": 1,
       "name": "Alex"
@@ -148,6 +156,7 @@
     "id": 9,
     "name": "Leather Backpack",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 49.20,
     "seller": {
       "id": 3,
       "name": "Jenifer"
