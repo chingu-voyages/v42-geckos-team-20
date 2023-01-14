@@ -4,19 +4,6 @@ body {
     sans-serif;
 }
 
-/*CSS for Catalog box*/
-#catalog {
-	border: 3px solid black;
-	display: flex;
-	justify-content: space-evenly;
-	flex-wrap:wrap;
-	overflow:scroll;
-	position: absolute;
-	width: 50%;
-	height: 80%;
-	margin-left: 5%;
-	margin-top:5%;
-}
 /*---------------------------------------------
 //CSS for individual product cards */
 #productCard{
