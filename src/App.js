@@ -3,6 +3,7 @@ import './App.css';
 import Catalog from './components/Catalog.js';
 import Heading  from './components/Heading.js';
 import CategoryFilters from './components/CategoryFilters';
+import Login from './components/Login';
 
 import products from './data/products'
 
