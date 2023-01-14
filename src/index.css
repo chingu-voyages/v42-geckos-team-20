@@ -3,15 +3,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
-
-/*---------------------------------------------
-*/
-#productLabel >*{
-	padding:2%;
-}
-
 img{
-	max-height: 75%;
+	height: 65%;
 	max-width: 100%;
 }
-/*---------------------------------------------*/

@@ -1,4 +1,4 @@
-import {Card} from '@mui/material';
+import {Card, CardContent, CardMedia, Typography} from '@mui/material';
 
 const ProductCardStyles ={
 	border: "1px solid black",
@@ -15,7 +15,19 @@ const ProductCardStyles ={
 }
 export default function ProductCard ({name,seller,image}) {
 	return(
-		<Card raised={true} sx={ProductCardStyles}></Card> 
-		
+		<Card raised={true} sx={ProductCardStyles}>
+			<CardMedia
+				component="img"
+				image={image}
+				title={name}
+			/>
+			<CardContent>
+				<Typography>{name}</Typography>
+			</CardContent>
+			<CardContent>
+				<Typography>PRICE HERE</Typography>
+				<Typography>{seller}</Typography>
+			</CardContent>
+		</Card>
 	)
 };
