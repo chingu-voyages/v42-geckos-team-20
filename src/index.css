@@ -5,20 +5,7 @@ body {
 }
 
 /*---------------------------------------------
-//CSS for individual product cards */
-#productCard{
-	border: 1px solid black;
-	border-radius:20px;
-	display:flex;
-	flex-direction: column;
-	justify-content:space-between;
-	width: 326px;
-	height: 386px;
-	left: 0px;
-	top: 0px;
-	margin: 1%;
-	padding:1%;
-}
+*/
 #productLabel >*{
 	padding:2%;
 }
