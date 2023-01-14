@@ -1,13 +1,43 @@
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*CSS for Catalog box*/
+#catalog {
+	border: 3px solid black;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap:wrap;
+	overflow:scroll;
+	position: absolute;
+	width: 50%;
+	height: 80%;
+	margin-left: 5%;
+	margin-top:5%;
 }
+/*---------------------------------------------
+//CSS for individual product cards */
+#productCard{
+	border: 1px solid black;
+	border-radius:20px;
+	display:flex;
+	flex-direction: column;
+	justify-content:space-between;
+	width: 326px;
+	height: 386px;
+	left: 0px;
+	top: 0px;
+	margin: 1%;
+	padding:1%;
+}
+#productLabel >*{
+	padding:2%;
+}
+
+img{
+	max-height: 75%;
+	max-width: 100%;
+}
+/*---------------------------------------------*/

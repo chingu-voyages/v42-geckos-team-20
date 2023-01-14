@@ -1,4 +1,3 @@
-import './App.css';
 
 import Catalog from './components/Catalog.js';
 import Heading  from './components/Heading.js';
