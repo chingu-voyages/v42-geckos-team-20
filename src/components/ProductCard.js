@@ -1,16 +1,33 @@
-import './productCard.css';
+import {Card, CardContent, CardMedia, Typography} from '@mui/material';
 
+const ProductCardStyles ={
+	border: "1px solid black",
+	borderRadius:"20px",
+	display:"flex",
+	flexDirection: "column",
+	justifyContent:"space between",
+	width: "326px",
+	height: "386px",
+	left: "0px",
+	top: "0px",
+	margin: "1%",
+	padding:"1%"
+}
 export default function ProductCard ({name,seller,image}) {
 	return(
-		<div id='productCard'>
-			<img src={image} alt="image unavailable"></img>
-			<div id='productLabel'>
-				<div>{name}</div>
-				<div>
-					<div>PRICE here</div>
-					<div>{seller}</div>
-				</div>
-			</div>
-		</div>
+		<Card raised={true} sx={ProductCardStyles}>
+			<CardMedia
+				component="img"
+				image={image}
+				title={name}
+			/>
+			<CardContent>
+				<Typography>{name}</Typography>
+			</CardContent>
+			<CardContent>
+				<Typography>PRICE HERE</Typography>
+				<Typography>{seller}</Typography>
+			</CardContent>
+		</Card>
 	)
 };
