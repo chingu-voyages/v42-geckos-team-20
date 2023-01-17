@@ -27,6 +27,7 @@ const Counter = () => {
       }}
     >
       <IconButton
+        disabled={count <= 0}
         onClick={handleRemove}
       >
         <Remove />
@@ -34,7 +35,7 @@ const Counter = () => {
 
       <Typography 
         variant="subtitle1" 
-        sx={{ margin: "0 0.5rem" }}
+        sx={{ margin: "0 0.5rem", userSelect: "none" }}
       >
         {count}
       </Typography>
