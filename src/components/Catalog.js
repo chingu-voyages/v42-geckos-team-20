@@ -1,8 +1,5 @@
-import products from '../data/products.json';
 import ProductCard from './ProductCard.js';
 import { Container } from '@mui/material';
-// console.log(products);
-
 
 const ContainerStyles ={
 	display: "flex",
@@ -11,9 +8,9 @@ const ContainerStyles ={
 	zIndex: 0
 }
 
-export default function Catalog (){
+export default function Catalog ({filteredProducts}){
 	
-	const allProducts = products.map((product)=>
+	const productsToView = filteredProducts.map((product)=>
 		<ProductCard
 		key={product.id}
 		name={product.name}
@@ -25,6 +22,6 @@ export default function Catalog (){
 	);
 
 	return (
-		<Container maxWidth="lg" sx={ContainerStyles}>{allProducts}</Container>
+		<Container maxWidth="lg" sx={ContainerStyles}>{productsToView}</Container>
 	)
 }
