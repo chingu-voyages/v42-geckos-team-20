@@ -8,11 +8,14 @@ import { Category } from '@mui/icons-material';
 
 const Home = () => {
 
-  const [ category, setCategory ] = useState("Clothes");
+  const [ category, setCategory ] = useState("allProducts");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
-  
+
   useEffect(() =>{
-    setFilteredProducts(products.filter(product => product.categories.includes(category)));
+    if(category ==="allProducts"){
+      setFilteredProducts(products.map(product =>product));
+    }else
+      setFilteredProducts(products.filter(product => product.categories.includes(category)));
   },[category])
 
   return (
