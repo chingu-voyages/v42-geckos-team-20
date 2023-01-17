@@ -18,7 +18,10 @@ export default function Catalog (){
 		key={product.id}
 		name={product.name}
 		seller={product.seller.name}
-		image={product.images[0]}/>
+		image={product.images[0]}
+		id={product.id}
+		/>
+		
 	);
 
 	return (
