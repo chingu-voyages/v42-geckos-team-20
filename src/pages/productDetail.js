@@ -1,6 +1,6 @@
 import React from 'react';
-import Heading  from './../components/Heading';
-import products from './../data/products.json';
+import Heading  from '../components/Heading';
+import products from '../data/products.json';
 //import Breadcrumbs from '../components/Breadcrumbs';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -10,9 +10,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import ButtonLarge from '../components/ButtonLarge';
-import {  useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
+
+import Counter from '../components/Counter';
 
 
 function ProductDetail() {
@@ -47,8 +49,9 @@ function ProductDetail() {
               <ImageList sx={{  objectFit: 'fill' }} cols={1}>
                 <ImageListItem key={thisProduct.images[0]}>
                   <img
-                   src={thisProduct.images}
-                  alt={thisProduct.images} />
+                    src={thisProduct.images}
+                    alt={thisProduct.images} 
+                  />
                 </ImageListItem>
               </ImageList>
             </Grid>
@@ -64,9 +67,21 @@ function ProductDetail() {
                 <Typography sx={{ mb: '1.5em' }} key={thisProduct.description} fontSize="0.8em">
                   {thisProduct.description}
                 </Typography>
-                <Typography sx={{ mb: '1.5em' }} fontSize="1.2em" color="text.secondary" gutterBottom>
-                  $ {thisProduct.price.toFixed(2)}
-                </Typography>
+
+                <Box 
+                  sx={{ 
+                    display: "flex", 
+                    justifyContent: "space-between", 
+                    alignItems: "center", 
+                    mb: '1.5em' 
+                  }}
+                >
+                  <Typography fontSize="1.2em" color="text.secondary">
+                    $ {thisProduct.price.toFixed(2)}
+                  </Typography>
+                  <Counter />
+                </Box>
+
                 <ButtonLarge />
               </CardContent>
             </Card>
