@@ -10,6 +10,7 @@ const Home = () => {
 
   const [ category, setCategory ] = useState("All Products");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const [ currency, setCurrency ] = useState("€")
 
   useEffect(() =>{
     if(category ==="All Products"){
@@ -28,7 +29,7 @@ const Home = () => {
     <>
       <Heading />
       <SubHeader handleFilterClick={handleFilterClick}/>
-      <Catalog filteredProducts={filteredProducts} />
+      <Catalog filteredProducts={filteredProducts} currency={currency} />
     </>
   )
 }

@@ -17,7 +17,7 @@ const ProductCardStyles ={
 	margin: "1%",
 	padding:"1%"
 }
-export default function ProductCard ({id,name,seller,image}) {
+export default function ProductCard ({id,name,seller,image,price,currency}) {
 	return(
 		
 		<Card raised={true} sx={ProductCardStyles} key={id}>
@@ -31,7 +31,7 @@ export default function ProductCard ({id,name,seller,image}) {
 				<Typography>{name}</Typography>
 			</CardContent>
 			<CardContent>
-				<Typography>PRICE HERE</Typography>
+				<Typography>{`${currency}${price}`}</Typography>
 				<Typography>{seller}</Typography>
 			</CardContent>
 		</Card>
