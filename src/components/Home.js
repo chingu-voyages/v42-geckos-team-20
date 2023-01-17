@@ -8,11 +8,11 @@ import { Category } from '@mui/icons-material';
 
 const Home = () => {
 
-  const [ category, setCategory ] = useState("allProducts");
+  const [ category, setCategory ] = useState("All Products");
   const [ filteredProducts, setFilteredProducts ] = useState([]);
 
   useEffect(() =>{
-    if(category ==="allProducts"){
+    if(category ==="All Products"){
       setFilteredProducts(products.map(product =>product));
     }else
       setFilteredProducts(products.filter(product => product.categories.includes(category)));
@@ -20,7 +20,9 @@ const Home = () => {
 
   const handleFilterClick = (e) =>{
     e.preventDefault();
-    console.log(`you have chosen ${e.target.textContent}`)
+    const selectedCategory = e.target.textContent
+    console.log(`you have chosen ${selectedCategory}`)
+    setCategory(selectedCategory)
   }
 
   return (
