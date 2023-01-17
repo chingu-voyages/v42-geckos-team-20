@@ -18,29 +18,32 @@ const Searchbar = () => {
 
   
   return (
-    <>
-    <Paper
-      component="form"
-      sx={{ 
-            margin: '20px auto',
-            display: 'flex', 
-            maxWidth: '85%', 
-            backgroundColor: '#eeeee4' ,
-            borderRadius: '10px',
-            boxShadow: 'none',
-          }}
+    <div 
+      id="Searchbar" 
+      style={{ height: "fit-content" }}
     >
-      <IconButton onClick={onSubmitInput} sx={{ p: '10px' }}>
-        <SearchIcon />
-      </IconButton>
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Search Placeholder"
-        value={inputText}
-        onChange={onChangeInputText}
-      />
-    </Paper>
-    </>
+      <Paper
+        component="form"
+        sx={{ 
+              margin: '0 auto',
+              display: 'flex', 
+              width: '85%', 
+              backgroundColor: '#eeeee4' ,
+              borderRadius: '10px',
+              boxShadow: 'none',
+            }}
+      >
+        <IconButton onClick={onSubmitInput} sx={{ p: '10px' }}>
+          <SearchIcon />
+        </IconButton>
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search Placeholder"
+          value={inputText}
+          onChange={onChangeInputText}
+        />
+      </Paper>
+    </div>
   );
 };
 

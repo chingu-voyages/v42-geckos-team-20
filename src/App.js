@@ -1,11 +1,7 @@
-
 import { Routes, Route } from 'react-router-dom';
 
-import Catalog from './components/Catalog.js';
-import Heading  from './components/Heading.js';
-import CategoryFilters from './components/CategoryFilters';
+import Home from './components/Home';
 import Login from './components/Login';
-import Searchbar from './components/Searchbar';
 
 import products from './data/products'
 
@@ -16,17 +12,9 @@ console.log(uniqueCategories)
 
 function App() {
   return (
-
     <div className="App">
       <Routes>
-        <Route path="/" element={
-          <>
-            <Heading />
-            <Searchbar />
-            <CategoryFilters />
-            <Catalog />
-          </>
-        } />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>

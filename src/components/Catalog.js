@@ -1,21 +1,17 @@
 import products from '../data/products.json';
 import ProductCard from './ProductCard.js';
-import {Container} from '@mui/material';
-console.log(products);
+import { Container } from '@mui/material';
+// console.log(products);
 
 
 const ContainerStyles ={
-	border: "2px solid black",
-	height: "600px",
-	padding:"1%",
-	marginTop: "5%",
 	display: "flex",
 	justifyContent: "space-evenly",
 	flexWrap: "wrap",
-	overflow: "scroll",
+	zIndex: 0
 }
 
-export  default function Catalog (){
+export default function Catalog (){
 	
 	const allProducts = products.map((product)=>
 		<ProductCard
