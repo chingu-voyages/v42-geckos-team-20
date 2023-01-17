@@ -21,7 +21,6 @@ const Home = () => {
   const handleFilterClick = (e) =>{
     e.preventDefault();
     const selectedCategory = e.target.textContent
-    console.log(`you have chosen ${selectedCategory}`)
     setCategory(selectedCategory)
   }
 
@@ -29,7 +28,6 @@ const Home = () => {
     <>
       <Heading />
       <SubHeader handleFilterClick={handleFilterClick}/>
-      
       <Catalog filteredProducts={filteredProducts} />
     </>
   )
