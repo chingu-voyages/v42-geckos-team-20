@@ -1,31 +1,48 @@
+import { useContext } from "react";
+import { Context } from '../App';
 import products from "../data/products.json";
-import Button from '@mui/material/Button';
+import { Button, Tabs } from '@mui/material';
 import "./categoryFilters.css";
-
-
+ 
+// get an array of categories from products json
+const categories = products.map(product => product.categories).flat()
+const uniqueCategories = [...new Set(categories)]
+ 
 const CategoryFilters = () => {
-
-    const productCategories = []
-
-    for(let product of products) {
-        for (let category of product.categories) {
-            if (!productCategories.includes(category)) {
-                productCategories.push(category)
-            }
-        }
-    }
-
-
+    const { activeCategory, setActiveCategory } = useContext(Context);
+ 
     return (
-        <div id="Category-buttons">
-            {productCategories.map(category => 
-            <Button variant="outlined" color="info" className="btn" key={category} href="#" >
-                {category}
+        <Tabs
+            value={activeCategory}
+            onChange={(event) => setActiveCategory(event.target.value)}
+            variant="scrollable"
+            scrollButtons="auto"
+            allowScrollButtonsMobile
+            indicatorColor="transparent"
+        >
+            <Button
+                variant={activeCategory === "All" ? "contained" : "outlined"}
+                className="btn"
+                value="All"
+                onClick={() => setActiveCategory("All")}
+                sx={{ minWidth: "fit-content", margin: 1 }}
+            >
+                All
             </Button>
-            )}
-        </div>
+            {uniqueCategories.map((category) => (
+                <Button
+                    variant={activeCategory === category ? "contained" : "outlined"}
+                    className="btn"
+                    key={category}
+                    value={category}
+                    onClick={() => setActiveCategory(category)}
+                    sx={{ minWidth: "fit-content", margin: 1 }}
+                >
+                    {category}
+                </Button>
+            ))}
+        </Tabs>
     )
-
 }
-
+ 
 export default CategoryFilters;
