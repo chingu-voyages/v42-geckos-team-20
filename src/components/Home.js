@@ -18,10 +18,15 @@ const Home = () => {
       setFilteredProducts(products.filter(product => product.categories.includes(category)));
   },[category])
 
+  const handleFilterClick = (e) =>{
+    e.preventDefault();
+    console.log(`you have chosen ${e.target.textContent}`)
+  }
+
   return (
     <>
       <Heading />
-      <SubHeader />
+      <SubHeader handleFilterClick={handleFilterClick}/>
       
       <Catalog filteredProducts={filteredProducts} />
     </>

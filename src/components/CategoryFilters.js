@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import "./categoryFilters.css";
 
 
-const CategoryFilters = () => {
+const CategoryFilters = ({handleFilterClick}) => {
 
     const productCategories = []
 
@@ -19,7 +19,7 @@ const CategoryFilters = () => {
     return (
         <div id="Category-buttons">
             {productCategories.map(category => 
-            <Button variant="outlined" color="info" className="btn" key={category} href="#" >
+            <Button variant="outlined" color="info" className="btn" key={category} href="#" onClick={handleFilterClick} >
                 {category}
             </Button>
             )}
