@@ -8,13 +8,13 @@ import { Category } from '@mui/icons-material';
 
 const Home = () => {
 
-  const [ category, setCategory ] = useState("All Products");
+  const [ category, setCategory ] = useState(products);
   const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [ currency, setCurrency ] = useState("€")
 
   useEffect(() =>{
     if(category ==="All Products"){
-      setFilteredProducts(products.map(product =>product));
+      setFilteredProducts(products);
     }else
       setFilteredProducts(products.filter(product => product.categories.includes(category)));
   },[category])
