@@ -1,34 +1,28 @@
-import {useState, useEffect} from 'react';
+import {useContext,useState, useEffect} from 'react';
 import Catalog from './Catalog.js';
 import Heading  from './Heading.js';
 import SubHeader from './SubHeader.js';
 import products from '../data/products.json';
 import { Category } from '@mui/icons-material';
+import {Context} from '../App.js';
 
 
 const Home = () => {
-
-  const [ category, setCategory ] = useState(products);
+  const { activeCategory, setActiveCategory } = useContext(Context);
   const [ filteredProducts, setFilteredProducts ] = useState([]);
-  const [ currency, setCurrency ] = useState("€")
-
+  const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
+  
   useEffect(() =>{
-    if(category ==="All Products"){
+    if(activeCategory === "All"){
       setFilteredProducts(products);
     }else
-      setFilteredProducts(products.filter(product => product.categories.includes(category)));
-  },[category])
-
-  const handleFilterClick = (e) =>{
-    e.preventDefault();
-    const selectedCategory = e.target.textContent
-    setCategory(selectedCategory)
-  }
+      setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
+  },[activeCategory])
 
   return (
     <>
       <Heading />
-      <SubHeader handleFilterClick={handleFilterClick}/>
+      <SubHeader />
       <Catalog filteredProducts={filteredProducts} currency={currency} />
     </>
   )
