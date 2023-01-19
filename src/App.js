@@ -5,6 +5,7 @@ import Login from './components/Login';
 
 import products from './data/products'
 import ProductDetail from './pages/productDetail';
+import Cart from './pages/Cart';
 
 
 // get an array of categories from products json
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
       </Routes>
     </div>
