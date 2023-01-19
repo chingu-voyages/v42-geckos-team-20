@@ -1,6 +1,9 @@
 import ProductCard from './ProductCard.js';
 import { Container } from '@mui/material';
 
+
+
+
 const ContainerStyles ={
 	display: "flex",
 	justifyContent: "space-evenly",
