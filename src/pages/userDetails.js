@@ -21,9 +21,12 @@ const UserDetails = () => {
         }
     }
 
+    // Gets the amount to items the user is selling
+    const sellingItemsAmount = user.ItemsToSell.length;
+    
 
+ // Component Styles 
 
-    // Avater Box Styles
     const avaterBoxStyles = {
         display: "flex",
         justifyContent: "center",
@@ -32,27 +35,22 @@ const UserDetails = () => {
         left: "2rem",
         width: 300,
         height: 400,
-        // border: "1px solid black"
         gap: "2rem"
     }
 
-    // Avatar styles
     const avaterStyles = {
         width: "120px",
         height: "120px",
         backgroundColor: "#1976d2"
     }
 
-    // Username Styles
     const usernameStyles = {
         position: "relative",
         bottom: "2rem",
         fontWeight: "400"
     }
 
-
     const itemsBoxStyles = {
-        // borderTop: "1px solid black",
         borderLength: "2rem",
         display: "flex",
         flexWrap: "wrap"
@@ -68,6 +66,15 @@ const UserDetails = () => {
     }
 
 
+    const sellingItemsAmountStyles = {
+        position: "absolute",
+        left: "9.8rem",
+        // top: "2rem",
+        fontSize: "14px"
+    }
+ // --------------------------------------------------------------------
+
+    // Pushes products that the user is selling into a new array
     for(let i of products) {
         if(user.ItemsToSell.includes(i.id)) {
             sellItems.push(i)
@@ -91,10 +98,10 @@ const UserDetails = () => {
         </Avatar>
         
 
-    
+    // Sets if the user is selling items and displays them or not
     const items = sellItems.length !== 0 ? 
         <>
-        <h2 style={sellingItemsH2}>Your Items</h2>
+        <h2 style={sellingItemsH2}>Your Products</h2>
         {sellItems.map((product)=>
         <ProductCard
         key={product.id}
@@ -105,18 +112,15 @@ const UserDetails = () => {
         />)}
         </>
         :
-        <h2 style={sellingItemsH2}>No Items To Sell</h2>
+        <h2 style={sellingItemsH2}>No Products To Sell</h2>
         
-    
-
-    
-
 
     return (
         <>
         <Box sx={avaterBoxStyles}>
            {imgSource}
            <h2 style={usernameStyles}>{user.username}</h2>
+           <span style={sellingItemsAmountStyles}>{`Number of Products: ${sellingItemsAmount}`}</span>
         </Box>
         <Box sx={itemsBoxStyles}>
             {items}
