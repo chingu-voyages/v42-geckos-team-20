@@ -5,7 +5,7 @@ import SubHeader from './SubHeader.js';
 const Home = () => {
   return (
     <>
-      <Heading />
+     
       <SubHeader />
       
       <Catalog />
