@@ -1,6 +1,6 @@
 import products from '../data/products.json';
 import ProductCard from './ProductCard.js';
-import { Container } from '@mui/material';
+import { Container, Pagination } from '@mui/material';
 // console.log(products);
 
 
@@ -25,6 +25,9 @@ export default function Catalog (){
 	);
 
 	return (
-		<Container maxWidth="lg" sx={ContainerStyles}>{allProducts}</Container>
+		<Container maxWidth="lg" sx={ContainerStyles}>
+			{allProducts}
+			<Pagination count={10} sx={{margin: 5}}/>
+		</Container>
 	)
 }
