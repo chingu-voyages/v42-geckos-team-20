@@ -1,17 +1,20 @@
 [
     {
+        "id": 1,
         "username": "bluegoose15",
         "password": "not-secret",
         "cart": [9,8,7,6],
         "ItemsToSell": [5,1]
     },
     {
+        "id": 2,
         "username": "greenboar11",
         "password": "not-secret",
         "cart": [],
         "ItemsToSell": [2,3,4]
     },
     {
+        "id": 3,
         "username": "pinkmouse5",
         "password": "not-secret",
         "cart": [1,3,5],
