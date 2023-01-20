@@ -3,17 +3,14 @@ import {Link} from 'react-router-dom'
 import { Avatar, Box, Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import users from '../data/users.json';
-import products from "../data/products.json"
 import { useParams } from 'react-router';
 import ProductCard from '../components/ProductCard';
-// import { fontFamily, fontWeight, height } from '@mui/system';
 
 
 const UserDetails = () => {
 
     const { userId }= useParams();
     let user;
-    const sellItems = []
 
     // Gets User based om userId
     for(let u of users) {
@@ -70,7 +67,6 @@ const UserDetails = () => {
     const sellingItemsAmountStyles = {
         position: "absolute",
         left: "9.8rem",
-        // top: "2rem",
         fontSize: "14px"
     }
 
@@ -90,14 +86,7 @@ const UserDetails = () => {
         }
 
     }
- // --------------------------------------------------------------------
-
-    // Pushes products that the user is selling into a new array
-    for(let i of products) {
-        if(user.ItemsToSell.includes(i.id)) {
-            sellItems.push(i)
-        }
-    }
+ // -------------------------------------------------------------------
 
     // Gets avatar img based on image field in user
     const imgSource = user.image ? 
@@ -117,11 +106,11 @@ const UserDetails = () => {
         
 
     // Sets if the user is selling items and displays them or not
-    const items = sellItems.length !== 0 ? 
+    const items = user.ItemsToSell.length !== 0 ? 
         <>
             <h2 style={sellingItemsH2}>Your Products</h2> 
             <Link to="#" style={linkStyles}><Button variant="contained" sx={buttonStyles}>Add Product</Button></Link>
-            {sellItems.map((product)=>
+            {user.ItemsToSell.map((product)=>
                 <ProductCard
                     key={product.id}
                     name={product.name}
