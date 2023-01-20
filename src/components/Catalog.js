@@ -1,7 +1,6 @@
 import products from '../data/products.json';
 import ProductCard from './ProductCard.js';
 import { Container } from '@mui/material';
-// console.log(products);
 
 
 const ContainerStyles ={

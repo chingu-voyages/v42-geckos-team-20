@@ -1,3 +1,4 @@
+import { createContext, useContext, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Heading from './components/Heading';
 
@@ -8,23 +9,31 @@ import products from './data/products'
 import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 
-
-// get an array of categories from products json
-const categories = products.map(product => product.categories).flat()
-const uniqueCategories = [...new Set(categories)]
-console.log(uniqueCategories)
+export const Context = createContext({
+  activeCategory: null,
+  setActiveCategory: null
+});
 
 function App() {
+  const [active, setActive] = useState("All");
+
   return (
-    <div className="App">
-      <Heading/>
+    <Context.Provider 
+      value={{ 
+        activeCategory: active, 
+        setActiveCategory: setActive 
+      }}
+    >
+      <div className="App">
+        <Heading/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/products/:productId" element={<ProductDetail />} />
-        <Route path="/users/:userId" element={<UserDetails />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/products/:productId" element={<ProductDetail />} />
+          <Route path="/users/:userId" element={<UserDetails />} />
       </Routes>
-    </div>
+      </div>
+    </Context.Provider>
   );
 }
 
