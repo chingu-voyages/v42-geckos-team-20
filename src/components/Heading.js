@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Link } from 'react-router-dom';
 
 const Heading = () => {
   return (
@@ -14,7 +15,7 @@ const Heading = () => {
         alignItems: 'center',
         borderBottom: '1px solid black',
         padding: '0 10px',
-        position: 'fixed',
+        position: 'sticky',
         top: 0,
         width: 'calc(100% - 20px)',
         height: '80px',
@@ -22,7 +23,8 @@ const Heading = () => {
         bgcolor: 'background.paper'
       }}
     >
-      <h1>Nearby Markets</h1>
+      <Link to='/' style={{textDecoration: 'none'}}><Typography sx={{color: 'black'}} variant='h4'>Nearby Markets</Typography></Link>
+      
       <Box 
         sx={{
           width: 70,
@@ -30,8 +32,8 @@ const Heading = () => {
           justifyContent: 'space-between'
         }}
       >
-        <AccountCircleIcon />
-        <ShoppingCartIcon />
+        <Link to='/login'><AccountCircleIcon sx={{color: 'black'}}/></Link>
+        <Link to='/cart'><ShoppingCartIcon sx={{color: 'black'}}/></Link>
       </Box>
 
     </Box>
