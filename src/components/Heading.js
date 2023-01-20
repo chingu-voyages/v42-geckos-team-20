@@ -15,7 +15,7 @@ const Heading = () => {
         alignItems: 'center',
         borderBottom: '1px solid black',
         padding: '0 10px',
-        position: 'sticky',
+        position: 'fixed',
         top: 0,
         width: 'calc(100% - 20px)',
         height: '80px',
