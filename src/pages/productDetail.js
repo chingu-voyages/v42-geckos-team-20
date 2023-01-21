@@ -25,7 +25,7 @@ function ProductDetail() {
       return (
       <>
       <div className="App">
-       <Heading />
+       
       </div>
           <div role="presentation" id="breadCrumbs" style={{ marginTop: '90px' }} >
           <Breadcrumbs aria-label="breadcrumb">

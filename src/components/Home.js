@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      <Heading />
+     
       <SubHeader />
       <Catalog filteredProducts={filteredProducts} currency={currency} />
     </>
