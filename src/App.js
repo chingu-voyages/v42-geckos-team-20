@@ -7,10 +7,12 @@ import Login from './components/Login';
 import products from './data/products'
 import ProductDetail from './pages/productDetail';
 
+
 export const Context = createContext({
   activeCategory: null,
   setActiveCategory: null
 });
+
 
 function App() {
   const [active, setActive] = useState("All");

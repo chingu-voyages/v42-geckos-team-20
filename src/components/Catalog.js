@@ -1,6 +1,7 @@
-import products from '../data/products.json';
 import ProductCard from './ProductCard.js';
 import { Container } from '@mui/material';
+
+
 
 
 const ContainerStyles ={
@@ -10,20 +11,14 @@ const ContainerStyles ={
 	zIndex: 0
 }
 
-export default function Catalog (){
-	
-	const allProducts = products.map((product)=>
-		<ProductCard
-		key={product.id}
-		name={product.name}
-		seller={product.seller.name}
-		image={product.images[0]}
-		id={product.id}
-		/>
+export default function Catalog ({filteredProducts, currency}){
+
+	const productsToView = filteredProducts.map((product)=>
+		<ProductCard key={product.id}product={product} currency={currency}/>
 		
 	);
 
 	return (
-		<Container maxWidth="lg" sx={ContainerStyles}>{allProducts}</Container>
+		<Container maxWidth="lg" sx={ContainerStyles}>{productsToView}</Container>
 	)
 }
