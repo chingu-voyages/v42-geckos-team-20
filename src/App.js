@@ -9,17 +9,24 @@ import ProductDetail from './pages/productDetail';
 
 export const Context = createContext({
   activeCategory: null,
-  setActiveCategory: null
+  setActiveCategory: null,
+  currentUser: null,
+  setCurrentUser: null
 });
 
 function App() {
   const [active, setActive] = useState("All");
+  const [user, setUser] = useState(null);
+
+  console.log(user)
 
   return (
     <Context.Provider 
       value={{ 
         activeCategory: active, 
-        setActiveCategory: setActive 
+        setActiveCategory: setActive, 
+        currentUser: user,
+        setCurrentUser: setUser
       }}
     >
       <div className="App">

@@ -1,14 +1,17 @@
+import { useContext } from "react";
+import { Context } from '../App';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { TextField, InputAdornment, IconButton, Box, Button } from '@mui/material';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import users from '../data/users.json';
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ username: null, password: null });
   const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useContext(Context);
 
   const handleFormChange = (event) => {
     setForm({ ...form, [event.target.id]: event.target.value })
@@ -22,7 +25,12 @@ const Login = () => {
     if(users.find((user) => user.username === form.username)) {
       if(users.find((user) => user.password === form.password)) {
         setErrors({username: null, password: null})
+
+        const { password, ...rest } = users.find((user) => user.username === form.username)
+        setCurrentUser(rest)
+        
         alert("You are now Logged In")
+
         navigate("/")
       } else {
         setErrors({username: null, password: "Incorrect Password"})
