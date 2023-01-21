@@ -7,12 +7,15 @@ import Login from './components/Login';
 
 import products from './data/products'
 import ProductDetail from './pages/productDetail';
+import Cart from './pages/Cart';
+
 import UserDetails from './pages/userDetails';
 
 export const Context = createContext({
   activeCategory: null,
   setActiveCategory: null
 });
+
 
 function App() {
   const [active, setActive] = useState("All");
@@ -29,6 +32,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/users/:userId" element={<UserDetails />} />
       </Routes>
