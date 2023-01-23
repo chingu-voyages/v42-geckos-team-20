@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Context } from '../App';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem } from '@mui/material';
+import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography } from '@mui/material';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -74,6 +74,7 @@ const Heading = () => {
           </Button>
         )}
       </Box>
+
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
