@@ -4,16 +4,19 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
-const Searchbar = () => {
-  const [inputText, setInputText] = useState('');
+const Searchbar = ({setSearching, setSearchPattern}) => {
 
-
+  
   const onSubmitInput = useCallback(() => {
-    console.log(inputText);
-  }, [inputText]);
+    console.log("SEARCH button says: Hook me up OR not!")
+  }, []);
   
   const onChangeInputText = useCallback((e) => {
-    setInputText(e.target.value);
+    setSearching(true)
+    let searchWord ="";
+    searchWord += e.target.value;
+    setSearchPattern(searchWord);
+    searchWord ==="" ? setSearching(false) : console.log("still searhing")
   }, []);
 
   
@@ -39,7 +42,6 @@ const Searchbar = () => {
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder="Search Placeholder"
-          value={inputText}
           onChange={onChangeInputText}
         />
       </Paper>
