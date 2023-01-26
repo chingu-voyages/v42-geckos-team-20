@@ -8,16 +8,11 @@ import {Context} from '../App.js';
 const Searchbar = ({setSearchPattern}) => {
   const {searching, setSearching} =useContext(Context)
   
-  const onSubmitInput = useCallback(() => {
-    console.log("SEARCH button says: Hook me up OR not!")
-  }, []);
-  
   const onChangeInputText = useCallback((e) => {
-    setSearching(true)
     let searchWord ="";
     searchWord += e.target.value;
     setSearchPattern(searchWord);
-    searchWord ==="" ? setSearching(false) : console.log("still searhing")
+    searchWord ==="" ? setSearching(false) : setSearching(true)
   }, []);
 
   
@@ -37,7 +32,7 @@ const Searchbar = ({setSearchPattern}) => {
               boxShadow: 'none',
             }}
       >
-        <IconButton onClick={onSubmitInput} sx={{ p: '10px' }}>
+        <IconButton sx={{ p: '10px' }}>
           <SearchIcon />
         </IconButton>
         <InputBase
