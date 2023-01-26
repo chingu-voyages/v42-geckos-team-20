@@ -26,8 +26,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
 
-  console.log(user)
-
   return (
     <Context.Provider 
       value={{ 
