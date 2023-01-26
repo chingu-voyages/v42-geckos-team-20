@@ -12,7 +12,7 @@ const Home = () => {
   const [ filteredProducts, setFilteredProducts ] = useState([]);
   const [ searchPattern , setSearchPattern] =useState(null)
   const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
-  const [searching, setSearching] =useState(false)
+  const {searching, setSearching} =useContext(Context)
   
   useEffect(() =>{
     if(!searching){
@@ -41,7 +41,7 @@ const showSearchedResults = () =>{
   return (
     <>
      
-      <SubHeader setSearching={setSearching} setSearchPattern={setSearchPattern}/>
+      <SubHeader setSearchPattern={setSearchPattern}/>
       <Catalog  filteredProducts={filteredProducts} currency={currency} />
     </>
   )

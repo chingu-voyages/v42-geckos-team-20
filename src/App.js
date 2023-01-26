@@ -15,13 +15,16 @@ export const Context = createContext({
   activeCategory: null,
   setActiveCategory: null,
   currentUser: null,
-  setCurrentUser: null
+  setCurrentUser: null,
+  searching: null,
+  setSearching: null
 });
 
 
 function App() {
   const [active, setActive] = useState("All");
   const [user, setUser] = useState(null);
+  const [searchStatus, setSearchStatus] = useState(false);
 
   console.log(user)
 
@@ -31,7 +34,9 @@ function App() {
         activeCategory: active, 
         setActiveCategory: setActive, 
         currentUser: user,
-        setCurrentUser: setUser
+        setCurrentUser: setUser,
+        searching: searchStatus,
+        setSearching: setSearchStatus
       }}
     >
       <div className="App">

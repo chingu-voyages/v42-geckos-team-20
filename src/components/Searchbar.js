@@ -1,11 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useContext, useCallback, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import {Context} from '../App.js';
 
-const Searchbar = ({setSearching, setSearchPattern}) => {
-
+const Searchbar = ({setSearchPattern}) => {
+  const {searching, setSearching} =useContext(Context)
   
   const onSubmitInput = useCallback(() => {
     console.log("SEARCH button says: Hook me up OR not!")
