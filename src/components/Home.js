@@ -6,7 +6,7 @@ import products from '../data/products.json';
 import { Category } from '@mui/icons-material';
 import {Context} from '../App.js';
 import ProductPagination from './ProductPagination';
-import { Pagination } from "@material-ui/lab";
+import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 
