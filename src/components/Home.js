@@ -16,21 +16,27 @@ const Home = () => {
   
   useEffect(() =>{
     if(!searching){
-      if(activeCategory === "All"){
-        setFilteredProducts(products);
-      }else
-        setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
+      showSelectedCategory()
     }else if(searching){
-      console.log(searchPattern)
-      let searchCategories = products.filter(product => product.categories.includes(searchPattern));
-      let searchNames = products.filter(product => product.name.includes(searchPattern));
-      let searchSellers = products.filter(product => product.seller.name.includes(searchPattern))
-      let compiledSearchResults = [searchCategories, searchNames, searchSellers]
-      compiledSearchResults = compiledSearchResults.flat();
-      setFilteredProducts(compiledSearchResults);
-      compiledSearchResults=[];
+      showSearchedResults()
     }
   },[activeCategory, searchPattern])
+
+const showSelectedCategory = () =>{
+  if(activeCategory === "All"){
+    setFilteredProducts(products);
+  }else
+    setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
+}
+
+const showSearchedResults = () =>{
+  let searchCategories = products.filter(product => product.categories.includes(searchPattern));
+  let searchNames = products.filter(product => product.name.includes(searchPattern));
+  let searchSellers = products.filter(product => product.seller.name.includes(searchPattern))
+  let compiledSearchResults = [searchCategories, searchNames, searchSellers]
+  setFilteredProducts(compiledSearchResults.flat());
+  compiledSearchResults = [];
+}
 
   return (
     <>
