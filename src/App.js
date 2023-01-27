@@ -37,13 +37,14 @@ function App() {
       <div className="App">
         <Heading/>
         
-        <Routes>
+       
+      <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/users/:userId" element={<UserDetails />} />
-        </Routes>
+      </Routes>
       </div>
     </Context.Provider>
   );
