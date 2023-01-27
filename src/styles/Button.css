@@ -1,0 +1,26 @@
+.btn {
+  border-radius: 50px;
+}
+
+.css-1hncfw0-MuiButtonBase-root-MuiButton-root {
+  font-size: 0.875rem !important;
+  line-height: 1.75 !important;
+  letter-spacing: 0.02857em !important;
+  padding: 6px 16px !important;
+  border-radius: 4px !important;
+  margin: 8px !important;
+  color: #1976d2 !important;
+  border: 1px solid rgba(25, 118, 210, 0.5) !important;
+}
+
+.css-19l8pqb-MuiButtonBase-root-MuiButton-root {
+  font-size: 0.875rem !important;
+  line-height: 1.75 !important;
+  letter-spacing: 0.02857em !important;
+  padding: 6px 16px !important;
+  border-radius: 4px !important;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%) !important;
+  margin: 8px !important;
+  background-color: #1976d2 !important;
+  color: #fff !important;
+}

@@ -1,0 +1,174 @@
+[
+  {
+    "id": 1,
+    "name": "Japanese Lucky Cat T-Shirt",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus accumsan tortor posuere ac ut consequat semper. Sagittis aliquam malesuada bibendum arcu. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Suspendisse in est ante in nibh mauris.",
+    "price": 9.99,
+    "seller": {
+      "id": 1,
+      "name": "Alex"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80",
+      "https://images.unsplash.com/photo-1576566555349-5cc68fcf7b2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80",
+      "https://images.unsplash.com/photo-1576566517906-658406096b69?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+    ],
+    "categories": [
+      "Clothes",
+      "T-Shirts"
+    ],
+    "links": "https://unsplash.com/photos/fEt6Wd4t4j0"
+  },
+  {
+    "id": 2,
+    "name": "Nike AirJordan 1",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 29.99,
+    "seller": {
+      "id": 2,
+      "name": "Eric"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1542219550-37153d387c27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+    ],
+    "categories": [
+      "Clothes",
+      "Shoes"
+    ],
+    "links": "https://unsplash.com/photos/v13tnV6D9lw"
+  },
+  {
+    "id": 3,
+    "name": "Colorful Sneakers",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed arcu non odio euismod lacinia at quis risus sed. Pellentesque habitant morbi tristique senectus et netus et.",
+    "price": 20.50,
+    "seller": {
+      "id": 4,
+      "name": "Irene"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+    ],
+    "categories": [
+      "Clothes",
+      "Shoes"
+    ],
+    "links": "https://unsplash.com/photos/dwKiHoqqxk8"
+  },
+  {
+    "id": 4,
+    "name": "Pink Sneakers",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales neque sodales. Nibh nisl condimentum id venenatis a condimentum vitae sapien.",
+    "price": 20.00,
+    "seller": {
+      "id": 4,
+      "name": "Irene"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1608666634759-4376010f863d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+      "https://images.unsplash.com/photo-1608666634759-4376010f863d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+    ],
+    "categories": [
+      "Clothes",
+      "Shoes"
+    ],
+    "links": "https://unsplash.com/photos/XPBYi4K8vFI"
+  },
+  {
+    "id": 5,
+    "name": "Green T-Shirt",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 12.50,
+    "seller": {
+      "id": 2,
+      "name": "Eric"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "https://images.unsplash.com/photo-1523380677598-64d85d015339?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+    ],
+    "categories": [
+      "Clothes",
+      "T-Shirts"
+    ],
+    "links": "https://unsplash.com/photos/xPJYL0l5Ii8"
+  },
+  {
+    "id": 6,
+    "name": "Golden Beats Headphones",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Netus et malesuada fames ac turpis. Tortor pretium viverra suspendisse potenti. Posuere lorem ipsum dolor sit amet consectetur adipiscing.",
+    "price": 99.99,
+    "seller": {
+      "id": 3,
+      "name": "Jenifer"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1545127398-14699f92334b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+      "https://images.unsplash.com/photo-1545127398-5aae47194b22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
+    ],
+    "categories": [
+      "Electronics",
+      "Headphones"
+    ],
+    "links": "https://unsplash.com/photos/bWZAPKm0zZE"
+  },
+  {
+    "id": 7,
+    "name": "Ray-Ban Wayfarer Sun Glasses",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 59.99,
+    "seller": {
+      "id": 2,
+      "name": "Eric"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+    ],
+    "categories": [
+      "Accesories",
+      "Sun Glasses"
+    ],
+    "links": "https://unsplash.com/photos/K62u25Jk6vo"
+  },
+  {
+    "id": 8,
+    "name": "3 T-Shirt",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales neque sodales. Nibh nisl condimentum id venenatis a condimentum vitae sapien.",
+    "price": 9.99,
+    "seller": {
+      "id": 1,
+      "name": "Alex"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1627913363993-95b23378265e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+      "https://images.unsplash.com/photo-1627913364248-344231dd2451?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+      "https://images.unsplash.com/photo-1627913364141-7f71a63341d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+      "https://images.unsplash.com/photo-1627913364116-f553103253a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+    ],
+    "categories": [
+      "Clothes",
+      "T-Shirts"
+    ],
+    "links": "https://unsplash.com/photos/oji95IY7V8U"
+  },
+  {
+    "id": 9,
+    "name": "Leather Backpack",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum neque egestas congue quisque egestas. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.",
+    "price": 49.20,
+    "seller": {
+      "id": 3,
+      "name": "Jenifer"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+    ],
+    "categories": [
+      "Accesories",
+      "Backpacks",
+      "Bags"
+    ],
+    "links": "https://unsplash.com/photos/BmH09wAkJa8"
+  }
+]
