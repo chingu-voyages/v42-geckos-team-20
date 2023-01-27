@@ -48,6 +48,7 @@ const showSelectedCategory = () =>{
   }else {
     setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
     handleChange(1,1);
+  }
 }
 
 const showSearchedResults = (arrayToSearch) =>{
@@ -55,7 +56,7 @@ const showSearchedResults = (arrayToSearch) =>{
   setFilteredProducts(removeDuplicates(compiledSearchResults));
 }
 const searchArray  = (arrayToSearch) =>{
-  let searchCategories = array, countToSearch.filter(product => searchPattern.test(product.categories));
+  let searchCategories = arrayToSearch.filter(product => searchPattern.test(product.categories));
   let searchNames = arrayToSearch.filter(product => searchPattern.test(product.name));
   let searchSellers = arrayToSearch.filter(product => searchPattern.test(product.seller.name));
   return  [searchCategories, searchNames, searchSellers]
