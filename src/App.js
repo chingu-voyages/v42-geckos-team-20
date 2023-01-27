@@ -47,7 +47,7 @@ function App() {
       <div className="App">
         <Heading/>
         
-        <Heading/>
+       
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
