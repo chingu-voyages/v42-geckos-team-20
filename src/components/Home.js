@@ -18,7 +18,7 @@ const Home = () => {
     if(!searching){
       showSelectedCategory()
     }else if(searching){
-      showSearchedResults()
+      showSearchedResults(filteredProducts)
     }
   },[activeCategory, searchPattern])
 
@@ -29,25 +29,17 @@ const showSelectedCategory = () =>{
     setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
 }
 
-const showSearchedResults = () =>{
-  let compiledSearchResults = searchArray().flat()
+const showSearchedResults = (arrayToSearch) =>{
+  let compiledSearchResults = searchArray(arrayToSearch).flat()
   setFilteredProducts(removeDuplicates(compiledSearchResults));
-  compiledSearchResults = [];
 }
-const searchArray  = () =>{
-  let searchCategories = products.filter(product => searchPattern.test(product.categories));
-  let searchNames = products.filter(product => searchPattern.test(product.name));
-  let searchSellers = products.filter(product => searchPattern.test(product.seller.name));
+const searchArray  = (arrayToSearch) =>{
+  let searchCategories = arrayToSearch.filter(product => searchPattern.test(product.categories));
+  let searchNames = arrayToSearch.filter(product => searchPattern.test(product.name));
+  let searchSellers = arrayToSearch.filter(product => searchPattern.test(product.seller.name));
   return  [searchCategories, searchNames, searchSellers]
 }
-const removeDuplicates = (array) =>{
-  const seen = new Set();
-  return array.filter(item =>{
-    const duplicate = seen.has(item.id);
-    seen.add(item.id);
-    return !duplicate
-  });
-}
+
   return (
     <>
      
@@ -57,4 +49,13 @@ const removeDuplicates = (array) =>{
   )
 }
 
+//helper function doesn't need to be defined in Compoenent and therefore redefined on each re-render
+const removeDuplicates = (array) =>{
+  const seen = new Set();
+  return array.filter(item =>{
+    const duplicate = seen.has(item.id);
+    seen.add(item.id);
+    return !duplicate
+  });
+}
 export default Home;
