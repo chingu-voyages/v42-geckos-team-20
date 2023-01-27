@@ -48,7 +48,8 @@ function App() {
       <div className="App">
         <Heading/>
         
-        <Routes>
+       
+      <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
