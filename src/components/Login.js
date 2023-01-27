@@ -11,7 +11,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ username: null, password: null });
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useContext(Context);
+  const { setCurrentUser } = useContext(Context);
 
   const handleFormChange = (event) => {
     setForm({ ...form, [event.target.id]: event.target.value })
@@ -28,7 +28,7 @@ const Login = () => {
 
         const { password, ...rest } = users.find((user) => user.username === form.username)
         setCurrentUser(rest)
-        
+
         alert("You are now Logged In")
 
         navigate("/")

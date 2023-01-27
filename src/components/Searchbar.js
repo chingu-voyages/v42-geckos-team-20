@@ -35,13 +35,14 @@ const Searchbar = ({setSearchPattern}) => {
               backgroundColor: '#eeeee4' ,
               borderRadius: '10px',
               boxShadow: 'none',
+              height: '2.8em',
             }}
       >
-        <IconButton sx={{ p: '10px' }}>
-          <SearchIcon />
+        <IconButton sx={{ p: '0.8rem' }}>
+          <SearchIcon sx={{padding: '0.8rem'}} />
         </IconButton>
         <InputBase
-          sx={{ ml: 1, flex: 1 }}
+          sx={{ ml: 2, flex: 1 }}
           placeholder="Search Placeholder"
           onChange={onChangeInputText}
         />
