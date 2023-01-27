@@ -54,7 +54,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/users/:userId" element={<UserDetails />} />
-          <Route path="/users/:userId" element={<UserDetails />} />
       </Routes>
       </div>
     </Context.Provider>
