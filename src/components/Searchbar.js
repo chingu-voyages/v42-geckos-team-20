@@ -17,7 +17,8 @@ const Searchbar = ({setSearchPattern}) => {
 
   const sanitizeSearchPattern = (searchWord)=>{
     searchWord = searchWord.trim();
-    return searchWord;
+    let searchRegEx = new RegExp(searchWord, "i")
+    return searchRegEx;
   }
   
   return (

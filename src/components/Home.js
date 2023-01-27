@@ -35,9 +35,9 @@ const showSearchedResults = () =>{
   compiledSearchResults = [];
 }
 const searchArray  = () =>{
-  let searchCategories = products.filter(product => product.categories.includes(searchPattern));
-  let searchNames = products.filter(product => product.name.includes(searchPattern));
-  let searchSellers = products.filter(product => product.seller.name.includes(searchPattern))
+  let searchCategories = products.filter(product => searchPattern.test(product.categories));
+  let searchNames = products.filter(product => searchPattern.test(product.name));
+  let searchSellers = products.filter(product => searchPattern.test(product.seller.name));
   return  [searchCategories, searchNames, searchSellers]
 }
 const removeDuplicates = (array) =>{
