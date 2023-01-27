@@ -3,7 +3,7 @@ import CategoryFilters from './CategoryFilters';
 
 import { Box } from '@mui/material';
 
-const SubHeader = ({handleFilterClick}) => {
+const SubHeader = () => {
   return (
     <Box
       id="Subheader"
@@ -17,7 +17,7 @@ const SubHeader = ({handleFilterClick}) => {
       }}
     >
       <Searchbar />
-      <CategoryFilters handleFilterClick={handleFilterClick}/>
+      <CategoryFilters />
     </Box>
   )
 }

@@ -1,18 +1,12 @@
 import { useContext } from "react";
 import { Context } from '../App';
-import products from "../data/products.json";
 import { Button, Tabs } from '@mui/material';
 import "./categoryFilters.css";
-
 import "../styles/Button.css";
  
-// get an array of categories from products json
-const categories = products.map(product => product.categories).flat()
-const uniqueCategories = [...new Set(categories)]
- 
 const CategoryFilters = () => {
-    const { activeCategory, setActiveCategory } = useContext(Context);
- 
+    const { activeCategory, setActiveCategory, categories } = useContext(Context);
+        
     return (
         <Tabs
             value={activeCategory}
@@ -31,7 +25,7 @@ const CategoryFilters = () => {
             >
                 All
             </Button>
-            {uniqueCategories.map((category) => (
+            {categories.map((category) => (
                 <Button
                     variant={activeCategory === category ? "contained" : "outlined"}
                     className="btn"

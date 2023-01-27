@@ -2,10 +2,8 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Heading from './components/Heading';
 
-import Home from './components/Home';
-import Login from './components/Login';
-
-import products from './data/products'
+import Home from './pages/Home';
+import Login from './pages/Login';
 import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
@@ -16,23 +14,51 @@ export const Context = createContext({
   activeCategory: null,
   setActiveCategory: null,
   currentUser: null,
-  setCurrentUser: null
+  setCurrentUser: null,
+  products: null,
+  categories: null
 });
 
 
 function App() {
   const [active, setActive] = useState("All");
   const [user, setUser] = useState(null);
+  const [products, setProducts] = useState([{ id: null, name: null, price: null, images: ["#"], seller: { name: null } }]);
+  const [categories, setCategories] = useState([]);
 
   console.log(user)
 
   async function getProducts() {
-    const { data, error, status } = await supabase.from('products').select('*')
-    console.log(data)
+    const { data, error } = await supabase
+    .from('products')
+    .select(`
+      *,
+      product_categories (
+        categories (
+          id,
+          name
+        ),
+        subcategories (
+          id,
+          name
+        )
+      )
+    `)
+
+    setProducts(data.map((product) => Object.assign({ ...product, images: [""], seller: { name: null } })))
+  }
+
+  async function getCategories() {
+    const { data, error } = await supabase
+    .from('categories')
+    .select('name')
+
+    setCategories(data.map(category => category.name))
   }
 
   useEffect(() => {
     getProducts()
+    getCategories()
   }, [])
 
   return (
@@ -41,11 +67,13 @@ function App() {
         activeCategory: active, 
         setActiveCategory: setActive, 
         currentUser: user,
-        setCurrentUser: setUser
+        setCurrentUser: setUser,
+        products: products,
+        categories: categories
       }}
     >
       <div className="App">
-        <Heading/>
+        <Heading />
         
         <Routes>
           <Route path="/" element={<Home />} />
