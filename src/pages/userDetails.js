@@ -109,13 +109,16 @@ const UserDetails = () => {
     const items = user.ItemsToSell.length !== 0 ? 
         <>
             <h2 style={sellingItemsH2}>Your Products</h2> 
-            <Link to="#" style={linkStyles}><Button variant="contained" sx={buttonStyles}>Add Product</Button></Link>
+            <Link to={`/users/${userId}/add-product`} style={linkStyles}><Button variant="contained" sx={buttonStyles}>Add Product</Button></Link>
             {user.ItemsToSell.map((product)=>
                 <ProductCard
                     key={product.id}
-                    name={product.name}
-                    seller={product.seller.name}
-                    image={product.images[0]}
+                    product={product}
+                    currency={"$"}
+                    // key={product.id}
+                    // name={product.name}
+                    // seller={product.seller.name}
+                    // image={product.images[0]}
                 id={product.id}
                 />
             )}
