@@ -30,14 +30,24 @@ const showSelectedCategory = () =>{
 }
 
 const showSearchedResults = () =>{
+  let compiledSearchResults = searchArray().flat()
+  setFilteredProducts(removeDuplicates(compiledSearchResults));
+  compiledSearchResults = [];
+}
+const searchArray  = () =>{
   let searchCategories = products.filter(product => product.categories.includes(searchPattern));
   let searchNames = products.filter(product => product.name.includes(searchPattern));
   let searchSellers = products.filter(product => product.seller.name.includes(searchPattern))
-  let compiledSearchResults = [searchCategories, searchNames, searchSellers]
-  setFilteredProducts(compiledSearchResults.flat());
-  compiledSearchResults = [];
+  return  [searchCategories, searchNames, searchSellers]
 }
-
+const removeDuplicates = (array) =>{
+  const seen = new Set();
+  return array.filter(item =>{
+    const duplicate = seen.has(item.id);
+    seen.add(item.id);
+    return !duplicate
+  });
+}
   return (
     <>
      
