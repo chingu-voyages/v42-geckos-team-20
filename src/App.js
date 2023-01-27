@@ -9,6 +9,7 @@ import products from './data/products'
 import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
+import AddProduct from './components/AddProduct';
 
 import { supabase } from './data/supabaseClient'; 
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/users/:userId" element={<UserDetails />} />
+          <Route path="/users/:userId/add-product" element={<AddProduct />} />
         </Routes>
       </div>
     </Context.Provider>
