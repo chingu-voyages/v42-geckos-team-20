@@ -1,21 +1,25 @@
-import React, { useCallback, useState } from 'react';
+import React, { useContext, useCallback, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import {Context} from '../App.js';
 
-const Searchbar = () => {
-  const [inputText, setInputText] = useState('');
-
-
-  const onSubmitInput = useCallback(() => {
-    console.log(inputText);
-  }, [inputText]);
+const Searchbar = ({setSearchPattern}) => {
+  const {searching, setSearching} =useContext(Context)
   
   const onChangeInputText = useCallback((e) => {
-    setInputText(e.target.value);
+    let searchWord ="";
+    searchWord += e.target.value;
+    searchWord === "" ? setSearching(false) : setSearching(true)
+    setSearchPattern(sanitizeSearchPattern(searchWord));
   }, []);
 
+  const sanitizeSearchPattern = (searchWord)=>{
+    searchWord = searchWord.trim();
+    let searchRegEx = new RegExp(searchWord, "i")
+    return searchRegEx;
+  }
   
   return (
     <div 
@@ -34,13 +38,12 @@ const Searchbar = () => {
               height: '2.8em',
             }}
       >
-        <IconButton onClick={onSubmitInput} sx={{ p: '0.8rem' }}>
+        <IconButton sx={{ p: '0.8rem' }}>
           <SearchIcon sx={{padding: '0.8rem'}} />
         </IconButton>
         <InputBase
           sx={{ ml: 2, flex: 1 }}
           placeholder="Search Placeholder"
-          value={inputText}
           onChange={onChangeInputText}
         />
       </Paper>

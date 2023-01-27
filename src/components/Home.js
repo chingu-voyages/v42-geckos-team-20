@@ -14,7 +14,9 @@ import Stack from '@mui/material/Stack';
 const Home = () => {
   const { activeCategory, setActiveCategory } = useContext(Context);
   const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const [ searchPattern , setSearchPattern] =useState(null)
   const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
+  const {searching, setSearching} =useContext(Context)
   const [ page, setPage ] = useState(1);
   const PER_PAGE = 5;
   
@@ -32,22 +34,40 @@ const Home = () => {
 
 
   useEffect(() =>{
-    if(activeCategory === "All"){
-      setFilteredProducts(products);
-    }else {
-
-      setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
-       handleChange(1,1);
+    if(!searching){
+      showSelectedCategory()
+    }else if(searching){
+      showSearchedResults(filteredProducts)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[activeCategory, count])
+  },[activeCategory, searchPattern, count])
+
+const showSelectedCategory = () =>{
+  if(activeCategory === "All"){
+    setFilteredProducts(products);
+  }else {
+    setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
+    handleChange(1,1);
+  }
+}
+
+const showSearchedResults = (arrayToSearch) =>{
+  let compiledSearchResults = searchArray(arrayToSearch).flat()
+  setFilteredProducts(removeDuplicates(compiledSearchResults));
+}
+const searchArray  = (arrayToSearch) =>{
+  let searchCategories = arrayToSearch.filter(product => searchPattern.test(product.categories));
+  let searchNames = arrayToSearch.filter(product => searchPattern.test(product.name));
+  let searchSellers = arrayToSearch.filter(product => searchPattern.test(product.seller.name));
+  return  [searchCategories, searchNames, searchSellers]
+}
 
   return (
     <>
 
-      <SubHeader  />
+      <SubHeader setSearchPattern={setSearchPattern} />
       
-      <Catalog filteredProducts={dataPage} currency={currency}/>
+      <Catalog  filteredProducts={dataPage} currency={currency}/>
       <Stack spacing={2} alignItems="center" marginTop="2%">
       
       <Pagination
@@ -64,4 +84,13 @@ const Home = () => {
   )
 }
 
+//helper function doesn't need to be defined in Compoenent and therefore redefined on each re-render
+const removeDuplicates = (array) =>{
+  const seen = new Set();
+  return array.filter(item =>{
+    const duplicate = seen.has(item.id);
+    seen.add(item.id);
+    return !duplicate
+  });
+}
 export default Home;
