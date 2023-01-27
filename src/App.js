@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Heading from './components/Heading';
 
@@ -10,7 +10,6 @@ import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
 
-import { supabase } from './data/supabaseClient'; 
 
 export const Context = createContext({
   activeCategory: null,
@@ -25,15 +24,6 @@ function App() {
   const [user, setUser] = useState(null);
 
   console.log(user)
-
-  async function getProducts() {
-    const { data, error, status } = await supabase.from('products').select('*')
-    console.log(data)
-  }
-
-  useEffect(() => {
-    getProducts()
-  }, [])
 
   return (
     <Context.Provider 
