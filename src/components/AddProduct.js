@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {Box, TextField, MenuItem,Button, InputAdornment} from '@mui/material'
 import { Context } from '../App';
 import products from '../data/products.json'
+// const fs = require('fs')
 
 
 const AddProduct = () => {
@@ -64,7 +65,7 @@ const AddProduct = () => {
 
     
 
-    const handleSubmit = (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
 
         let len = products.length;
@@ -82,12 +83,14 @@ const AddProduct = () => {
                 description: formData.description,
                 price: price,
                 seller: {
-                    
+                    id: currentUser.id,
+                    name: currentUser.username
                 },
                 images: [],
                 category: formData.undefined,
                 labels: labels
             }
+            alert('Added a new Product')
             console.log(newProduct)
             setFormData(INIT_STATE)
         }
@@ -146,17 +149,6 @@ const AddProduct = () => {
                     </InputAdornment>
                 )}}
             />
-
-            {/* <TextField
-                label="Product Name"
-                value={formData.productName}
-                onChange={handleChange}
-                type="text"
-                id="productName"
-                margin="normal"
-            >
-
-            </TextField> */}
             <TextField
                 label="Product Category"
                 value={formData.undefined}
@@ -195,7 +187,6 @@ const AddProduct = () => {
         </Button>
         </Box>
     </Box>
-       
     )
 }
 
