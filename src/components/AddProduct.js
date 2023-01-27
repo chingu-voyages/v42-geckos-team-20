@@ -1,0 +1,203 @@
+import React, { useEffect } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import {Box, TextField, MenuItem,Button, InputAdornment} from '@mui/material'
+import { Context } from '../App';
+import products from '../data/products.json'
+
+
+const AddProduct = () => {
+
+
+    const INIT_STATE = {
+        productName: "",
+        description: "",
+        price: "",
+        images: "",
+        undefined: "",
+        label: ""
+    }
+
+    const CATEGORIES = [
+        {
+            value: "Clothes",
+            label: "Clothes"
+        },
+        {
+            value: "Electronics",
+            label: "Electronics"
+        },
+        {
+            value: "Accessories",
+            label: "Accessories"
+        },
+        {
+            value: "Bags",
+            label: "Bags"
+        }
+    ]
+
+    const [formData, setFormData] = useState(INIT_STATE);
+    const [error, setError] = useState({text: null})
+    const navigate = useNavigate();
+    const {currentUser} = useContext(Context)
+    const {userId} = useParams()
+    console.log(currentUser)
+
+    useEffect(() => {
+        function checkUser() {
+            if(currentUser === null || currentUser.id !== userId) {
+                navigate('/')
+            }
+        }
+       checkUser()
+    }, [])
+
+    const handleTextChange = (evt) => {
+        const {id, value} = evt.target;
+        setFormData(formData => ({
+            ...formData, 
+            [id]: value
+        }))
+        
+    }
+
+    
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+
+        let len = products.length;
+        let labels = formData.label.split(" ")
+        let price = parseInt(formData.price)
+
+        if(isNaN(price)) {
+            setError({text: "Invalid Number"})
+        }
+        else {
+            setError({text: null})
+            let newProduct = {
+                id: len + 1,
+                name: formData.name,
+                description: formData.description,
+                price: price,
+                seller: {
+                    
+                },
+                images: [],
+                category: formData.undefined,
+                labels: labels
+            }
+            console.log(newProduct)
+            setFormData(INIT_STATE)
+        }
+       
+    }
+
+    return (
+        <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        minHeight: "100vh"
+      }}
+    >
+         <Box
+            sx={{ 
+                display: "flex", 
+                flexDirection: "column", 
+                width: "fit-content",
+                top: "rem"
+            }}
+        >
+            <TextField
+                label="Product Name"
+                value={formData.productName}
+                onChange={handleTextChange}
+                type="text"
+                id="productName"
+                margin="normal"
+            />
+
+            <TextField
+                label="Product Description"
+                value={formData.description}
+                onChange={handleTextChange}
+                type="text"
+                id="description"
+                margin="normal"
+            />
+            
+            <TextField
+                label="Product Price"
+                value={formData.price}
+                onChange={handleTextChange}
+                type="text"
+                id="price"
+                error={error.text}
+                helperText={error.text}
+                margin="normal"
+                InputProps={{startAdornment: (
+                    <InputAdornment position='start'>
+                        $
+                    </InputAdornment>
+                )}}
+            />
+
+            {/* <TextField
+                label="Product Name"
+                value={formData.productName}
+                onChange={handleChange}
+                type="text"
+                id="productName"
+                margin="normal"
+            >
+
+            </TextField> */}
+            <TextField
+                label="Product Category"
+                value={formData.undefined}
+                onChange={handleTextChange}
+                select
+                // defaultValue=""
+                id="category"
+                margin="normal"
+            >
+                {CATEGORIES.map(category => (
+                    <MenuItem key={category.value} value={category.value}>
+                        {category.label}
+                    </MenuItem>
+                ))}
+            </TextField>
+
+            <TextField
+                label="Product Labels"
+                value={formData.label}
+                onChange={handleTextChange}
+                type="text"
+                id="label"
+                margin="normal"
+            />
+             <Button 
+          variant="contained"
+          onClick={handleSubmit} 
+          size="large"
+          sx={{
+            mt: "16px",
+            pt: "15px",
+            pb: "15px"
+          }}
+        >
+          Add Product
+        </Button>
+        </Box>
+    </Box>
+       
+    )
+}
+
+
+export default AddProduct;
