@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Heading from './components/Heading';
 
@@ -11,30 +11,21 @@ import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
 import AddProduct from './components/AddProduct';
 
-import { supabase } from './data/supabaseClient'; 
 
 export const Context = createContext({
   activeCategory: null,
   setActiveCategory: null,
   currentUser: null,
-  setCurrentUser: null
+  setCurrentUser: null,
+  searching: null,
+  setSearching: null
 });
 
 
 function App() {
   const [active, setActive] = useState("All");
   const [user, setUser] = useState(null);
-
-  console.log(user)
-
-  async function getProducts() {
-    const { data, error, status } = await supabase.from('products').select('*')
-    console.log(data)
-  }
-
-  useEffect(() => {
-    getProducts()
-  }, [])
+  const [searchStatus, setSearchStatus] = useState(false);
 
   return (
     <Context.Provider 
@@ -42,7 +33,9 @@ function App() {
         activeCategory: active, 
         setActiveCategory: setActive, 
         currentUser: user,
-        setCurrentUser: setUser
+        setCurrentUser: setUser,
+        searching: searchStatus,
+        setSearching: setSearchStatus
       }}
     >
       <div className="App">
