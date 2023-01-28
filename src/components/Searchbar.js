@@ -1,4 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import { useContext, useCallback, useState } from 'react';
+import { Context } from '../App.js';
+
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -6,13 +8,20 @@ import SearchIcon from '@mui/icons-material/Search';
 const Searchbar = () => {
   const [inputText, setInputText] = useState('');
 
-  const onSubmitInput = useCallback(() => {
-    console.log(inputText);
-  }, [inputText]);
+  const {searching, setSearching} = useContext(Context);
   
   const onChangeInputText = useCallback((e) => {
-    setInputText(e.target.value);
+    let searchWord ="";
+    searchWord += e.target.value;
+    searchWord === "" ? setSearching(false) : setSearching(true)
+    setSearchPattern(sanitizeSearchPattern(searchWord));
   }, []);
+
+  const sanitizeSearchPattern = (searchWord)=>{
+    searchWord = searchWord.trim();
+    let searchRegEx = new RegExp(searchWord, "i")
+    return searchRegEx;
+  };
   
   return (
     <Paper

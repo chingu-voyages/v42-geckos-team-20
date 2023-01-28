@@ -1,8 +1,9 @@
 import ProductCard from './ProductCard.js';
 
 import { Container } from '@mui/material';
+import products from '../data/products.json';
 
-const ContainerStyles ={
+const ContainerStyles = {
 	display: "flex",
 	justifyContent: "space-evenly",
 	flexWrap: "wrap",
@@ -21,7 +22,6 @@ export default function Catalog ({filteredProducts, currency}){
 			/>
 		)
 	);
-
 	return (
 		<Container maxWidth="lg" sx={ContainerStyles}>
 			{productsToView}

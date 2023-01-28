@@ -20,7 +20,9 @@ export const Context = createContext({
   activeCategory: null,
   setActiveCategory: null,
   currentUser: null,
-  setCurrentUser: null
+  setCurrentUser: null,
+  searching: null,
+  setSearching: null
 });
 
 function App() {
@@ -28,8 +30,7 @@ function App() {
 
   const [active, setActive] = useState("All");
   const [user, setUser] = useState(null);
-
-  console.log(user)
+  const [searchStatus, setSearchStatus] = useState(false);
 
   const theme = useMemo(() => (
     createTheme({
@@ -48,7 +49,9 @@ function App() {
         activeCategory: active, 
         setActiveCategory: setActive, 
         currentUser: user,
-        setCurrentUser: setUser
+        setCurrentUser: setUser,
+        searching: searchStatus,
+        setSearching: setSearchStatus
       }}
     >
       <ThemeProvider theme={theme}>
