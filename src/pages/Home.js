@@ -1,11 +1,11 @@
 import {useContext,useState, useEffect, useCallback} from 'react';
-import Catalog from './Catalog.js';
-import Heading  from './Heading.js';
-import SubHeader from './SubHeader.js';
+import Catalog from '../components/Catalog.js';
+import Heading  from '../components/Heading.js';
+import SubHeader from '../components/SubHeader.js';
 import products from '../data/products.json';
 import { Category } from '@mui/icons-material';
 import {Context} from '../App.js';
-import ProductPagination from './ProductPagination';
+import ProductPagination from '../components/ProductPagination';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 

@@ -9,10 +9,8 @@ const ContainerStyles ={
 }
 
 export default function Catalog ({filteredProducts, currency}){
-
 	const productsToView = filteredProducts.currentData().map((product)=>
 		<ProductCard key={product.id}product={product} currency={currency}/>
-		
 	);
 
 	return (

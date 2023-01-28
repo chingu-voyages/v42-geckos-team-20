@@ -4,7 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography } from '@mui/material';
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Heading = () => {
@@ -27,16 +26,17 @@ const Heading = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           borderBottom: '1px solid black',
-          padding: '0 10px',
+          pl: 2,
+          pr: 2,
           position: 'fixed',
           top: 0,
-          width: 'calc(100% - 20px)',
+          width: '100%',
           height: '80px',
           zIndex: 2,
           bgcolor: 'background.paper'
         }}
       >
-        <h3>Nearby Markets</h3>
+        <Typography variant="h5">Nearby Markets</Typography>
         
         {currentUser ? (
           <Box 
@@ -55,7 +55,9 @@ const Heading = () => {
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
               >
-                <Avatar sx={{ width: 32, height: 32 }}>{currentUser.username.charAt(0).toUpperCase()}</Avatar>
+                <Avatar sx={{ width: 32, height: 32 }}>
+                  {currentUser.username.charAt(0).toUpperCase()}
+                </Avatar>
               </IconButton>
             </Tooltip>
             <IconButton

@@ -1,12 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Searchbar = () => {
   const [inputText, setInputText] = useState('');
-
 
   const onSubmitInput = useCallback(() => {
     console.log(inputText);
@@ -15,7 +13,6 @@ const Searchbar = () => {
   const onChangeInputText = useCallback((e) => {
     setInputText(e.target.value);
   }, []);
-
   
   return (
     <div 
@@ -25,21 +22,20 @@ const Searchbar = () => {
       <Paper
         component="form"
         sx={{ 
-              margin: '0 auto',
-              display: 'flex', 
-              width: '85%', 
-              backgroundColor: '#eeeee4' ,
-              borderRadius: '10px',
-              boxShadow: 'none',
-              height: '2.8em',
-            }}
+          margin: '0.25rem auto',
+          padding: '0.5rem',
+          display: 'flex', 
+          width: '90%',
+          backgroundColor: 'background.paper' ,
+          borderRadius: '50px',
+          alignItems: 'center'
+        }}
       >
-        <IconButton onClick={onSubmitInput} sx={{ p: '0.8rem' }}>
-          <SearchIcon sx={{padding: '0.8rem'}} />
-        </IconButton>
+        <SearchIcon sx={{ ml: 1, color: "text.secondary" }} />
+
         <InputBase
           sx={{ ml: 2, flex: 1 }}
-          placeholder="Search Placeholder"
+          placeholder="Search products, categories, and users..."
           value={inputText}
           onChange={onChangeInputText}
         />

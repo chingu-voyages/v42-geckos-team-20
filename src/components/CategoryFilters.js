@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Context } from '../App';
 import products from "../data/products.json";
 import { Button, Tabs } from '@mui/material';
-import "./categoryFilters.css";
 
+// import "../styles/categoryFilters.css";
 import "../styles/Button.css";
  
 // get an array of categories from products json
@@ -27,11 +27,15 @@ const CategoryFilters = () => {
                 className="btn"
                 value="All"
                 onClick={() => setActiveCategory("All")}
-                sx={{ minWidth: "fit-content", margin: 1 }}
+                sx={{ 
+                    minWidth: "fit-content", 
+                    margin: 1, 
+                    borderRadius: "50px" 
+                }}
             >
                 All
-
             </Button>
+
             {uniqueCategories.map((category) => (
                 <Button
                     variant={activeCategory === category ? "contained" : "outlined"}
@@ -39,7 +43,11 @@ const CategoryFilters = () => {
                     key={category}
                     value={category}
                     onClick={() => setActiveCategory(category)}
-                    sx={{ minWidth: "fit-content", margin: 1 }}
+                    sx={{ 
+                        minWidth: "fit-content", 
+                        margin: 1, 
+                        borderRadius: "50px" 
+                    }}
                 >
                     {category}
                 </Button>

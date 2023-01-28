@@ -1,8 +1,10 @@
-.btn {
+/* .btn {
   border-radius: 50px;
-}
+  min-width: fit-content;
+  margin: 1rem;
+} */
 
-.css-1hncfw0-MuiButtonBase-root-MuiButton-root {
+/* .css-1hncfw0-MuiButtonBase-root-MuiButton-root {
   font-size: 0.875rem !important;
   line-height: 1.75 !important;
   letter-spacing: 0.02857em !important;
@@ -23,4 +25,4 @@
   margin: 8px !important;
   background-color: #1976d2 !important;
   color: #fff !important;
-}
+} */
