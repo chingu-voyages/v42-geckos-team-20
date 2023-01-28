@@ -20,22 +20,6 @@ const Heading = () => {
 
   return (
     <>
-      {/* <Box 
-        sx={{ 
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          borderBottom: '1px solid black',
-          pl: 2,
-          pr: 2,
-          position: 'fixed',
-          top: 0,
-          width: '100%',
-          height: '80px',
-          zIndex: 2,
-          bgcolor: 'background.paper'
-        }}
-      > */}
       <AppBar position="fixed" color="default">
         <Toolbar>
           <Typography variant="h5" sx={{ flexGrow: 1 }}>Nearby Markets</Typography>
@@ -71,13 +55,13 @@ const Heading = () => {
             </Box>
           ) : (
             <Button 
+              variant="contained"
               component="a"
               href="/login"
             >
               Login
             </Button>
           )}
-        {/* </Box> */}
         </Toolbar>
       </AppBar>
 

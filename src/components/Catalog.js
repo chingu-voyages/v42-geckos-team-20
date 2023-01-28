@@ -1,19 +1,30 @@
 import ProductCard from './ProductCard.js';
+
 import { Container } from '@mui/material';
 
 const ContainerStyles ={
 	display: "flex",
 	justifyContent: "space-evenly",
 	flexWrap: "wrap",
-	zIndex: 0
+	zIndex: 0,
+	marginTop: "64px",
+	marginBottom: "40px",
+	gap: "2rem"
 }
 
 export default function Catalog ({filteredProducts, currency}){
-	const productsToView = filteredProducts.currentData().map((product)=>
-		<ProductCard key={product.id}product={product} currency={currency}/>
+	const productsToView = filteredProducts.currentData().map((product) => (
+			<ProductCard 
+				key={product.id} 
+				product={product} 
+				currency={currency} 
+			/>
+		)
 	);
 
 	return (
-		<Container maxWidth="lg" sx={ContainerStyles}>{productsToView}</Container>
+		<Container maxWidth="lg" sx={ContainerStyles}>
+			{productsToView}
+		</Container>
 	)
 }

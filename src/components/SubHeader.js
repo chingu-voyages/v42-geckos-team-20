@@ -8,9 +8,9 @@ const SubHeader = ({handleFilterClick}) => {
     <Box
       id="Subheader"
       sx={{
-        padding: "1rem 0",
+        padding: "2rem 0 1rem",
         position: "sticky",
-        top: "64px",
+        top: "50px",
         zIndex: 1,
         bgcolor: "background.paper"
       }}

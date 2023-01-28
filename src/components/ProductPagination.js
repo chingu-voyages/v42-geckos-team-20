@@ -23,7 +23,7 @@ function ProductPagination(filteredProducts, itemsPerPage) {
     setCurrentPage(currentPage => Math.min(pageNumber, maxPage));
   }
 
-  return { next, prev, jump, currentData, currentPage, maxPage};
+  return { next, prev, jump, currentData, currentPage, maxPage };
           
 }
 

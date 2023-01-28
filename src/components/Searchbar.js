@@ -15,32 +15,28 @@ const Searchbar = () => {
   }, []);
   
   return (
-    <div 
-      id="Searchbar" 
-      style={{ height: "fit-content" }}
+    <Paper
+      id="Searchbar"
+      component="form"
+      sx={{ 
+        margin: '0.25rem 40px',
+        padding: '0.5rem',
+        display: 'flex', 
+        width: 'calc(100% - 80px)',
+        backgroundColor: 'background.paper' ,
+        borderRadius: '50px',
+        alignItems: 'center'
+      }}
     >
-      <Paper
-        component="form"
-        sx={{ 
-          margin: '0.25rem auto',
-          padding: '0.5rem',
-          display: 'flex', 
-          width: '90%',
-          backgroundColor: 'background.paper' ,
-          borderRadius: '50px',
-          alignItems: 'center'
-        }}
-      >
-        <SearchIcon sx={{ ml: 1, color: "text.secondary" }} />
+      <SearchIcon sx={{ ml: 1, color: "text.secondary" }} />
 
-        <InputBase
-          sx={{ ml: 2, flex: 1 }}
-          placeholder="Search products, categories, and users..."
-          value={inputText}
-          onChange={onChangeInputText}
-        />
-      </Paper>
-    </div>
+      <InputBase
+        sx={{ ml: 2, flex: 1 }}
+        placeholder="Search products, categories, + users..."
+        value={inputText}
+        onChange={onChangeInputText}
+      />
+    </Paper>
   );
 };
 

@@ -9,7 +9,7 @@ const ProductCardStyles = {
 	justifyContent: "space-between",
 	width: "300px",
 	height: "400px",
-	margin: "1vw",
+	// margin: "1vw",
 	overflow: "hidden"
 }
 
