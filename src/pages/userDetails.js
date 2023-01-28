@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom'
 import { Avatar, Box, Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import users from '../data/users.json';
 import { useParams } from 'react-router';
 import ProductCard from '../components/ProductCard';
+import { Context } from '../App';
 
 
 const UserDetails = () => {
 
     const { userId }= useParams();
+    const {currentUser} = useContext(Context)
     let user;
 
     // Gets User based om userId
@@ -103,22 +105,28 @@ const UserDetails = () => {
                 sx ={{fontSize: "60px"}}
             />
         </Avatar>
+
+    // Checks if the user is the con
+        const productBtn = currentUser === null || currentUser.id !== parseInt(userId) ? 
+        null
+        :
+        <Link to={`/users/${userId}/add-product`} style={linkStyles}>
+            <Button variant="contained" sx={buttonStyles}>
+                Add Product
+            </Button>
+        </Link>
         
 
     // Sets if the user is selling items and displays them or not
     const items = user.ItemsToSell.length !== 0 ? 
         <>
-            <h2 style={sellingItemsH2}>Your Products</h2> 
-            <Link to={`/users/${userId}/add-product`} style={linkStyles}><Button variant="contained" sx={buttonStyles}>Add Product</Button></Link>
+            <h2 style={sellingItemsH2}>Your Products</h2>
+            {productBtn}
             {user.ItemsToSell.map((product)=>
                 <ProductCard
                     key={product.id}
                     product={product}
                     currency={"$"}
-                    // key={product.id}
-                    // name={product.name}
-                    // seller={product.seller.name}
-                    // image={product.images[0]}
                 id={product.id}
                 />
             )}
@@ -126,7 +134,7 @@ const UserDetails = () => {
         :
         <>
             <h2 style={sellingItemsH2}>No Products To Sell</h2>
-            <Link to="#" style={linkStyles}><Button variant="contained" sx={buttonStyles}>Add Product</Button></Link>
+            {productBtn}
         </>
         
 
