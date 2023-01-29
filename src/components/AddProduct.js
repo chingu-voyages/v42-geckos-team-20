@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {Box, TextField, MenuItem,Button, InputAdornment} from '@mui/material'
 import { Context } from '../App';
 import products from '../data/products.json'
-// const fs = require('fs')
+
 
 
 const AddProduct = () => {
@@ -44,15 +44,18 @@ const AddProduct = () => {
     const {currentUser} = useContext(Context)
     const {userId} = useParams()
     console.log(currentUser)
+    console.log(parseInt(userId))
 
     useEffect(() => {
         function checkUser() {
-            if(currentUser === null || currentUser.id !== userId) {
+            if(currentUser.id !== parseInt(userId) || currentUser === null) {
                 navigate('/')
             }
         }
        checkUser()
     }, [])
+
+
 
     const handleTextChange = (evt) => {
         const {id, value} = evt.target;
@@ -90,8 +93,25 @@ const AddProduct = () => {
                 category: formData.undefined,
                 labels: labels
             }
-            alert('Added a new Product')
-            console.log(newProduct)
+            // alert('Added a new Product')
+            // console.log(newProduct)
+
+            fetch('../../public/data.json',
+            {
+                method: 'POST',
+                header: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: newProduct
+            })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log('Success:', result);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
             setFormData(INIT_STATE)
         }
        
