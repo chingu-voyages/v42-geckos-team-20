@@ -39,12 +39,11 @@ const AddProduct = () => {
     ]
 
     const [formData, setFormData] = useState(INIT_STATE);
-    const [error, setError] = useState({text: null})
+    const [priceError, setPriceError] = useState({text: null})
+    const [nameError, setNameError] = useState({text: null})
     const navigate = useNavigate();
     const {currentUser} = useContext(Context)
     const {userId} = useParams()
-    console.log(currentUser)
-    console.log(parseInt(userId))
 
     useEffect(() => {
         function checkUser() {
@@ -73,17 +72,21 @@ const AddProduct = () => {
 
         let len = products.length;
         let labels = formData.label.split(" ")
-        let price = parseInt(formData.price)
+        let price = +formData.price
 
         if(isNaN(price)) {
-            setError({text: "Invalid Number"})
+            setPriceError({text: "Invalid Number"})
+        }
+        else if(formData.productName === "") {
+            setNameError({text: "Enter Product Name"})
         }
         else {
-            setError({text: null})
+            setPriceError({text: null})
+            setNameError({text: null})
             let newProduct = {
                 id: len + 1,
-                name: formData.name,
-                description: formData.description,
+                name: formData.productName,
+                description: formData.description || null,
                 price: price,
                 seller: {
                     id: currentUser.id,
@@ -91,27 +94,11 @@ const AddProduct = () => {
                 },
                 images: [],
                 category: formData.undefined,
-                labels: labels
+                labels: labels,
+                region: currentUser.region || null
             }
-            // alert('Added a new Product')
-            // console.log(newProduct)
-
-            fetch('../../public/data.json',
-            {
-                method: 'POST',
-                header: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: newProduct
-            })
-            .then((response) => response.json())
-            .then((result) => {
-                console.log('Success:', result);
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
+            alert('Added a new Product')
+            console.log(newProduct)
             setFormData(INIT_STATE)
         }
        
@@ -141,6 +128,8 @@ const AddProduct = () => {
                 value={formData.productName}
                 onChange={handleTextChange}
                 type="text"
+                error={nameError.text}
+                helperText={nameError.text}
                 id="productName"
                 margin="normal"
             />
@@ -160,8 +149,8 @@ const AddProduct = () => {
                 onChange={handleTextChange}
                 type="text"
                 id="price"
-                error={error.text}
-                helperText={error.text}
+                error={priceError.text}
+                helperText={priceError.text}
                 margin="normal"
                 InputProps={{startAdornment: (
                     <InputAdornment position='start'>
@@ -174,7 +163,6 @@ const AddProduct = () => {
                 value={formData.undefined}
                 onChange={handleTextChange}
                 select
-                // defaultValue=""
                 id="category"
                 margin="normal"
             >
