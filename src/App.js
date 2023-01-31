@@ -10,6 +10,8 @@ import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
 import SellersPage from './pages/SellerPage';
+import Footer from './components/Footer';
+
 
 
 export const Context = createContext({
@@ -50,7 +52,10 @@ function App() {
           <Route path="/users/:userId" element={<UserDetails />} />
           <Route path="/seller/:sellerName" element={<SellersPage />}/>
       </Routes>
+
+      <Footer />
       </div>
+     
     </Context.Provider>
   );
 }
