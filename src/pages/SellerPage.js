@@ -9,6 +9,8 @@ import ProductPagination from '../components/ProductPagination';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 import {showSearchResults} from '../Utility_Functions/searching_Utilities.js';
 
 const SellersPage = () => {
@@ -28,14 +30,11 @@ const SellersPage = () => {
 	
   
 	const handleChange = (e, p) => {
-		console.log(`e: ${e}`);
-		console.log(`p: ${p}`);
 	  setPage(p);
 	  dataPage.jump(p);
 	};
   
-  
-  
+
 	useEffect(() =>{
 	  if(!searching){
 		showSelectedCategory()
@@ -54,23 +53,24 @@ const SellersPage = () => {
   }
   
 	return (
-	  <>
-  
-		<SubHeader setSearchPattern={setSearchPattern} />
-		<h1>{`${sellerName}'s page!`}</h1>
+	  <>  
+		<SubHeader setSearchPattern={setSearchPattern} />		
+		<Breadcrumbs aria-label="breadcrumb">
+            <Link underline="hover" color="inherit" href="/">Home</Link>
+			<p>{sellerName}</p>
+		</Breadcrumbs>
 		<Catalog  filteredProducts={dataPage} currency={currency}/>
-		<Stack spacing={2} alignItems="center" marginTop="2%">
 		
-		<Pagination
-		count={count}
-		size="large"
-		page={page}
-	   variant="outlined"
-		shape="rounded"
-		onChange={handleChange}
-		/>
+		<Stack spacing={2} alignItems="center" marginTop="2%">		
+			<Pagination
+			count={count}
+			size="large"
+			page={page}
+			variant="outlined"
+			shape="rounded"
+			onChange={handleChange}
+			/>
 		</Stack>
-  
 	  </>
 	)
   }

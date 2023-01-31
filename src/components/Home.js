@@ -51,22 +51,19 @@ const Home = () => {
 
   return (
     <>
-
-      <SubHeader setSearchPattern={setSearchPattern} />
-      
+      <SubHeader setSearchPattern={setSearchPattern} />      
       <Catalog  filteredProducts={dataPage} currency={currency}/>
-      <Stack spacing={2} alignItems="center" marginTop="2%">
       
-      <Pagination
-      count={count}
-      size="large"
-      page={page}
-      variant="outlined"
-      shape="rounded"
-      onChange={handleChange}
-      />
+      <Stack spacing={2} alignItems="center" marginTop="2%">      
+        <Pagination
+        count={count}
+        size="large"
+        page={page}
+        variant="outlined"
+        shape="rounded"
+        onChange={handleChange}
+        />
       </Stack>
-
     </>
   )
 }
