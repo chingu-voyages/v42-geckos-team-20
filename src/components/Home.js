@@ -39,6 +39,7 @@ const Home = () => {
     }else if(searching){
       showSearchedResults(filteredProducts)
     }
+    handleChange(1,1);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[activeCategory, searchPattern, count])
 
@@ -47,8 +48,8 @@ const showSelectedCategory = () =>{
     setFilteredProducts(products);
   }else {
     setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
-    handleChange(1,1);
   }
+  
 }
 
 const showSearchedResults = (arrayToSearch) =>{

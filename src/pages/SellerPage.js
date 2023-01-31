@@ -8,8 +8,11 @@ import {Context} from '../App.js';
 import ProductPagination from '../components/ProductPagination';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { useParams } from 'react-router-dom';
 
 const SellersPage = () => {
+	const { sellerName } = useParams();
+	const [Sellersproducts, setSellersProducts ] =useState(products.filter(product => product.seller.name.includes(sellerName)));
 	const { activeCategory, setActiveCategory } = useContext(Context);
 	const [ filteredProducts, setFilteredProducts ] = useState([]);
 	const [ searchPattern , setSearchPattern] =useState(null)
@@ -24,14 +27,19 @@ const SellersPage = () => {
 	
   
 	const handleChange = (e, p) => {
+		console.log(`e: ${e}`);
+		console.log(`p: ${p}`);
 	  setPage(p);
 	  dataPage.jump(p);
-	  console.log('handleChange', handleChange);
 	};
   
   
   
 	useEffect(() =>{
+		console.log(`Searching? ${searching}`)
+		console.log(`Category ${activeCategory}`)
+		console.log(`Sellers: ${Sellersproducts}`);
+		console.log(`Filtered: ${filteredProducts}`);
 	  if(!searching){
 		showSelectedCategory()
 	  }else if(searching){
@@ -42,11 +50,11 @@ const SellersPage = () => {
   
   const showSelectedCategory = () =>{
 	if(activeCategory === "All"){
-	  setFilteredProducts(products);
+	  setFilteredProducts(products.filter(product => product.seller.name.includes(sellerName)));
 	}else {
-	  setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
-	  handleChange(1,1);
+	  setFilteredProducts(Sellersproducts.filter(product => product.categories.includes(activeCategory)));	  
 	}
+	handleChange(1,1);
   }
   
   const showSearchedResults = (arrayToSearch) =>{
@@ -64,7 +72,7 @@ const SellersPage = () => {
 	  <>
   
 		<SubHeader setSearchPattern={setSearchPattern} />
-		<h1>Sellers page!</h1>
+		<h1>{`${sellerName}'s page!`}</h1>
 		<Catalog  filteredProducts={dataPage} currency={currency}/>
 		<Stack spacing={2} alignItems="center" marginTop="2%">
 		
