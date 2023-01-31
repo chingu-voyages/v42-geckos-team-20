@@ -9,6 +9,7 @@ import products from './data/products'
 import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
+import Footer from './components/Footer';
 
 
 export const Context = createContext({
@@ -48,7 +49,10 @@ function App() {
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/users/:userId" element={<UserDetails />} />
       </Routes>
+
+      <Footer />
       </div>
+     
     </Context.Provider>
   );
 }
