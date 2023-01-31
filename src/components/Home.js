@@ -8,7 +8,7 @@ import {Context} from '../App.js';
 import ProductPagination from './ProductPagination';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
+import {showSearchResults} from '../Utility_Functions/searching_Utilities.js';
 
 
 const Home = () => {
@@ -28,7 +28,6 @@ const Home = () => {
   const handleChange = (e, p) => {
     setPage(p);
     dataPage.jump(p);
-    console.log('handleChange', handleChange);
   };
 
 
@@ -37,31 +36,18 @@ const Home = () => {
     if(!searching){
       showSelectedCategory()
     }else if(searching){
-      showSearchedResults(filteredProducts)
+      showSearchResults(filteredProducts, setFilteredProducts,searchPattern)
     }
     handleChange(1,1);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[activeCategory, searchPattern, count])
 
-const showSelectedCategory = () =>{
-  if(activeCategory === "All"){
-    setFilteredProducts(products);
-  }else {
-    setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
+  const showSelectedCategory = () =>{
+    if(activeCategory === "All"){
+      setFilteredProducts(products);
+    }else {
+      setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
+    }  
   }
-  
-}
-
-const showSearchedResults = (arrayToSearch) =>{
-  let compiledSearchResults = searchArray(arrayToSearch).flat()
-  setFilteredProducts(removeDuplicates(compiledSearchResults));
-}
-const searchArray  = (arrayToSearch) =>{
-  let searchCategories = arrayToSearch.filter(product => searchPattern.test(product.categories));
-  let searchNames = arrayToSearch.filter(product => searchPattern.test(product.name));
-  let searchSellers = arrayToSearch.filter(product => searchPattern.test(product.seller.name));
-  return  [searchCategories, searchNames, searchSellers]
-}
 
   return (
     <>
@@ -75,7 +61,7 @@ const searchArray  = (arrayToSearch) =>{
       count={count}
       size="large"
       page={page}
-     variant="outlined"
+      variant="outlined"
       shape="rounded"
       onChange={handleChange}
       />
@@ -85,13 +71,4 @@ const searchArray  = (arrayToSearch) =>{
   )
 }
 
-//helper function doesn't need to be defined in Compoenent and therefore redefined on each re-render
-const removeDuplicates = (array) =>{
-  const seen = new Set();
-  return array.filter(item =>{
-    const duplicate = seen.has(item.id);
-    seen.add(item.id);
-    return !duplicate
-  });
-}
 export default Home;

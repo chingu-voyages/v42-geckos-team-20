@@ -9,6 +9,7 @@ import ProductPagination from '../components/ProductPagination';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
+import {showSearchResults} from '../Utility_Functions/searching_Utilities.js';
 
 const SellersPage = () => {
 	const { sellerName } = useParams();
@@ -36,16 +37,12 @@ const SellersPage = () => {
   
   
 	useEffect(() =>{
-		console.log(`Searching? ${searching}`)
-		console.log(`Category ${activeCategory}`)
-		console.log(`Sellers: ${Sellersproducts}`);
-		console.log(`Filtered: ${filteredProducts}`);
 	  if(!searching){
 		showSelectedCategory()
 	  }else if(searching){
-		showSearchedResults(filteredProducts)
+		showSearchResults(filteredProducts,setFilteredProducts,searchPattern)
 	  }
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+	  handleChange(1,1);
 	},[activeCategory, searchPattern, count])
   
   const showSelectedCategory = () =>{
@@ -54,18 +51,6 @@ const SellersPage = () => {
 	}else {
 	  setFilteredProducts(Sellersproducts.filter(product => product.categories.includes(activeCategory)));	  
 	}
-	handleChange(1,1);
-  }
-  
-  const showSearchedResults = (arrayToSearch) =>{
-	let compiledSearchResults = searchArray(arrayToSearch).flat()
-	setFilteredProducts(removeDuplicates(compiledSearchResults));
-  }
-  const searchArray  = (arrayToSearch) =>{
-	let searchCategories = arrayToSearch.filter(product => searchPattern.test(product.categories));
-	let searchNames = arrayToSearch.filter(product => searchPattern.test(product.name));
-	let searchSellers = arrayToSearch.filter(product => searchPattern.test(product.seller.name));
-	return  [searchCategories, searchNames, searchSellers]
   }
   
 	return (
@@ -88,16 +73,6 @@ const SellersPage = () => {
   
 	  </>
 	)
-  }
-  
-  //helper function doesn't need to be defined in Compoenent and therefore redefined on each re-render
-  const removeDuplicates = (array) =>{
-	const seen = new Set();
-	return array.filter(item =>{
-	  const duplicate = seen.has(item.id);
-	  seen.add(item.id);
-	  return !duplicate
-	});
   }
   export default SellersPage;
   
