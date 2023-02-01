@@ -42,7 +42,6 @@ const Home = () => {
 
   return (
     <>
-
       <SubHeader  />
       
       <Catalog filteredProducts={dataPage} currency={currency} />

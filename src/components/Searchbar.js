@@ -11,13 +11,13 @@ const Searchbar = () => {
   const {searching, setSearching} = useContext(Context);
   
   const onChangeInputText = useCallback((e) => {
-    let searchWord ="";
+    let searchWord = "";
     searchWord += e.target.value;
     searchWord === "" ? setSearching(false) : setSearching(true)
     setSearchPattern(sanitizeSearchPattern(searchWord));
   }, []);
 
-  const sanitizeSearchPattern = (searchWord)=>{
+  const sanitizeSearchPattern = (searchWord) => {
     searchWord = searchWord.trim();
     let searchRegEx = new RegExp(searchWord, "i")
     return searchRegEx;
