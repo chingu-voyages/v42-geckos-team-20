@@ -4,12 +4,15 @@ import { Routes, Route } from 'react-router-dom';
 import products from './data/products';
 
 import Heading from './components/Heading';
+import SellersPage from './pages/SellerPage';
+import Footer from './components/Footer';
 
 import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
+
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMediaQuery, CssBaseline } from '@mui/material';
@@ -66,7 +69,10 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             <Route path="/users/:userId" element={<UserDetails />} />
+            <Route path="/seller/:sellerName" element={<SellersPage />}/>
           </Routes>
+
+          <Footer />
         </div>
       </ThemeProvider>
     </Context.Provider>

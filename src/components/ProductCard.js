@@ -9,7 +9,6 @@ const ProductCardStyles = {
 	justifyContent: "space-between",
 	width: "300px",
 	height: "400px",
-	// margin: "1vw",
 	overflow: "hidden"
 }
 
@@ -39,8 +38,15 @@ export default function ProductCard({ product, currency }) {
 				<Typography variant="h6">{name}</Typography>
 
 				<Box>
-					<Typography variant="subtitle1">{`${currency}${price}`}</Typography>
-					<Typography variant="subtitle1">{seller.name}</Typography>
+					<Typography variant="subtitle1">
+						{`${currency}${price}`}
+					</Typography>
+
+					<Link to={`/seller/${sellerName}`}>
+						<Typography variant="subtitle1">
+							{seller.name}
+						</Typography>
+					</Link>
 				</Box>
 			</CardContent>
 		</Card>
