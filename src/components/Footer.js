@@ -1,27 +1,35 @@
 import React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
+
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Typography from "@mui/material/Typography";
 import StoreMallDirectoryTwoToneIcon from "@mui/icons-material/StoreMallDirectoryTwoTone";
 
 const Footer = () => {
-  
+
   return (
     <>
-      <Box
+      <Paper
         sx={{
-          display: "flex", bgcolor: "#eee", marginTop: "7%", justifyContent: "center",
+          display: "flex", 
+          mt: "7%", 
+          justifyContent: "center",
         }}
       >
-        <CssBaseline />
         <Container
           sx={{
-            display: "flex", flexDirection: "column", margin: "4% 0 1.5% 0", alignItems: "center",
+            display: "flex", 
+            flexDirection: "column", 
+            margin: "4% 0 1.5% 0", 
+            alignItems: "center",
           }}
         >
           <Box
@@ -30,15 +38,16 @@ const Footer = () => {
               height: "3em",
               display: "flex",
               justifyContent: "center",
-              alignItems: "flex-start",
+              // alignItems: "flex-start",
+              alignItems: "center"
             }}
           >
             <StoreMallDirectoryTwoToneIcon
               fontSize='large'
-              style={{ color: "#386ea8", marginRight: "0.2em" }}
+              sx={{ mr: "0.2em", color: "text.secondary" }}
             />
-            <Typography variant='caption' color='#262626' fontSize='1.3em'>
-              <strong>Nearby Markets</strong>
+            <Typography variant="h6" color="text.secondary">
+              Nearby Markets
             </Typography>
           </Box>
           <Box
@@ -50,10 +59,10 @@ const Footer = () => {
               alignItems: "flex-end",
             }}
           >
-            <Typography variant="overline">About</Typography>
-            <Typography variant="overline">Contact</Typography>
-            <Typography variant="overline">FAQ</Typography>
-            <Typography variant="overline">Blog</Typography>
+            <Link href="#" underline="hover" variant="overline">About</Link>
+            <Link href="#" underline="hover" variant="overline">Contact</Link>
+            <Link href="#" underline="hover" variant="overline">FAQ</Link>
+            <Link href="#" underline="hover" variant="overline">Blog</Link>
           </Box>
           <Box
             sx={{
@@ -64,10 +73,18 @@ const Footer = () => {
               alignItems: "flex-end",
             }}
           >
-            <InstagramIcon fontSize='medium' />
-            <FacebookIcon fontSize='medium' />
-            <TwitterIcon fontSize='medium' />
-            <LinkedInIcon fontSize='medium' />
+            <IconButton>
+              <InstagramIcon fontSize='medium' />
+            </IconButton>
+            <IconButton>
+              <FacebookIcon fontSize='medium' />
+            </IconButton>
+            <IconButton>
+              <TwitterIcon fontSize='medium' />
+            </IconButton>
+            <IconButton>
+              <LinkedInIcon fontSize='medium' />
+            </IconButton>
           </Box>
           <Box
             sx={{
@@ -78,12 +95,17 @@ const Footer = () => {
             }}
           >
             <Typography
-              variant='caption' display='block' color='#34a1eb' fontSize='0.8em'>
+              variant='caption' 
+              display='block' 
+              // color='#34a1eb' 
+              color="divider"
+              fontSize='0.8em'
+            >
               © 2023 Nearby Markets. All rights reserved.
             </Typography>
           </Box>
         </Container>
-      </Box>
+      </Paper>
     </>
   );
 };

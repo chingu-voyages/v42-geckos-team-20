@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-const Searchbar = () => {
+const Searchbar = ({setSearchPattern}) => {
   const [inputText, setInputText] = useState('');
 
   const {searching, setSearching} = useContext(Context);

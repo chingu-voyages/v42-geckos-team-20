@@ -2,9 +2,6 @@ import { useContext } from "react";
 import { Context } from '../App';
 import products from "../data/products.json";
 import { Button, Tabs } from '@mui/material';
-
-// import "../styles/categoryFilters.css";
-import "../styles/Button.css";
  
 // get an array of categories from products json
 const categories = products.map(product => product.categories).flat()

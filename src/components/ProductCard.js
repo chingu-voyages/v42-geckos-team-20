@@ -42,7 +42,7 @@ export default function ProductCard({ product, currency }) {
 						{`${currency}${price}`}
 					</Typography>
 
-					<Link to={`/seller/${sellerName}`}>
+					<Link to={`/seller/${seller.name}`}>
 						<Typography variant="subtitle1">
 							{seller.name}
 						</Typography>
