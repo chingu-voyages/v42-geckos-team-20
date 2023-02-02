@@ -13,6 +13,7 @@ const ContainerStyles ={
 	justifyContent: "center",
   alignItems: "center",
 	flexWrap: "wrap",
+  mt: '100px',
 	zIndex: 0
 }
 
