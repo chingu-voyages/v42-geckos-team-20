@@ -10,6 +10,8 @@ import products from '../data/products.json'
 const AddProduct = () => {
 
 
+    
+
     const INIT_STATE = {
         productName: "",
         description: "",
@@ -19,24 +21,17 @@ const AddProduct = () => {
         label: ""
     }
 
-    const CATEGORIES = [
-        {
-            value: "Clothes",
-            label: "Clothes"
-        },
-        {
-            value: "Electronics",
-            label: "Electronics"
-        },
-        {
-            value: "Accessories",
-            label: "Accessories"
-        },
-        {
-            value: "Bags",
-            label: "Bags"
+    const CATEGORIES = []
+    for(let product of products) {
+        if(CATEGORIES.includes(product.categories[0])) {
+            continue
         }
-    ]
+        else {
+            CATEGORIES.push(product.categories[0])
+        }
+        
+    }
+    
 
     const [formData, setFormData] = useState(INIT_STATE);
     const [priceError, setPriceError] = useState({text: null})
@@ -167,8 +162,8 @@ const AddProduct = () => {
                 margin="normal"
             >
                 {CATEGORIES.map(category => (
-                    <MenuItem key={category.value} value={category.value}>
-                        {category.label}
+                    <MenuItem key={category} value={category}>
+                        {category}
                     </MenuItem>
                 ))}
             </TextField>
