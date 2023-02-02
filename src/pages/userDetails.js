@@ -72,14 +72,11 @@ const UserDetails = () => {
         fontSize: "14px"
     }
 
-    const linkStyles = {
-        textDecoration: "none",
+
+    const buttonStyles = {
         position: "absolute",
         left: "16rem",
         top: "22.5rem",
-    }
-
-    const buttonStyles = {
         fontSize: "11px",
         padding: "5px",
         backgroundColor: "primary.dark",
@@ -106,16 +103,13 @@ const UserDetails = () => {
             />
         </Avatar>
 
-    // Checks if the user is the con
+    // Checks if the user is the correct user and displays the button if logged in.
         const productBtn = currentUser === null || currentUser.id !== parseInt(userId) ? 
         null
         :
-        <Link to={`/users/${userId}/add-product`} style={linkStyles}>
-            <Button variant="contained" sx={buttonStyles}>
+            <Button variant="contained" sx={buttonStyles} href={`/users/${userId}/add-product`}>
                 Add Product
             </Button>
-        </Link>
-        
 
     // Sets if the user is selling items and displays them or not
     const items = user.ItemsToSell.length !== 0 ? 
