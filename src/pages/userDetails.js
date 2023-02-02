@@ -1,15 +1,19 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
-import { Avatar, Box, Button } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
-import users from '../data/users.json';
+import React, {useContext} from 'react';
 import { useParams } from 'react-router';
-import ProductCard from '../components/ProductCard';
+import { Context } from '../App';
 
+import users from '../data/users.json';
+
+import { Avatar, Box, Button } from '@mui/material';
+
+import PersonIcon from '@mui/icons-material/Person';
+
+import ProductCard from '../components/ProductCard';
 
 const UserDetails = () => {
 
     const { userId }= useParams();
+    const {currentUser} = useContext(Context)
     let user;
 
     // Gets User based om userId
@@ -23,8 +27,7 @@ const UserDetails = () => {
     const sellingItemsAmount = user.ItemsToSell.length;
     
 
- // Component Styles 
-
+// Component Styles 
     const avaterBoxStyles = {
         display: "flex",
         justifyContent: "center",
@@ -63,21 +66,16 @@ const UserDetails = () => {
         width: "16rem"
     }
 
-
     const sellingItemsAmountStyles = {
         position: "absolute",
         left: "9.8rem",
         fontSize: "14px"
     }
 
-    const linkStyles = {
-        textDecoration: "none",
+    const buttonStyles = {
         position: "absolute",
         left: "16rem",
         top: "22.5rem",
-    }
-
-    const buttonStyles = {
         fontSize: "11px",
         padding: "5px",
         backgroundColor: "primary.dark",
@@ -86,7 +84,7 @@ const UserDetails = () => {
         }
 
     }
- // -------------------------------------------------------------------
+ // ----------------------------------------------------------------
 
     // Gets avatar img based on image field in user
     const imgSource = user.image ? 
@@ -103,19 +101,25 @@ const UserDetails = () => {
                 sx ={{fontSize: "60px"}}
             />
         </Avatar>
-        
+
+    // Checks if the user is the correct user and displays the button if logged in.
+        const productBtn = currentUser === null || currentUser.id !== parseInt(userId) ? 
+        null
+        :
+            <Button variant="contained" sx={buttonStyles} href={`/users/${userId}/add-product`}>
+                Add Product
+            </Button>
 
     // Sets if the user is selling items and displays them or not
     const items = user.ItemsToSell.length !== 0 ? 
         <>
-            <h2 style={sellingItemsH2}>Your Products</h2> 
-            <Link to="#" style={linkStyles}><Button variant="contained" sx={buttonStyles}>Add Product</Button></Link>
+            <h2 style={sellingItemsH2}>Your Products</h2>
+            {productBtn}
             {user.ItemsToSell.map((product)=>
                 <ProductCard
                     key={product.id}
-                    name={product.name}
-                    seller={product.seller.name}
-                    image={product.images[0]}
+                    product={product}
+                    currency={"$"}
                 id={product.id}
                 />
             )}
@@ -123,7 +127,7 @@ const UserDetails = () => {
         :
         <>
             <h2 style={sellingItemsH2}>No Products To Sell</h2>
-            <Link to="#" style={linkStyles}><Button variant="contained" sx={buttonStyles}>Add Product</Button></Link>
+            {productBtn}
         </>
         
 

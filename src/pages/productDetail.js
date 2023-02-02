@@ -1,7 +1,8 @@
 import React from 'react';
-import Heading  from '../components/Heading';
+import { useParams } from 'react-router-dom';
+
 import products from '../data/products.json';
-//import Breadcrumbs from '../components/Breadcrumbs';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
@@ -10,12 +11,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import ButtonLarge from '../components/ButtonLarge';
-import { useParams } from 'react-router-dom';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 
 import Counter from '../components/Counter';
-
 
 function ProductDetail() {
   const { productId } = useParams();

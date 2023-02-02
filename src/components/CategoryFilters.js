@@ -24,6 +24,7 @@ const CategoryFilters = () => {
                 sx={{ minWidth: "fit-content", margin: 1 }}
             >
                 All
+
             </Button>
             {categories.map((category) => (
                 <Button

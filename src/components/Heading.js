@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Context } from '../App';
 import { useNavigate, Link } from "react-router-dom";
 
+
 import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography } from '@mui/material';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -110,7 +111,7 @@ const Heading = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate("/profile")}>
+        <MenuItem onClick={() => navigate(`/users/${currentUser.id}`)}>
           Profile
         </MenuItem>
         <MenuItem onClick={() => setCurrentUser(null)}>
