@@ -1,5 +1,7 @@
 import React from "react";
 
+import ThemeSelect from "./ThemeSelect";
+
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -21,7 +23,8 @@ const Footer = () => {
         sx={{
           display: "flex", 
           mt: "7%", 
-          justifyContent: "center",
+          justifyContent: "center", 
+          borderRadius: 0 
         }}
       >
         <Container
@@ -33,43 +36,68 @@ const Footer = () => {
           }}
         >
           <Box
-            sx={{
-              width: "18.5em",
-              height: "3em",
-              display: "flex",
-              justifyContent: "center",
-              // alignItems: "flex-start",
-              alignItems: "center"
-            }}
-          >
-            <StoreMallDirectoryTwoToneIcon
-              fontSize='large'
-              sx={{ mr: "0.2em", color: "text.secondary" }}
-            />
-            <Typography variant="h6" color="text.secondary">
-              Nearby Markets
-            </Typography>
+              sx={{
+                width: "80%",
+                height: "fit-content",
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                margin: 2
+              }}
+            >
+            <Box
+              sx={{
+                width: "fit-content",
+                height: "fit-content",
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              <StoreMallDirectoryTwoToneIcon
+                fontSize='large'
+                sx={{ mr: "0.2em", color: "text.secondary" }}
+              />
+              <Typography 
+                variant="h6" 
+                color="text.secondary"
+                sx={{ mr: 2 }}
+              >
+                Nearby Markets
+              </Typography>
+            </Box>
+
+            <ThemeSelect />
           </Box>
+
           <Box
             sx={{
-              width: "32em",
+              width: "90%",
               height: "4em",
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "space-evenly",
               alignItems: "flex-end",
             }}
           >
-            <Link href="#" underline="hover" variant="overline">About</Link>
-            <Link href="#" underline="hover" variant="overline">Contact</Link>
-            <Link href="#" underline="hover" variant="overline">FAQ</Link>
-            <Link href="#" underline="hover" variant="overline">Blog</Link>
+            <Link href="#" underline="hover" variant="overline">
+              About
+            </Link>
+            <Link href="#" underline="hover" variant="overline">
+              Contact
+            </Link>
+            <Link href="#" underline="hover" variant="overline">
+              FAQ
+            </Link>
+            <Link href="#" underline="hover" variant="overline">
+              Blog
+            </Link>
           </Box>
           <Box
             sx={{
-              width: "17em",
+              width: "50%",
               height: "4em",
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "space-evenly",
               alignItems: "flex-end",
             }}
           >
@@ -86,24 +114,16 @@ const Footer = () => {
               <LinkedInIcon fontSize='medium' />
             </IconButton>
           </Box>
-          <Box
-            sx={{
-              height: "4em",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
+          
+          <Typography
+            variant='caption' 
+            display='block' 
+            color="text.secondary"
+            fontSize='0.8em'
+            sx={{ padding: "2em", textAlign: "center" }}
           >
-            <Typography
-              variant='caption' 
-              display='block' 
-              // color='#34a1eb' 
-              color="divider"
-              fontSize='0.8em'
-            >
-              © 2023 Nearby Markets. All rights reserved.
-            </Typography>
-          </Box>
+            © 2023 Nearby Markets. All rights reserved.
+          </Typography>
         </Container>
       </Paper>
     </>

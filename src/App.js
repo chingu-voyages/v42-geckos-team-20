@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useMemo } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import products from './data/products';
@@ -19,32 +19,46 @@ import { useMediaQuery, CssBaseline } from '@mui/material';
 
 import './styles/App.css';
 
+const ColorModeContext = createContext({ toggleColorMode: () => {} });
+
 export const Context = createContext({
   activeCategory: null,
   setActiveCategory: null,
   currentUser: null,
   setCurrentUser: null,
   searching: null,
-  setSearching: null
+  setSearching: null,
+  themePreference: null,
+  setThemePreference: null
 });
 
 function App() {
+  const [themePreference, setThemePreference] = useState("System");
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const [active, setActive] = useState("All");
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
 
+  const mode = useMemo(() => {
+    if(themePreference === "Dark") return true
+    else if(themePreference === "Light") return false
+    else return prefersDarkMode
+  }, [themePreference])
+
   const theme = useMemo(() => (
     createTheme({
       palette: {
-        mode: prefersDarkMode ? 'dark' : 'light',
+        mode: mode ? 'dark' : 'light',
         primary: {
-          main: prefersDarkMode ? '#fff' : '#000',
+          main: mode ? '#fff' : '#000',
         }
+      },
+      shape: {
+        borderRadius: 20,
       }
     })
-  ), [prefersDarkMode])
+  ), [mode])
 
   return (
     <Context.Provider 
@@ -54,7 +68,9 @@ function App() {
         currentUser: user,
         setCurrentUser: setUser,
         searching: searchStatus,
-        setSearching: setSearchStatus
+        setSearching: setSearchStatus,
+        themePreference: themePreference,
+        setThemePreference: setThemePreference 
       }}
     >
       <ThemeProvider theme={theme}>

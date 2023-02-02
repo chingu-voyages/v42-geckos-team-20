@@ -26,8 +26,7 @@ const CategoryFilters = () => {
                 onClick={() => setActiveCategory("All")}
                 sx={{ 
                     minWidth: "fit-content", 
-                    margin: 1, 
-                    borderRadius: "50px" 
+                    margin: 1
                 }}
             >
                 All

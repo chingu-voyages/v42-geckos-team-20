@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography, Box } from '@mui/material';
 
 const ProductCardStyles = {
-	borderRadius: "20px",
 	display: "flex",
 	flexDirection: "column",
 	justifyContent: "space-between",
@@ -39,7 +38,7 @@ export default function ProductCard({ product, currency }) {
 
 				<Box>
 					<Typography variant="subtitle1">
-						{`${currency}${price}`}
+						{`${currency} ${price}`}
 					</Typography>
 
 					<Link to={`/seller/${seller.name}`}>

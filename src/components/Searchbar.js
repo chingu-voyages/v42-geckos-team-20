@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 const Searchbar = ({setSearchPattern}) => {
   const [inputText, setInputText] = useState('');
 
-  const {searching, setSearching} = useContext(Context);
+  const { searching, setSearching } = useContext(Context);
   
   const onChangeInputText = useCallback((e) => {
     let searchWord = "";
@@ -32,8 +32,7 @@ const Searchbar = ({setSearchPattern}) => {
         padding: '0.5rem',
         display: 'flex', 
         width: 'calc(100% - 80px)',
-        backgroundColor: 'background.paper' ,
-        borderRadius: '50px',
+        bgcolor: 'background.paper',
         alignItems: 'center'
       }}
     >
