@@ -1,0 +1,24 @@
+.App {
+  min-height: 100vh;
+}
+
+.Page {
+	margin-top: 64px;
+	margin-bottom: 40px;
+}
+
+#product-detail img {
+  height: 100%;
+  max-width: 60vw;
+  object-fit: contain;
+}
+
+@media (max-width: 800px) {
+  #product-detail {
+    flex-direction: column;
+  }
+  #product-detail img {
+    max-height: 400px;
+    max-width: 100%;
+  }
+}

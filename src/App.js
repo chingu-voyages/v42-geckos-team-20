@@ -1,19 +1,24 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
+import products from './data/products';
+
 import Heading from './components/Heading';
+import Footer from './components/Footer';
 
-import Home from './components/Home';
-import Login from './components/Login';
-
-import products from './data/products'
 import ProductDetail from './pages/productDetail';
 import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
+import Home from './pages/Home';
+import Login from './pages/Login';
 import SellersPage from './pages/SellerPage';
-import Footer from './components/Footer';
 
 import AddProduct from './components/AddProduct';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useMediaQuery, CssBaseline } from '@mui/material';
+
+import './styles/App.css';
 
 export const Context = createContext({
   activeCategory: null,
@@ -21,14 +26,38 @@ export const Context = createContext({
   currentUser: null,
   setCurrentUser: null,
   searching: null,
-  setSearching: null
+  setSearching: null,
+  themePreference: null,
+  setThemePreference: null
 });
 
-
 function App() {
+  const [themePreference, setThemePreference] = useState("System");
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
   const [active, setActive] = useState("All");
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
+
+  const mode = useMemo(() => {
+    if(themePreference === "Dark") return true
+    else if(themePreference === "Light") return false
+    else return prefersDarkMode
+  }, [themePreference])
+
+  const theme = useMemo(() => (
+    createTheme({
+      palette: {
+        mode: mode ? 'dark' : 'light',
+        primary: {
+          main: mode ? '#fff' : '#000',
+        }
+      },
+      shape: {
+        borderRadius: 20,
+      }
+    })
+  ), [mode])
 
   return (
     <Context.Provider 
@@ -38,26 +67,29 @@ function App() {
         currentUser: user,
         setCurrentUser: setUser,
         searching: searchStatus,
-        setSearching: setSearchStatus
+        setSearching: setSearchStatus,
+        themePreference: themePreference,
+        setThemePreference: setThemePreference 
       }}
     >
-      <div className="App">
-        <Heading/>
-        
-       
-      <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/products/:productId" element={<ProductDetail />} />
-          <Route path="/users/:userId" element={<UserDetails />} />
-          <Route path="/seller/:sellerName" element={<SellersPage />}/>
-          <Route path="/users/:userId/add-product" element={<AddProduct />} />
-        </Routes>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-      <Footer />
-      </div>
-     
+        <div className="App">
+          <Heading />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/products/:productId" element={<ProductDetail />} />
+            {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
+            <Route path="/seller/:sellerName" element={<SellersPage />}/>
+            <Route path="/users/:userId/add-product" element={<AddProduct />} />
+          </Routes>
+
+          <Footer />
+        </div>
+      </ThemeProvider>
     </Context.Provider>
   );
 }

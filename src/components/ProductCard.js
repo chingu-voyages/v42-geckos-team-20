@@ -1,39 +1,44 @@
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { Link } from "react-router-dom";
 import React from "react";
-
-
+import { Link } from "react-router-dom";
+import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Box, Button } from '@mui/material';
 
 const ProductCardStyles = {
-	border: "1px solid black",
-	borderRadius: "20px",
-	display: "flex",
-	flexDirection: "column",
-	justifyContent: "space between",
-	width: "326px",
-	height: "386px",
-	left: "0px",
-	top: "0px",
-	margin: "1%",
-	padding: "1%"
+	width: "300px",
+	height: "400px"
 }
+
 export default function ProductCard({ product, currency }) {
-	const { id, name, price, images,seller:{name:sellerName}} = product;
+	const { id, name, price, images, seller } = product;
+
 	return (
 		<Card raised={true} sx={ProductCardStyles}>
-			<Link to={`/products/${id}`}>
+			<CardActionArea 
+				component={Link} 
+				to={`/products/${id}`}
+			>
 				<CardMedia
 					component="img"
-					image={images[0]} style={{ width: '100%', height: '250px' }}
+					image={images[0]} 
+					sx={{ width: '100%', height: '250px' }}
 					title={name}
-				/></Link>
-			<CardContent>
-				<Typography>{name}</Typography>
-			</CardContent>
-			<CardContent>
-				<Typography>{`${currency}${price}`}</Typography>
-				<Link to={`/seller/${sellerName}`}><Typography>{sellerName}</Typography> </Link>
-			</CardContent>
+					alt={name}
+				/>
+
+				<CardContent>
+					<Typography variant="h6">{name}</Typography>
+
+					<Typography variant="subtitle1" color="text.secondary">
+						{`${currency} ${price}`}
+					</Typography>
+					
+				</CardContent>
+			</CardActionArea>
+
+			<CardActions>
+				<Button component={Link} to={`/seller/${seller.name}`}>
+					{seller.name}
+				</Button>
+			</CardActions>
 		</Card>
 	)
 };
