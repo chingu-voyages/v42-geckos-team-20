@@ -1,56 +1,49 @@
 import { useContext,useState, useEffect } from 'react';
 import { Context } from '../App.js';
-import { showSearchResults } from '../Utility_Functions/searching_Utilities.js';
+import ProductPagination from '../components/ProductPagination';
 
-import Catalog from './Catalog.js';
-import SubHeader from './SubHeader.js';
+import Catalog from '../components/Catalog.js';
+import SubHeader from '../components/SubHeader';
+
 import products from '../data/products.json';
 
-import ProductPagination from './ProductPagination';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 const Home = () => {
   const { activeCategory, setActiveCategory } = useContext(Context);
   const [ filteredProducts, setFilteredProducts ] = useState([]);
-  const [ searchPattern , setSearchPattern] =useState(null)
   const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
-  const {searching, setSearching} =useContext(Context)
   const [ page, setPage ] = useState(1);
   const PER_PAGE = 5;
 
   const count = Math.ceil(filteredProducts.length / PER_PAGE);
   const dataPage = ProductPagination(filteredProducts, PER_PAGE);
-
+  
   const handleChange = (e, p) => {
     setPage(p);
     dataPage.jump(p);
+    console.log('handleChange', handleChange);
   };
 
-  useEffect(() =>{
-    if(!searching){
-      showSelectedCategory()
-    }else if(searching){
-      showSearchResults(filteredProducts, setFilteredProducts,searchPattern)
-    }
-    handleChange(1,1);
-  },[activeCategory, searchPattern, count])
-
-  const showSelectedCategory = () =>{
+  useEffect(() => {
     if(activeCategory === "All"){
       setFilteredProducts(products);
-    }else {
+    } else {
       setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
-    }  
-  }
+
+       handleChange(1,1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCategory, count])
 
   return (
-    <div className="Page">
-      <SubHeader setSearchPattern={setSearchPattern} /> 
-
-      <Catalog  filteredProducts={dataPage} currency={currency}/>
+    <>
+      <SubHeader  />
       
-      <Stack spacing={2} alignItems="center" marginTop="2%">      
+      <Catalog filteredProducts={dataPage} currency={currency} />
+
+      <Stack spacing={2} alignItems="center" marginTop="2%">
         <Pagination
           size="large"
           color="primary"
@@ -59,7 +52,7 @@ const Home = () => {
           onChange={handleChange}
         />
       </Stack>
-    </div>
+    </>
   )
 }
 
