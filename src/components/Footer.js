@@ -24,7 +24,8 @@ const Footer = () => {
           display: "flex", 
           mt: "7%", 
           justifyContent: "center", 
-          borderRadius: 0 
+          borderRadius: 0, 
+          boxShadow: 3
         }}
       >
         <Container

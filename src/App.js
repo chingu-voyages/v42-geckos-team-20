@@ -4,7 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 import products from './data/products';
 
 import Heading from './components/Heading';
-import SellersPage from './pages/SellerPage';
 import Footer from './components/Footer';
 
 import ProductDetail from './pages/productDetail';
@@ -12,14 +11,13 @@ import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import SellersPage from './pages/SellerPage';
 
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMediaQuery, CssBaseline } from '@mui/material';
 
 import './styles/App.css';
-
-const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export const Context = createContext({
   activeCategory: null,

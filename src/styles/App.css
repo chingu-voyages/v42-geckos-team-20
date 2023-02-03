@@ -1,6 +1,6 @@
-/* .App {
-  margin-bottom: 4rem;
-} */
+.App {
+  min-height: 100vh;
+}
 
 #product-detail img {
   height: 100%;

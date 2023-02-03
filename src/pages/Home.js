@@ -3,12 +3,9 @@ import { Context } from '../App.js';
 import ProductPagination from '../components/ProductPagination';
 
 import Catalog from '../components/Catalog.js';
-import Heading  from '../components/Heading.js';
 import SubHeader from '../components/SubHeader';
 
 import products from '../data/products.json';
-
-import { Category } from '@mui/icons-material';
 
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
@@ -45,13 +42,13 @@ const Home = () => {
       <SubHeader  />
       
       <Catalog filteredProducts={dataPage} currency={currency} />
+
       <Stack spacing={2} alignItems="center" marginTop="2%">
         <Pagination
-          count={count}
           size="large"
+          color="primary"
+          count={count}
           page={page}
-          variant="outlined"
-          shape="rounded"
           onChange={handleChange}
         />
       </Stack>
