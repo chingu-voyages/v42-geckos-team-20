@@ -22,7 +22,14 @@ const Heading = () => {
     <>
       <AppBar position="fixed" color="default">
         <Toolbar>
-          <Typography variant="h5" sx={{ flexGrow: 1 }}>Nearby Markets</Typography>
+          <Typography 
+            variant="h5" 
+            component={Link} to="/"
+            color="inherit"
+            sx={{ flexGrow: 1, textDecoration: "none" }} 
+          >
+            Nearby Markets
+          </Typography>
           
           {currentUser ? (
             <Box 
@@ -100,7 +107,7 @@ const Heading = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate("/profile")}>
+        <MenuItem onClick={() => navigate(`/users/${currentUser.id}`)}>
           Profile
         </MenuItem>
         <MenuItem onClick={() => setCurrentUser(null)}>

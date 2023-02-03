@@ -15,15 +15,12 @@ function ProductDetail() {
   if (!thisProduct) return null;
 
   return (
-    <>
+    <div className="Page">
       <Breadcrumbs 
         id="breadcrumbs"
         aria-label="breadcrumbs"
-        sx={{ ml: 2, mt: "64px", pt: 2 }}
+        sx={{ ml: "40px", pt: 2 }}
       >
-        <Link underline="hover" color="inherit" href="/">
-          Home
-        </Link>
         {thisProduct.categories.map(category =>
           <Link
             underline="none"
@@ -97,7 +94,7 @@ function ProductDetail() {
           </Card>
         </Box>
       </Box>     
-    </>
+    </div>
   )
 };
 

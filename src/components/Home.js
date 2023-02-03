@@ -1,18 +1,14 @@
-import { useContext,useState, useEffect, useCallback } from 'react';
+import { useContext,useState, useEffect } from 'react';
 import { Context } from '../App.js';
 import { showSearchResults } from '../Utility_Functions/searching_Utilities.js';
 
 import Catalog from './Catalog.js';
-import Heading  from './Heading.js';
 import SubHeader from './SubHeader.js';
 import products from '../data/products.json';
-
-import { Category } from '@mui/icons-material';
 
 import ProductPagination from './ProductPagination';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
 
 const Home = () => {
   const { activeCategory, setActiveCategory } = useContext(Context);
@@ -22,18 +18,14 @@ const Home = () => {
   const {searching, setSearching} =useContext(Context)
   const [ page, setPage ] = useState(1);
   const PER_PAGE = 5;
-  
 
   const count = Math.ceil(filteredProducts.length / PER_PAGE);
   const dataPage = ProductPagination(filteredProducts, PER_PAGE);
-  
 
   const handleChange = (e, p) => {
     setPage(p);
     dataPage.jump(p);
   };
-
-
 
   useEffect(() =>{
     if(!searching){
@@ -53,21 +45,21 @@ const Home = () => {
   }
 
   return (
-    <>
-      <SubHeader setSearchPattern={setSearchPattern} />      
+    <div className="Page">
+      <SubHeader setSearchPattern={setSearchPattern} /> 
+
       <Catalog  filteredProducts={dataPage} currency={currency}/>
       
       <Stack spacing={2} alignItems="center" marginTop="2%">      
         <Pagination
-        count={count}
-        size="large"
-        page={page}
-        variant="outlined"
-        shape="rounded"
-        onChange={handleChange}
+          size="large"
+          color="primary"
+          count={count}
+          page={page}
+          onChange={handleChange}
         />
       </Stack>
-    </>
+    </div>
   )
 }
 

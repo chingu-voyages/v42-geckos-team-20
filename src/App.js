@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SellersPage from './pages/SellerPage';
 
+import AddProduct from './components/AddProduct';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMediaQuery, CssBaseline } from '@mui/material';
@@ -76,14 +77,14 @@ function App() {
 
         <div className="App">
           <Heading />
-          
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
-            <Route path="/users/:userId" element={<UserDetails />} />
+            {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
             <Route path="/seller/:sellerName" element={<SellersPage />}/>
+            <Route path="/users/:userId/add-product" element={<AddProduct />} />
           </Routes>
 
           <Footer />

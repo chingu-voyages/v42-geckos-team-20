@@ -1,6 +1,7 @@
 import ProductCard from './ProductCard.js';
 
 import { Container } from '@mui/material';
+
 import products from '../data/products.json';
 
 const ContainerStyles = {
@@ -8,8 +9,6 @@ const ContainerStyles = {
 	justifyContent: "space-evenly",
 	flexWrap: "wrap",
 	zIndex: 0,
-	marginTop: "64px",
-	marginBottom: "40px",
 	gap: "2rem"
 }
 

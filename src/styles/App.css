@@ -2,6 +2,11 @@
   min-height: 100vh;
 }
 
+.Page {
+	margin-top: 64px;
+	margin-bottom: 40px;
+}
+
 #product-detail img {
   height: 100%;
   max-width: 60vw;
