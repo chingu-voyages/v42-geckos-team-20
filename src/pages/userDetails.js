@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Avatar, Box, Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import users from '../data/users.json';
@@ -9,7 +9,7 @@ import { Context } from '../App';
 
 
 const UserDetails = () => {
-
+    
     const { userId }= useParams();
     const {currentUser} = useContext(Context)
     let user;

@@ -2,10 +2,8 @@ import { useContext, useState } from "react";
 import { Context } from '../App';
 import { useNavigate, Link } from "react-router-dom";
 
+import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography, AppBar, Toolbar } from '@mui/material';
 
-import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography } from '@mui/material';
-
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Heading = () => {
@@ -22,59 +20,57 @@ const Heading = () => {
 
   return (
     <>
-      <Box 
-        sx={{ 
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          borderBottom: '1px solid black',
-          padding: '0 10px',
-          position: 'fixed',
-          top: 0,
-          width: 'calc(100% - 20px)',
-          height: '80px',
-          zIndex: 2,
-          bgcolor: 'background.paper'
-        }}
-      >
-        <h3>Nearby Markets</h3>
-        
-        {currentUser ? (
-          <Box 
-            sx={{
-              width: 'fit-content',
-              display: 'flex',
-              justifyContent: 'space-between'
-            }}
+      <AppBar position="fixed" color="default">
+        <Toolbar>
+          <Typography 
+            variant="h5" 
+            component={Link} to="/"
+            color="inherit"
+            sx={{ flexGrow: 1, textDecoration: "none" }} 
           >
-            <Tooltip title="Account settings">
-              <IconButton
-                onClick={handleClick}
-                size="small"
-                sx={{ ml: 2 }}
-                aria-controls={open ? 'account-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-              >
-                <Avatar sx={{ width: 32, height: 32 }}>{currentUser.username.charAt(0).toUpperCase()}</Avatar>
-              </IconButton>
-            </Tooltip>
-            <IconButton
-              component="a"
-              href="/cart"
+            Nearby Markets
+          </Typography>
+          
+          {currentUser ? (
+            <Box 
+              sx={{
+                width: 'fit-content',
+                display: 'flex',
+                justifyContent: 'space-between'
+              }}
             >
-              <ShoppingCartIcon />
-            </IconButton>
-          </Box>
-        ) : (
-          <Button 
-            component="a"
-            href="/login"
-          >
-            Login
-          </Button>
-        )}
-      </Box>
+              <Tooltip title="Account settings">
+                <IconButton
+                  onClick={handleClick}
+                  size="small"
+                  sx={{ ml: 2 }}
+                  aria-controls={open ? 'account-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                >
+                  <Avatar sx={{ width: 32, height: 32 }}>
+                    {currentUser.username.charAt(0).toUpperCase()}
+                  </Avatar>
+                </IconButton>
+              </Tooltip>
+              <IconButton
+                component="a"
+                href="/cart"
+              >
+                <ShoppingCartIcon />
+              </IconButton>
+            </Box>
+          ) : (
+            <Button 
+              variant="contained"
+              component="a"
+              href="/login"
+            >
+              Login
+            </Button>
+          )}
+        </Toolbar>
+      </AppBar>
 
       <Menu
         anchorEl={anchorEl}
