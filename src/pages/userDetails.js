@@ -107,9 +107,11 @@ const UserDetails = () => {
         const productBtn = currentUser === null || currentUser.id !== parseInt(userId) ? 
         null
         :
-            <Button variant="contained" sx={buttonStyles} href={`/users/${userId}/add-product`}>
-                Add Product
-            </Button>
+            <Link>
+                <Button variant="contained" sx={buttonStyles} href={`/users/${userId}/add-product`}>
+                    Add Product
+                </Button>
+            </Link>
 
     // Sets if the user is selling items and displays them or not
     const items = user.ItemsToSell.length !== 0 ? 
