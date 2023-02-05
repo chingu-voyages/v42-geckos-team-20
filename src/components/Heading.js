@@ -36,7 +36,8 @@ const Heading = () => {
               sx={{
                 width: 'fit-content',
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                alignItems: 'center'
               }}
             >
               <Tooltip title="Account settings">
@@ -49,7 +50,7 @@ const Heading = () => {
                   aria-expanded={open ? 'true' : undefined}
                 >
                   <Avatar sx={{ width: 32, height: 32 }}>
-                    {currentUser.username.charAt(0).toUpperCase()}
+                    {currentUser.username ? currentUser.username.charAt(0).toUpperCase() : null}
                   </Avatar>
                 </IconButton>
               </Tooltip>
@@ -107,7 +108,7 @@ const Heading = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate(`/users/${currentUser.id}`)}>
+        <MenuItem onClick={() => navigate("/profile")}>
           Profile
         </MenuItem>
         <MenuItem onClick={() => setCurrentUser(null)}>

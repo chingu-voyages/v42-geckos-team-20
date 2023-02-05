@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { supabase } from './supabaseClient';
 
 import products from './data/products';
 
@@ -36,8 +37,11 @@ function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const [active, setActive] = useState("All");
+  const [session, setSession] = useState(null);
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([])
 
   const mode = useMemo(() => {
     if(themePreference === "Dark") return true
@@ -59,13 +63,50 @@ function App() {
     })
   ), [mode])
 
+  async function getProducts() {
+    let { data, error } = await supabase
+      .from('products')
+      .select(`
+        *,
+        product_categories (
+          categories (
+            id,
+            name
+          ),
+          subcategories (
+            id,
+            name
+          )
+        ),
+        images (
+          id,
+          url
+        )
+      `)
+
+    console.log(data)
+    setProducts(data)
+  }
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    getProducts()
+  }, [])
+
   return (
     <Context.Provider 
       value={{ 
         activeCategory: active, 
         setActiveCategory: setActive, 
-        currentUser: user,
-        setCurrentUser: setUser,
+        currentUser: session,
+        setCurrentUser: setSession,
         searching: searchStatus,
         setSearching: setSearchStatus,
         themePreference: themePreference,
@@ -75,8 +116,13 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
 
+        {/* <div className="container" style={{ padding: '50px 0 100px 0' }}>
+          {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+        </div> */}
+
         <div className="App">
           <Heading />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
