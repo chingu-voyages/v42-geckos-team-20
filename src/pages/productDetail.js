@@ -1,35 +1,39 @@
-import React from 'react';
+import { useContext } from "react";
 import { useParams } from 'react-router-dom';
+import { Context } from '../App';
 
 import AddToCartButton from '../components/AddToCartButton';
 import Counter from '../components/Counter';
 
-import products from '../data/products.json';
-
-import { Box, Card, CardContent, Typography, Breadcrumbs, Link } from '@mui/material';
+import { Box, Card, CardContent, Typography, Breadcrumbs } from '@mui/material';
 
 function ProductDetail() {
+  const { products } = useContext(Context);
   const { productId } = useParams();
   const thisProduct = products.find((product) => String(product.id) === productId);
 
   if (!thisProduct) return null;
+
+  console.log(thisProduct.categories)
 
   return (
     <div className="Page">
       <Breadcrumbs 
         id="breadcrumbs"
         aria-label="breadcrumbs"
-        sx={{ ml: "40px", pt: 2 }}
+        sx={{ 
+          ml: "40px", 
+          pt: 2, 
+          color: "text.secondary",
+          "ol li:last-child p": {
+            color: "text.primary"
+          } 
+        }}
       >
-        {thisProduct.categories.map(category =>
-          <Link
-            underline="none"
-            color="inherit"
-            key={category}
-          >
-            {category}
-          </Link>
-        )}
+        <Typography>{thisProduct.categories.category}</Typography>
+        {thisProduct.categories.subcategories.map((subcategory) => (
+          <Typography key={subcategory}>{subcategory}</Typography>
+        ))}
       </Breadcrumbs>
 
       <Box 
@@ -49,7 +53,7 @@ function ProductDetail() {
           }}
         >
           <img
-            src={thisProduct.images[0]}
+            src={thisProduct.images[0].url}
             alt={thisProduct.name} 
           />
 
@@ -63,9 +67,9 @@ function ProductDetail() {
               }}
             >
               <Box>
-                <Typography variant="subtitle1" color="text.secondary">
+                {/* <Typography variant="subtitle1" color="text.secondary">
                   {thisProduct.seller.name}
-                </Typography>
+                </Typography> */}
                 <Typography variant="h5" gutterBottom>
                   {thisProduct.name}
                 </Typography>

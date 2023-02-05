@@ -30,6 +30,7 @@ export const Context = createContext({
   setCurrentUser: null,
   session: null,
   setSession: null,
+  products: null,
   searching: null,
   setSearching: null,
   themePreference: null,
@@ -96,11 +97,9 @@ function App() {
         *,
         product_categories (
           categories (
-            id,
             name
           ),
           subcategories (
-            id,
             name
           )
         ),
@@ -108,10 +107,22 @@ function App() {
           id,
           url
         )
-      `)
+      `) // seller needs to be updated
 
-    console.log(data)
-    setProducts(data)
+    const products = data.map(({ product_categories, ...product }) => (
+      Object.assign({
+        ...product,
+        categories: Object.assign({
+          category: [...new Set(product_categories.map((category) => (
+            category.categories.name
+          )))],
+          subcategories: product_categories.map((subcategory) => (
+            subcategory.subcategories.name
+          ))
+        })
+      })
+    ))
+    setProducts(products)
   }
 
   useEffect(() => {
@@ -139,6 +150,7 @@ function App() {
         setCurrentUser: setUser,
         session: session,
         setSession: setSession,
+        products: products,
         searching: searchStatus,
         setSearching: setSearchStatus,
         themePreference: themePreference,
@@ -147,10 +159,6 @@ function App() {
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
-
-        {/* <div className="container" style={{ padding: '50px 0 100px 0' }}>
-          {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
-        </div> */}
 
         <div className="App">
           <Heading />
