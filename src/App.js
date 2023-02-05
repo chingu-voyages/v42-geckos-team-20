@@ -12,6 +12,7 @@ import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import SellersPage from './pages/SellerPage';
 import Profile from './pages/Profile';
 
@@ -157,10 +158,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<Profile session={session} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
-            <Route path="/profile" element={<Profile session={session} />} />
             <Route path="/seller/:sellerName" element={<SellersPage />}/>
             <Route path="/users/:userId/add-product" element={<AddProduct />} />
           </Routes>

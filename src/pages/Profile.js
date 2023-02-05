@@ -6,7 +6,7 @@ import { supabase } from '../supabaseClient';
 import { TextField, Box, Button } from '@mui/material';
 
 export default function Profile() {
-  const { currentUser, session, setSession } = useContext(Context);
+  const { currentUser, session } = useContext(Context);
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);

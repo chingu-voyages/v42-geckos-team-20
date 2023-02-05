@@ -6,12 +6,10 @@ import { supabase } from "../supabaseClient";
 import { TextField, InputAdornment, IconButton, Box, Button, Typography, Link } from '@mui/material';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 
-const Login = () => {
-  const { setCurrentUser, session, setSession } = useContext(Context);
-  const navigate = useNavigate();
+const Signup = () => {
+  const { setSession } = useContext(Context);
 
   const [form, setForm] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleFormChange = (event) => {
@@ -22,25 +20,13 @@ const Login = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
-
-    try {
-      setLoading(true)
-
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: form.email,
-        password: form.password
-      })
-      console.log(data)
-      setSession(data.session)
-      if (error) throw error
-    } catch (error) {
-      alert(error.error_description || error.message)
-    } finally {
-      setLoading(false)
-      navigate("/")
-    }
+  const handleSignup = async () => {
+    const { data, error } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.password
+    })
+    setSession(data.session)
+    if(error) console.log(error)
   }
 
   return (
@@ -74,8 +60,6 @@ const Login = () => {
             label="Password"
             value={form.password}
             onChange={handleFormChange}
-            // error={errors.password}
-            // helperText={errors.password}
             type={showPassword ? 'text' : 'password'}
             id="password"
             InputProps={{
@@ -95,7 +79,7 @@ const Login = () => {
 
           <Button 
             variant="contained"
-            onClick={handleLogin} 
+            onClick={handleSignup} 
             size="large"
             sx={{
               mt: "16px",
@@ -103,11 +87,11 @@ const Login = () => {
               pb: "15px"
             }}
           >
-            Login
+            Signup
           </Button>
 
           <Typography textAlign="center" sx={{ mt: 2 }}>
-            Don't have an account? <Link component={RouterLink} to="/signup">Sign Up</Link>
+            Already have an account? <Link component={RouterLink} to="/login">Log In</Link>
           </Typography>
         </Box>
       </Box>
@@ -115,4 +99,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default Signup;
