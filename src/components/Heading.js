@@ -1,14 +1,16 @@
 import { useContext, useState } from "react";
 import { Context } from '../App';
 import { useNavigate, Link } from "react-router-dom";
+import { supabase } from '../supabaseClient';
 
 import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography, AppBar, Toolbar } from '@mui/material';
 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Heading = () => {
-  const { currentUser, setCurrentUser } = useContext(Context);
+  const { currentUser, setCurrentUser, session, setSession } = useContext(Context);
   const navigate = useNavigate();
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -16,6 +18,17 @@ const Heading = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut()
+
+    if(error) {
+      alert(error.error_description || error.message)
+    } else {
+      setSession(null)
+      navigate("/")
+    }
   };
 
   return (
@@ -31,7 +44,7 @@ const Heading = () => {
             Nearby Markets
           </Typography>
           
-          {currentUser ? (
+          {session ? (
             <Box 
               sx={{
                 width: 'fit-content',
@@ -40,7 +53,7 @@ const Heading = () => {
                 alignItems: 'center'
               }}
             >
-              <Tooltip title="Account settings">
+              <Tooltip title="Account Settings">
                 <IconButton
                   onClick={handleClick}
                   size="small"
@@ -50,13 +63,14 @@ const Heading = () => {
                   aria-expanded={open ? 'true' : undefined}
                 >
                   <Avatar sx={{ width: 32, height: 32 }}>
-                    {currentUser.username ? currentUser.username.charAt(0).toUpperCase() : null}
+                    {currentUser && currentUser.first_name ? currentUser.first_name.charAt(0) : null}
                   </Avatar>
                 </IconButton>
               </Tooltip>
               <IconButton
-                component="a"
-                href="/cart"
+                component={Link}
+                to="/cart"
+                sx={{ color: "text.secondary" }}
               >
                 <ShoppingCartIcon />
               </IconButton>
@@ -111,7 +125,10 @@ const Heading = () => {
         <MenuItem onClick={() => navigate("/profile")}>
           Profile
         </MenuItem>
-        <MenuItem onClick={() => setCurrentUser(null)}>
+        <MenuItem onClick={() => console.log("seller page here")}>
+          Your Store
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
           Logout
         </MenuItem>
       </Menu>

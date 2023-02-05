@@ -13,6 +13,7 @@ import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SellersPage from './pages/SellerPage';
+import Profile from './pages/Profile';
 
 import AddProduct from './components/AddProduct';
 
@@ -26,6 +27,8 @@ export const Context = createContext({
   setActiveCategory: null,
   currentUser: null,
   setCurrentUser: null,
+  session: null,
+  setSession: null,
   searching: null,
   setSearching: null,
   themePreference: null,
@@ -41,7 +44,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
 
   const mode = useMemo(() => {
     if(themePreference === "Dark") return true
@@ -62,6 +65,28 @@ function App() {
       }
     })
   ), [mode])
+
+  async function getProfile() {
+    try {
+      const { user } = session
+
+      let { data, error, status } = await supabase
+        .from('profiles')
+        .select(`username, first_name, avatar_url, location`)
+        .eq('id', user.id)
+        .single()
+
+      if (error && status !== 406) {
+        throw error
+      }
+
+      if (data) {
+        setUser(data)
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   async function getProducts() {
     let { data, error } = await supabase
@@ -100,13 +125,19 @@ function App() {
     getProducts()
   }, [])
 
+  useEffect(() => {
+    if(session) getProfile()
+  }, [session])
+
   return (
     <Context.Provider 
       value={{ 
         activeCategory: active, 
         setActiveCategory: setActive, 
-        currentUser: session,
-        setCurrentUser: setSession,
+        currentUser: user,
+        setCurrentUser: setUser,
+        session: session,
+        setSession: setSession,
         searching: searchStatus,
         setSearching: setSearchStatus,
         themePreference: themePreference,
@@ -129,6 +160,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
+            <Route path="/profile" element={<Profile session={session} />} />
             <Route path="/seller/:sellerName" element={<SellersPage />}/>
             <Route path="/users/:userId/add-product" element={<AddProduct />} />
           </Routes>

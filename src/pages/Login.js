@@ -1,17 +1,22 @@
-import { useContext } from "react";
-import { Context } from '../App';
-import { useState } from 'react';
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from '../App';
+import { supabase } from "../supabaseClient";
+
 import { TextField, InputAdornment, IconButton, Box, Button } from '@mui/material';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
+
 import users from '../data/users.json';
 
 const Login = () => {
-  const [form, setForm] = useState({ username: "", password: "" });
+  const { setCurrentUser, session, setSession } = useContext(Context);
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ username: null, password: null });
-  const navigate = useNavigate();
-  const { setCurrentUser } = useContext(Context);
+
 
   const handleFormChange = (event) => {
     setForm({ ...form, [event.target.id]: event.target.value })
@@ -21,24 +26,54 @@ const Login = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleSubmit = () => {
-    if(users.find((user) => user.username === form.username)) {
-      if(users.find((user) => user.password === form.password)) {
-        setErrors({username: null, password: null})
+  // const handleSignup = async () => {
+  //   const { data, error } = await supabase.auth.signUp({
+  //     email: form.email,
+  //     password: form.password
+  //   })
+  //   setSession(data.session)
+  //   if(error) console.log(error)
+  // }
 
-        const { password, ...rest } = users.find((user) => user.username === form.username)
-        setCurrentUser(rest)
+  const handleLogin = async (e) => {
+    e.preventDefault()
 
-        alert("You are now Logged In")
+    try {
+      setLoading(true)
 
-        navigate("/")
-      } else {
-        setErrors({username: null, password: "Incorrect Password"})
-      }
-    } else {
-      setErrors({...errors, username: "User does not Exist"})
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: form.email,
+        password: form.password
+      })
+      console.log(data)
+      setSession(data.session)
+      if (error) throw error
+    } catch (error) {
+      alert(error.error_description || error.message)
+    } finally {
+      setLoading(false)
+      navigate("/")
     }
   }
+
+  // const handleSubmit = () => {
+  //   if(users.find((user) => user.username === form.username)) {
+  //     if(users.find((user) => user.password === form.password)) {
+  //       setErrors({username: null, password: null})
+
+  //       const { password, ...rest } = users.find((user) => user.username === form.username)
+  //       setCurrentUser(rest)
+
+  //       alert("You are now Logged In")
+
+  //       navigate("/")
+  //     } else {
+  //       setErrors({username: null, password: "Incorrect Password"})
+  //     }
+  //   } else {
+  //     setErrors({...errors, username: "User does not Exist"})
+  //   }
+  // }
 
   return (
     <Box 
@@ -58,7 +93,7 @@ const Login = () => {
           width: "fit-content"
         }}
       >
-        <TextField
+        {/* <TextField
           label="Username"
           value={form.username}
           onChange={handleFormChange}
@@ -66,6 +101,16 @@ const Login = () => {
           helperText={errors.username}
           type="text"
           id="username"
+          margin="normal"
+        /> */}
+        <TextField
+          label="Email"
+          value={form.email}
+          onChange={handleFormChange}
+          error={errors.email}
+          helperText={errors.email}
+          type="text"
+          id="email"
           margin="normal"
         />
 
@@ -94,7 +139,7 @@ const Login = () => {
 
         <Button 
           variant="contained"
-          onClick={handleSubmit} 
+          onClick={handleLogin} 
           size="large"
           sx={{
             mt: "16px",
