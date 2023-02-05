@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Context } from '../App';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { supabase } from '../supabaseClient';
 
 import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography, AppBar, Toolbar } from '@mui/material';
@@ -10,7 +10,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const Heading = () => {
   const { currentUser, setCurrentUser, session, setSession } = useContext(Context);
   const navigate = useNavigate();
-  
+  const location = useLocation();
+  const { pathname } = location;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -78,8 +80,11 @@ const Heading = () => {
           ) : (
             <Button 
               variant="contained"
-              component="a"
-              href="/login"
+              component={Link}
+              to="/login"
+              sx={{
+                display: pathname === "/login" || pathname === "/signup" ? "none" : ""
+              }}
             >
               Login
             </Button>

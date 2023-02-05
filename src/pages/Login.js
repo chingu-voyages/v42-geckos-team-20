@@ -51,7 +51,9 @@ const Login = () => {
           flexDirection: "column", 
           justifyContent: "center",
           alignItems: "center",
-          width: "100%"
+          width: "100%",
+          mt: 4,
+          mb: 4
         }}
       >
         <Box 
@@ -74,8 +76,6 @@ const Login = () => {
             label="Password"
             value={form.password}
             onChange={handleFormChange}
-            // error={errors.password}
-            // helperText={errors.password}
             type={showPassword ? 'text' : 'password'}
             id="password"
             InputProps={{

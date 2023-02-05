@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { Context } from '../App';
 import { supabase } from "../supabaseClient";
 
@@ -37,7 +37,9 @@ const Signup = () => {
           flexDirection: "column", 
           justifyContent: "center",
           alignItems: "center",
-          width: "100%"
+          width: "100%",
+          mt: 4,
+          mb: 4
         }}
       >
         <Box 
