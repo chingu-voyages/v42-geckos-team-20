@@ -130,6 +130,13 @@ function App() {
     let { data, error } = await supabase
       .from('categories')
       .select('name')
+    
+    let { data: subcategories } = await supabase
+      .from('subcategories')
+      .select('name')
+
+    console.log(data.map((category) => category.name).concat(subcategories.map(subcategory => subcategory.name)))
+    // categories and subcategories
 
     setCategories(data.map((category) => category.name))
   }
