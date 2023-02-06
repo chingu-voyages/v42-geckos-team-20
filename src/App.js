@@ -31,6 +31,7 @@ export const Context = createContext({
   session: null,
   setSession: null,
   products: null,
+  categories: null,
   searching: null,
   setSearching: null,
   themePreference: null,
@@ -125,6 +126,14 @@ function App() {
     setProducts(products)
   }
 
+  async function getCategories() {
+    let { data, error } = await supabase
+      .from('categories')
+      .select('name')
+
+    setCategories(data.map((category) => category.name))
+  }
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
@@ -135,6 +144,7 @@ function App() {
     })
 
     getProducts()
+    getCategories()
   }, [])
 
   useEffect(() => {
@@ -151,6 +161,7 @@ function App() {
         session: session,
         setSession: setSession,
         products: products,
+        categories: categories,
         searching: searchStatus,
         setSearching: setSearchStatus,
         themePreference: themePreference,
