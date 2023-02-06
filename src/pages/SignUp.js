@@ -7,6 +7,7 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("")
+
   const [showPassword, setShowPassword] = useState(false);
   const [showReTypePassword, setShowRetypePassword] = useState(false);
 
@@ -69,7 +70,7 @@ const SignUp = () => {
             <TextField
                 id="password"
                 label="Password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={handlePasswordChange}
                 InputProps={{
@@ -90,7 +91,7 @@ const SignUp = () => {
             <TextField
                 id="retypePassword"
                 label="RetypePassword"
-                type="password"
+                type={showReTypePassword ? 'text' : 'password'}
                 value={retypePassword}
                 onChange={handleRetypePasswordChange}
                 InputProps={{
