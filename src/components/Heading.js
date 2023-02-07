@@ -1,14 +1,18 @@
 import { useContext, useState } from "react";
 import { Context } from '../App';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { supabase } from '../supabaseClient';
 
 import { Box, IconButton, Button, Avatar, Tooltip, Menu, MenuItem, Typography, AppBar, Toolbar } from '@mui/material';
 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Heading = () => {
-  const { currentUser, setCurrentUser } = useContext(Context);
+  const { currentUser, setCurrentUser, session, setSession } = useContext(Context);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -16,6 +20,17 @@ const Heading = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut()
+
+    if(error) {
+      alert(error.error_description || error.message)
+    } else {
+      setSession(null)
+      navigate("/")
+    }
   };
 
   return (
@@ -31,15 +46,16 @@ const Heading = () => {
             Nearby Markets
           </Typography>
           
-          {currentUser ? (
+          {session ? (
             <Box 
               sx={{
                 width: 'fit-content',
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                alignItems: 'center'
               }}
             >
-              <Tooltip title="Account settings">
+              <Tooltip title="Account Settings">
                 <IconButton
                   onClick={handleClick}
                   size="small"
@@ -49,13 +65,14 @@ const Heading = () => {
                   aria-expanded={open ? 'true' : undefined}
                 >
                   <Avatar sx={{ width: 32, height: 32 }}>
-                    {currentUser.username.charAt(0).toUpperCase()}
+                    {currentUser && currentUser.first_name ? currentUser.first_name.charAt(0) : null}
                   </Avatar>
                 </IconButton>
               </Tooltip>
               <IconButton
-                component="a"
-                href="/cart"
+                component={Link}
+                to="/cart"
+                sx={{ color: "text.secondary" }}
               >
                 <ShoppingCartIcon />
               </IconButton>
@@ -63,8 +80,11 @@ const Heading = () => {
           ) : (
             <Button 
               variant="contained"
-              component="a"
-              href="/login"
+              component={Link}
+              to="/login"
+              sx={{
+                display: pathname === "/login" || pathname === "/signup" ? "none" : ""
+              }}
             >
               Login
             </Button>
@@ -107,10 +127,13 @@ const Heading = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate(`/users/${currentUser.id}`)}>
+        <MenuItem onClick={() => navigate("/profile")}>
           Profile
         </MenuItem>
-        <MenuItem onClick={() => setCurrentUser(null)}>
+        <MenuItem onClick={() => console.log("seller page here")}>
+          Your Store
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
           Logout
         </MenuItem>
       </Menu>
