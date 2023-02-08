@@ -13,7 +13,7 @@ import Stack from '@mui/material/Stack';
 const Home = () => {
   const { activeCategory, setActiveCategory } = useContext(Context);
   const [ filteredProducts, setFilteredProducts ] = useState([]);
-  const [ searchPattern , setSearchPattern] =useState(null)
+  const [ searchPattern , setSearchPattern] = useContext(Context);
   const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
   const {searching, setSearching} =useContext(Context)
   const [ page, setPage ] = useState(1);
@@ -46,7 +46,7 @@ const Home = () => {
 
   return (
     <div className="Page">
-      <SubHeader setSearchPattern={setSearchPattern} /> 
+      <SubHeader /> 
 
       <Catalog  filteredProducts={dataPage} currency={currency}/>
       

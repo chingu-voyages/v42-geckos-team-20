@@ -34,6 +34,8 @@ export const Context = createContext({
   categories: null,
   searching: null,
   setSearching: null,
+  searchPattern:null,
+  setSearchPattern:null,
   themePreference: null,
   setThemePreference: null
 });
@@ -46,6 +48,7 @@ function App() {
   const [session, setSession] = useState(null);
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
+  const [searchPattern, setSearchPattern] = useState("");
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -171,6 +174,8 @@ function App() {
         categories: categories,
         searching: searchStatus,
         setSearching: setSearchStatus,
+        searchPattern: searchPattern,
+        setSearchPattern: setSearchPattern,
         themePreference: themePreference,
         setThemePreference: setThemePreference 
       }}
