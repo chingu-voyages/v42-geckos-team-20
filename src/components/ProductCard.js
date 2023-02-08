@@ -8,7 +8,7 @@ const ProductCardStyles = {
 }
 
 export default function ProductCard({ product, currency }) {
-	const { id, name, price, images, seller } = product;
+	const { id, name, price, images } = product;
 
 	return (
 		<Card raised={true} sx={ProductCardStyles}>
@@ -18,27 +18,26 @@ export default function ProductCard({ product, currency }) {
 			>
 				<CardMedia
 					component="img"
-					image={images[0]} 
+					image={images[0].url} 
 					sx={{ width: '100%', height: '250px' }}
 					title={name}
 					alt={name}
 				/>
 
 				<CardContent>
-					<Typography variant="h6">{name}</Typography>
+					<Typography variant="h6" noWrap>{name}</Typography>
 
 					<Typography variant="subtitle1" color="text.secondary">
 						{`${currency} ${price}`}
 					</Typography>
-					
 				</CardContent>
 			</CardActionArea>
 
-			<CardActions>
+			{/* <CardActions>
 				<Button component={Link} to={`/seller/${seller.name}`}>
 					{seller.name}
 				</Button>
-			</CardActions>
+			</CardActions> */}
 		</Card>
 	)
 };
