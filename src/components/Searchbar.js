@@ -11,11 +11,10 @@ const Searchbar = () => {
   const { searchPattern, setSearchPattern } = useContext(Context);
 
   const onChangeInputText = useCallback((e) => {
-    let searchWord = "";
-    searchWord += e.target.value;
-    searchWord === "" ? setSearching(false) : setSearching(true)
-    setSearchPattern(sanitizeSearchPattern(searchWord));
-  }, []);
+    setInputText(e.target.value)
+    inputText === "" ? setSearching(false) : setSearching(true)
+    setSearchPattern(sanitizeSearchPattern(inputText));
+  });
 
   const sanitizeSearchPattern = (searchWord) => {
     searchWord = searchWord.trim();
