@@ -7,8 +7,8 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Searchbar = () => {
   const [inputText, setInputText] = useState('');
-  const { searching, setSearching } = useContext(Context);
-  const { searchPattern, setSearchPattern } = useContext(Context);
+  const { setSearching } = useContext(Context);
+  const { setSearchPattern } = useContext(Context);
 
   const onChangeInputText = useCallback((e) => {
     setInputText(e.target.value)

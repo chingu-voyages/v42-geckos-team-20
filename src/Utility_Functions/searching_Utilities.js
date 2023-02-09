@@ -4,10 +4,10 @@ export const showSearchResults = (arrayToSearch, setter, searchPattern) =>{
 	setter(removeDuplicates(searchArray(arrayToSearch,searchPattern)));
 }
 const searchArray  = (arrayToSearch, searchPattern) =>{
-	let searchCategories = arrayToSearch.filter(product => searchPattern.test(product.categories));
+	let searchCategories = arrayToSearch.filter(product => searchPattern.test(product.categories.category));
 	let searchNames = arrayToSearch.filter(product => searchPattern.test(product.name));
-	let searchSellers = arrayToSearch.filter(product => searchPattern.test(product.seller.name));
-	let compiledSearchResults = [searchCategories, searchNames, searchSellers]
+	//let searchSellers = arrayToSearch.filter(product => searchPattern.test(product.seller.name));
+	let compiledSearchResults = [searchCategories, searchNames]
 	return  compiledSearchResults.flat()
 }
 
