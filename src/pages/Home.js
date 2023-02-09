@@ -32,7 +32,7 @@ const Home = () => {
     } else {
       setFilteredProducts(products.filter(product => product.categories.includes(activeCategory)));
 
-       handleChange(1,1);
+      handleChange(1,1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory, count])
@@ -41,7 +41,7 @@ const Home = () => {
     <>
       <SubHeader  />
       
-      <Catalog filteredProducts={dataPage} currency={currency} />
+      <Catalog currency={currency} />
 
       <Stack spacing={2} alignItems="center" marginTop="2%">
         <Pagination
