@@ -2,7 +2,7 @@ import { useContext,useState, useEffect } from 'react';
 import { Context } from '../App.js';
 import { showSearchResults } from '../Utility_Functions/searching_Utilities.js';
 
-import Catalog from './Catalog.js';
+import Catalog from './HomeCatalog.js';
 import SubHeader from './SubHeader.js';
 import products from '../data/products.json';
 

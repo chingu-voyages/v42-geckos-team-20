@@ -6,7 +6,7 @@ import { showSearchResults } from '../Utility_Functions/searching_Utilities.js';
 
 import products from '../data/products.json';
 
-import Catalog from '../components/Catalog';
+import Catalog from '../components/HomeCatalog';
 import SubHeader from '../components/SubHeader';
 import ProductPagination from '../components/ProductPagination';
 

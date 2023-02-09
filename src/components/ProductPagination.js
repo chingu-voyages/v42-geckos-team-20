@@ -1,3 +1,4 @@
+/*
 import { useState } from 'react';
 
 
@@ -28,3 +29,4 @@ function ProductPagination(filteredProducts, itemsPerPage) {
 }
 
 export default ProductPagination;
+*/
