@@ -2,8 +2,6 @@ import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from './supabaseClient';
 
-import products from './data/products';
-
 import Heading from './components/Heading';
 import Footer from './components/Footer';
 
@@ -135,10 +133,7 @@ function App() {
       .from('subcategories')
       .select('name')
 
-    console.log(data.map((category) => category.name).concat(subcategories.map(subcategory => subcategory.name)))
-    // categories and subcategories
-
-    setCategories(data.map((category) => category.name))
+    setCategories(data.map((category) => category.name).concat(subcategories.map(subcategory => subcategory.name)))
   }
 
   useEffect(() => {
