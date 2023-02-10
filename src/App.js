@@ -105,10 +105,13 @@ function App() {
         images (
           id,
           url
+        ),
+        profiles (
+          *
         )
-      `) // seller needs to be updated
+      `)
 
-    const products = data.map(({ product_categories, ...product }) => (
+    const products = data.map(({ product_categories, profiles, seller_id, ...product }) => (
       Object.assign({
         ...product,
         categories: Object.assign({
@@ -118,9 +121,11 @@ function App() {
           subcategories: product_categories.map((subcategory) => (
             subcategory.subcategories.name
           ))
-        })
+        }),
+        seller: profiles
       })
     ))
+
     setProducts(products)
   }
 
