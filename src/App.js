@@ -31,6 +31,8 @@ export const Context = createContext({
   session: null,
   setSession: null,
   products: null,
+  cartContext: null,
+  setCartContext: null,
   categories: null,
   searching: null,
   setSearching: null,
@@ -48,6 +50,7 @@ function App() {
   const [searchStatus, setSearchStatus] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [cartContext, setCartContext ] = useState([])
 
   const mode = useMemo(() => {
     if(themePreference === "Dark") return true
@@ -169,6 +172,8 @@ function App() {
         setSession: setSession,
         products: products,
         categories: categories,
+        cartContext: cartContext,
+        setCartContext: setCartContext,
         searching: searchStatus,
         setSearching: setSearchStatus,
         themePreference: themePreference,

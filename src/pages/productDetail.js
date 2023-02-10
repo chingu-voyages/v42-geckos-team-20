@@ -8,13 +8,23 @@ import Counter from '../components/Counter';
 import { Box, Card, CardContent, Typography, Breadcrumbs } from '@mui/material';
 
 function ProductDetail() {
-  const { products } = useContext(Context);
+  const { products, cartContext } = useContext(Context);
   const { productId } = useParams();
   const thisProduct = products.find((product) => String(product.id) === productId);
+
+  
 
   if (!thisProduct) return null;
 
   console.log(thisProduct.categories)
+
+
+  // useEffect(() => {
+  //   const storedCart = JSON.parse(localStorage.getItem('cart'));
+  //   if(storedCart){
+  //     setCart(storedCart)
+  //   }
+  // }, [])
 
   return (
     <div className="Page">
@@ -93,7 +103,7 @@ function ProductDetail() {
                 <Counter />
               </Box>
 
-              <AddToCartButton />
+              <AddToCartButton product={thisProduct}/>
             </CardContent>
           </Card>
         </Box>
