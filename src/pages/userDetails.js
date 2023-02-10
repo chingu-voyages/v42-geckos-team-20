@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import { Link } from 'react-router-dom'
 import { Avatar, Box, Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
-import users from '../data/users.json';
 import { useParams } from 'react-router';
 import ProductCard from '../components/ProductCard';
 import { Context } from '../App';
@@ -11,23 +10,19 @@ import { Context } from '../App';
 const UserDetails = () => {
     
     const { userId }= useParams();
-    const {currentUser} = useContext(Context)
-    let user;
-
-    // Gets User based om userId
-    for(let u of users) {
-        if(userId === String(u.id)) {
-            user = u
-        }
-    }
-
-    // Gets the amount to items the user is selling
-    const sellingItemsAmount = user.ItemsToSell.length;
+    const {currentUser, products, session} = useContext(Context) 
+    const {user} = session
     
+    const userProducts  = products.filter(product => {
+        if(product.seller_id === user.id) {
+            return product
+        }
+    })
 
+    console.log(session)
  // Component Styles 
 
-    const avaterBoxStyles = {
+    const avatarBoxStyles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -38,7 +33,7 @@ const UserDetails = () => {
         gap: "2rem"
     }
 
-    const avaterStyles = {
+    const avatarStyles = {
         width: "120px",
         height: "120px",
         backgroundColor: "#1976d2"
@@ -68,8 +63,9 @@ const UserDetails = () => {
 
     const sellingItemsAmountStyles = {
         position: "absolute",
-        left: "9.8rem",
-        fontSize: "14px"
+        left: "13rem",
+        fontSize: "14px",
+        width: "300px"
     }
 
 
@@ -88,15 +84,15 @@ const UserDetails = () => {
  // -------------------------------------------------------------------
 
     // Gets avatar img based on image field in user
-    const imgSource = user.image ? 
+    const imgSource = currentUser.avatar_url ? 
         <Avatar
-            sx={avaterStyles}
+            sx={avatarStyles}
             alt={`{u.username} image`}
             src={`user.image`}/>
         
         :
         <Avatar
-            sx={avaterStyles}
+            sx={avatarStyles}
             alt={`{u.username} image`}>
             <PersonIcon
                 sx ={{fontSize: "60px"}}
@@ -104,19 +100,21 @@ const UserDetails = () => {
         </Avatar>
 
     // Checks if the user is the correct user and displays the button if logged in.
-        const productBtn = currentUser === null || currentUser.id !== parseInt(userId) ? 
+        const productBtn = currentUser === null || user.id !== userId? 
         null
         :
-            <Button variant="contained" sx={buttonStyles} href={`/users/${userId}/add-product`}>
-                Add Product
-            </Button>
+            <Link to={`/users/${user.id}/add-product`}>
+                <Button variant="contained" sx={buttonStyles}>
+                    Add Product
+                </Button>
+            </Link>
 
     // Sets if the user is selling items and displays them or not
-    const items = user.ItemsToSell.length !== 0 ? 
+    const items = userProducts.length !== 0 ? 
         <>
             <h2 style={sellingItemsH2}>Your Products</h2>
             {productBtn}
-            {user.ItemsToSell.map((product)=>
+            {userProducts.map((product)=>
                 <ProductCard
                     key={product.id}
                     product={product}
@@ -134,10 +132,10 @@ const UserDetails = () => {
 
     return (
         <>
-        <Box sx={avaterBoxStyles}>
+        <Box sx={avatarBoxStyles}>
            {imgSource}
-           <h2 style={usernameStyles}>{user.username}</h2>
-           <span style={sellingItemsAmountStyles}>{`Number of Products: ${sellingItemsAmount}`}</span>
+           <h2 style={usernameStyles}>{currentUser.username}</h2>
+           <span style={sellingItemsAmountStyles}>{`Number of Products: ${userProducts.length}`}</span>
         </Box>
         <Box sx={itemsBoxStyles}>
             {items}

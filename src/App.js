@@ -29,6 +29,7 @@ export const Context = createContext({
   session: null,
   setSession: null,
   products: null,
+  setProduct: null,
   categories: null,
   productsByPage: null,
   pageStart: null,
@@ -221,6 +222,7 @@ function App() {
         session: session,
         setSession: setSession,
         products: products,
+        setProducts: setProducts,
         categories: categories,
         productsByPage: productsByPage,
         pageStart: pageStart,
@@ -246,7 +248,7 @@ function App() {
             <Route path="/profile" element={<Profile session={session} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
-            {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
+            <Route path="/users/:userId" element={<UserDetails />} />
             <Route path="/seller/:sellerName" element={<SellersPage />}/>
             <Route path="/users/:userId/add-product" element={<AddProduct />} />
           </Routes>
