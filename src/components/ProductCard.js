@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Box, Button } from '@mui/material';
+import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Button } from '@mui/material';
 
 const ProductCardStyles = {
 	width: "300px",
@@ -9,7 +9,6 @@ const ProductCardStyles = {
 
 export default function ProductCard({ product, currency }) {
 	const { id, name, price, images, seller } = product;
-	console.log(seller)
 
 	return (
 		<Card raised={true} sx={ProductCardStyles}>

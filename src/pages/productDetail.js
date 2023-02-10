@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Context } from '../App';
 
 import AddToCartButton from '../components/AddToCartButton';
@@ -13,8 +13,6 @@ function ProductDetail() {
   const thisProduct = products.find((product) => String(product.id) === productId);
 
   if (!thisProduct) return null;
-
-  console.log(thisProduct.categories)
 
   return (
     <div className="Page">
@@ -67,9 +65,14 @@ function ProductDetail() {
               }}
             >
               <Box>
-                {/* <Typography variant="subtitle1" color="text.secondary">
-                  {thisProduct.seller.name}
-                </Typography> */}
+                <Typography 
+                  variant="subtitle1" 
+                  color="text.secondary" 
+                  component={Link} 
+                  to={`/seller/${thisProduct.seller.first_name}`}
+                >
+                  {thisProduct.seller.first_name}
+                </Typography>
                 <Typography variant="h5" gutterBottom>
                   {thisProduct.name}
                 </Typography>
