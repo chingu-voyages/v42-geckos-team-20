@@ -1,55 +1,48 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {Box, TextField, MenuItem,Button, InputAdornment} from '@mui/material'
+import {Box, TextField, MenuItem,Button, InputAdornment, Select, InputLabel} from '@mui/material'
 import { Context } from '../App';
-import products from '../data/products.json'
+import { supabase } from '../supabaseClient';
+
+
 
 
 
 const AddProduct = () => {
-
-
-    
 
     const INIT_STATE = {
         productName: "",
         description: "",
         price: "",
         images: "",
-        undefined: "",
-        label: ""
+        quantity: ""
     }
-
-    const CATEGORIES = []
-    for(let product of products) {
-        if(CATEGORIES.includes(product.categories[0])) {
-            continue
-        }
-        else {
-            CATEGORIES.push(product.categories[0])
-        }
-        
-    }
-    
 
     const [formData, setFormData] = useState(INIT_STATE);
+    const [category, setCategory] = useState("")
+    const [subCategory, setSubCategory] = useState([])
     const [priceError, setPriceError] = useState({text: null})
     const [nameError, setNameError] = useState({text: null})
+    const [quantityError, setQuantityError] = useState({text: null})
+    const {session, categories, products, setProducts} = useContext(Context)
     const navigate = useNavigate();
-    const {currentUser} = useContext(Context)
+    const {user} = session
     const {userId} = useParams()
 
-    useEffect(() => {
-        function checkUser() {
-            if(currentUser.id !== parseInt(userId) || currentUser === null) {
-                navigate('/')
-            }
+    if(user.id !== userId) {
+        navigate(`/`)
+    }
+
+
+    const subCategories = products.map(product => {
+        for(let cat of product.categories.subcategories) {
+            return cat
         }
-       checkUser()
-    }, [])
+    
+    })
 
-
+    const sortedSubCategories = [...new Set(subCategories)]
 
     const handleTextChange = (evt) => {
         const {id, value} = evt.target;
@@ -57,7 +50,14 @@ const AddProduct = () => {
             ...formData, 
             [id]: value
         }))
-        
+    }
+
+    const handleCategoryChange = (evt) => {
+        setCategory(evt.target.value)
+    }
+
+    const handleSubCategoryChange = (evt) => {
+        setSubCategory(evt.target.value)
     }
 
     
@@ -65,36 +65,87 @@ const AddProduct = () => {
     const handleSubmit = async (evt) => {
         evt.preventDefault();
 
-        let len = products.length;
-        let labels = formData.label.split(" ")
         let price = +formData.price
+        let quantity = +formData.quantity
+        const subCatIds = []
+        let splitLinks
 
-        if(isNaN(price)) {
+        if(formData.images) {
+            splitLinks = formData.images.split(" ")
+        }
+        else {
+            splitLinks = []
+        }
+        
+
+        if(isNaN(price) || isNaN(quantity)) {
             setPriceError({text: "Invalid Number"})
+        }
+        else if( formData.price === "") {
+            setPriceError({text: 'Enter Product Price'})
         }
         else if(formData.productName === "") {
             setNameError({text: "Enter Product Name"})
         }
+        else if(formData.quantity === "") {
+            setQuantityError({text: "Enter Product Quantity"})
+        }
+
         else {
             setPriceError({text: null})
             setNameError({text: null})
             let newProduct = {
-                id: len + 1,
                 name: formData.productName,
-                description: formData.description || null,
                 price: price,
-                seller: {
-                    id: currentUser.id,
-                    name: currentUser.username
-                },
-                images: [],
-                category: formData.undefined,
-                labels: labels,
-                region: currentUser.region || null
+                description: formData.description || null,
+                links: splitLinks[0] || null,
+                quantity: quantity || 0,
+                seller_id: user.id,
             }
-            alert('Added a new Product')
-            console.log(newProduct)
+            // console.log(newProduct)
+
+            //* ADDS INFORMATION TO DATABASE
+            const {data: product, productError} = await supabase
+                .from('products')
+                .insert(newProduct)
+                .select("*")
+
+            const {data: categoryId, categoryError} = await supabase
+                .from("categories")
+                .select("id")
+                .eq("name", category)
+            
+
+            for(let sub of subCategory) {
+                console.log(sub)
+                const {data: subcategory, subError} = await supabase
+                    .from('subcategories')
+                    .select('id')
+                    .eq("name", sub)
+
+                subCatIds.push(subcategory[0].id)                
+            }
+
+            for(let id of subCatIds) {
+                const {productCatError} = await supabase
+                .from("product_categories")
+                .insert({product_id: product[0].id, category_id: categoryId[0].id, subcategory_id: id})
+            }
+
+            if(splitLinks !== null) {
+                for(let img of splitLinks) {
+                    const {imageError} = await supabase
+                    .from("images")
+                    .insert({url: img, product_id: product[0].id})
+                }
+            }
+
+            setProducts([...products, {...product, categories: {category: [category], subcategories: subCategory}}])
+            console.log(products)
+            
+
             setFormData(INIT_STATE)
+            navigate(`/users/${user.id}`)
         }
        
     }
@@ -153,27 +204,58 @@ const AddProduct = () => {
                     </InputAdornment>
                 )}}
             />
+
             <TextField
-                label="Product Category"
-                value={formData.undefined}
+                label="Product Images"
+                value={formData.images}
                 onChange={handleTextChange}
+                type="text"
+                id="images"
+                margin="normal"
+            />
+
+            <InputLabel id='categorySelect'>Categories</InputLabel>
+            <Select
+                labelId='categorySelect'
+                label="Product Category"
+                value={category}
+                onChange={handleCategoryChange}
                 select
                 id="category"
                 margin="normal"
             >
-                {CATEGORIES.map(category => (
+                {categories.map(category => (
                     <MenuItem key={category} value={category}>
                         {category}
                     </MenuItem>
                 ))}
-            </TextField>
+            </Select>
 
-            <TextField
-                label="Product Labels"
-                value={formData.label}
+            <InputLabel id="subCategorySelect">SubCategories</InputLabel>
+            <Select
+                labelId='subCategorySelect'
+                id='subCategories'
+                value={subCategory}
+                label='SubCategories'
+                onChange={handleSubCategoryChange}
+                multiple
+                margin="normal"
+            >
+                {sortedSubCategories.map(category => (
+                    <MenuItem key={category} value={category}>
+                        {category}
+                    </MenuItem>
+                ))}
+            </Select>
+
+            <TextField 
+                label="Quantity"
+                value={formData.quantity}
                 onChange={handleTextChange}
+                error={quantityError.text}
+                helperText={quantityError.text}
                 type="text"
-                id="label"
+                id="quantity"
                 margin="normal"
             />
              <Button 
