@@ -2,7 +2,7 @@ import {Container, CardContent, CardMedia, Typography, Breadcrumbs} from '@mui/m
 import { Link } from "react-router-dom";
 import Counter from '../components/Counter'
 import React from "react";
-
+import RemoveFromCartButton from './RemoveFromCartButton';
 const CheckoutProductCard = ({id,name,price,image}) => {
 
     const CheckoutCardStyles = {
@@ -25,9 +25,11 @@ const CheckoutProductCard = ({id,name,price,image}) => {
         </CardContent>
 
 
-        <CardContent sx={{display:' flex', alignItems: 'end'}}>
+        <CardContent sx={{display:' flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'space-between'}}>
             <Counter />
+            <RemoveFromCartButton productId={id}></RemoveFromCartButton>
         </CardContent>
+        
     </Container>
   )
 }
