@@ -21,7 +21,7 @@ const Signup = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleSignup = async () => {
+  const handleSignup = async (e) => {
     e.preventDefault()
 
     try {

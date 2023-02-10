@@ -30,6 +30,11 @@ export const Context = createContext({
   setSession: null,
   products: null,
   categories: null,
+  productsByPage: null,
+  pageStart: null,
+  setPageStart: null,
+  pageEnd: null,
+  setPageEnd: null,
   searching: null,
   setSearching: null,
   themePreference: null,
@@ -46,6 +51,9 @@ function App() {
   const [searchStatus, setSearchStatus] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [productsByPage, setProductsByPage] = useState([])
+  const [pageStart, setPageStart] = useState(0);
+  const [pageEnd, setPageEnd] = useState(3);
 
   const mode = useMemo(() => {
     if(themePreference === "Dark") return true
@@ -129,6 +137,47 @@ function App() {
     setProducts(products)
   }
 
+  async function getProductsByPage() {
+    let { data, error } = await supabase
+      .from('products')
+      .select(`
+        *,
+        product_categories (
+          categories (
+            name
+          ),
+          subcategories (
+            name
+          )
+        ),
+        images (
+          id,
+          url
+        ),
+        profiles (
+          *
+        )
+      `)
+      .range(pageStart, pageEnd)
+
+    const products = data.map(({ product_categories, profiles, seller_id, ...product }) => (
+      Object.assign({
+        ...product,
+        categories: Object.assign({
+          category: [...new Set(product_categories.map((category) => (
+            category.categories.name
+          )))],
+          subcategories: product_categories.map((subcategory) => (
+            subcategory.subcategories.name
+          ))
+        }),
+        seller: profiles
+      })
+    ))
+
+    setProductsByPage(products)
+  }
+
   async function getCategories() {
     let { data, error } = await supabase
       .from('categories')
@@ -155,6 +204,10 @@ function App() {
   }, [])
 
   useEffect(() => {
+    getProductsByPage()
+  }, [pageStart, pageEnd])
+
+  useEffect(() => {
     if(session) getProfile()
   }, [session])
 
@@ -169,6 +222,11 @@ function App() {
         setSession: setSession,
         products: products,
         categories: categories,
+        productsByPage: productsByPage,
+        pageStart: pageStart,
+        setPageStart: setPageStart,
+        pageEnd: pageEnd,
+        setPageEnd: setPageEnd,
         searching: searchStatus,
         setSearching: setSearchStatus,
         themePreference: themePreference,
