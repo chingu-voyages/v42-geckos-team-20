@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Context } from '../App';
 import Button from '@mui/material/Button';
 import { supabase } from '../supabaseClient';
-import { CartFunctions } from './cartFunctions'
+import { CartFunctions } from '../Utility_Functions/cartFunctions'
 // import axios from 'axios'
 
 export default function AddToCartButton({ product }) {

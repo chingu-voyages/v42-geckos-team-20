@@ -6,7 +6,7 @@ import { Container } from '@mui/system';
 import Heading from '../components/Heading';
 import Total from '../components/Total';
 
-import { CartFunctions } from '../components/cartFunctions'
+import { CartFunctions } from '../Utility_Functions/cartFunctions'
 
 
 const ContainerStyles ={

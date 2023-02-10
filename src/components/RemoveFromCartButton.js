@@ -1,16 +1,11 @@
 import { Button } from '@mui/material';
 import React, { useContext } from 'react'
-import { Context } from '../App'
+import { CartFunctions } from '../Utility_Functions/cartFunctions';
 
 const RemoveFromCartButton = ({ productId }) => {
 
-    const { cartContext, setCartContext } = useContext(Context);
+    const { removeFromCart } = CartFunctions();
 
-    const handleClick = () => {
-        const updatedCart = cartContext.filter(product => product.id !== productId);
-        setCartContext(updatedCart)
-        localStorage.setItem('cartContext', JSON.stringify(updatedCart));
-    }
 
   return (
     <Button 
@@ -21,7 +16,7 @@ const RemoveFromCartButton = ({ productId }) => {
       width: "100%",
       padding: "0.75rem",
     }}
-    onClick={handleClick}
+    onClick={() => removeFromCart(productId)}
     >
         Remove Item
     </Button>

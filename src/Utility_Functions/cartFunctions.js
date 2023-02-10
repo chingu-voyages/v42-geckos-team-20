@@ -9,7 +9,11 @@ export const CartFunctions = () => {
         setCartContext([...cartContext, product])
         localStorage.setItem('cartContext', JSON.stringify([...cartContext, product]))
     }
-
-    return { cartContext, setCartContext, addToCart }
+    const removeFromCart = productId => {
+        const updatedCart = cartContext.filter(product => product.id !== productId);
+        setCartContext(updatedCart)
+        localStorage.setItem('cartContext', JSON.stringify(updatedCart));
+    }
+    return { cartContext, setCartContext, addToCart, removeFromCart }
 }
 
