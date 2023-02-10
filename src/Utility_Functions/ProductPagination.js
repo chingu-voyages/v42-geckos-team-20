@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 function ProductPagination(filteredProducts, itemsPerPage) {
   const [currentPage, setCurrentPage] = useState(1);
   const maxPage = Math.ceil(filteredProducts.length / itemsPerPage);

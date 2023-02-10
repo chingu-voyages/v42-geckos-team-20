@@ -1,6 +1,6 @@
 import { useContext,useState, useEffect } from 'react';
 import { Context } from '../App.js';
-import ProductPagination from '../components/ProductPagination';
+import ProductPagination from '../Utility_Functions/ProductPagination';
 
 import Catalog from '../components/Catalog.js';
 import SubHeader from '../components/SubHeader';

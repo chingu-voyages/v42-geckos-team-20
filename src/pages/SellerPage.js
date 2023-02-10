@@ -8,7 +8,7 @@ import products from '../data/products.json';
 
 import Catalog from '../components/Catalog';
 import SubHeader from '../components/SubHeader';
-import ProductPagination from '../components/ProductPagination';
+import ProductPagination from '../Utility_Functions/ProductPagination';
 
 import { Category } from '@mui/icons-material';
 

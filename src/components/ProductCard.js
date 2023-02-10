@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Box, Button } from '@mui/material';
+import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Button } from '@mui/material';
 
 const ProductCardStyles = {
 	width: "300px",
@@ -8,7 +8,7 @@ const ProductCardStyles = {
 }
 
 export default function ProductCard({ product, currency }) {
-	const { id, name, price, images } = product;
+	const { id, name, price, images, seller } = product;
 
 	return (
 		<Card raised={true} sx={ProductCardStyles}>
@@ -33,11 +33,11 @@ export default function ProductCard({ product, currency }) {
 				</CardContent>
 			</CardActionArea>
 
-			{/* <CardActions>
-				<Button component={Link} to={`/seller/${seller.name}`}>
-					{seller.name}
+			<CardActions>
+				<Button component={Link} to={`/seller/${seller.first_name}`}>
+					{seller.first_name}
 				</Button>
-			</CardActions> */}
+			</CardActions>
 		</Card>
 	)
 };
