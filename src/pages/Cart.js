@@ -31,7 +31,7 @@ const Cart = () => {
         key={product.id}
         name={product.name}
         price={product.price}
-        image={product.links}
+        image={product.images[0].url}
         id={product.id}
       />
     );
