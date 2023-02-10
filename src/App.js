@@ -28,6 +28,7 @@ export const Context = createContext({
   session: null,
   setSession: null,
   products: null,
+  setProduct: null,
   categories: null,
   users: null,
   pageStart: null,
