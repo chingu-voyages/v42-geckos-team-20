@@ -32,7 +32,6 @@ const Login = () => {
         email: form.email,
         password: form.password
       })
-      console.log(data)
       setSession(data.session)
       if (error) throw error
     } catch (error) {
