@@ -8,7 +8,8 @@ const ProductCardStyles = {
 }
 
 export default function ProductCard({ product, currency }) {
-	const { id, name, price, images } = product;
+	const { id, name, price, images, seller } = product;
+	console.log(seller)
 
 	return (
 		<Card raised={true} sx={ProductCardStyles}>
@@ -33,11 +34,11 @@ export default function ProductCard({ product, currency }) {
 				</CardContent>
 			</CardActionArea>
 
-			{/* <CardActions>
-				<Button component={Link} to={`/seller/${seller.name}`}>
-					{seller.name}
+			<CardActions>
+				<Button component={Link} to={`/seller/${seller.first_name}`}>
+					{seller.first_name}
 				</Button>
-			</CardActions> */}
+			</CardActions>
 		</Card>
 	)
 };
