@@ -1,21 +1,31 @@
-import ProductCard from './ProductCard.js';
-import { Container } from '@mui/material';
-import products from '../data/products.json';
+import ProductCard from './ProductCard';
+
+import { Container, Typography } from '@mui/material';
 
 const ContainerStyles = {
 	display: "flex",
 	justifyContent: "space-evenly",
 	flexWrap: "wrap",
-	zIndex: 0
+	zIndex: 0,
+	gap: "2rem"
 }
 
-export default function Catalog ({filteredProducts, currency}){
+export default function Catalog ({ products, currency }) {
+	if(!products || products.length === 0) return (
+		<Typography align="center" variant="h4">
+			No Products Yet
+		</Typography>
+	)
 
-	const productsToView = filteredProducts.currentData().map((product)=>
-		<ProductCard key={product.id}product={product} currency={currency}/>
-		
-	);
 	return (
-		<Container maxWidth="lg" sx={ContainerStyles}>{productsToView}</Container>
+		<Container maxWidth="lg" sx={ContainerStyles}>
+			{products.map((product) => (
+				<ProductCard 
+					key={product.id}
+					product={product}
+					currency={currency}
+				/>
+			))}
+		</Container>
 	)
 }
