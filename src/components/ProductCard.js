@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Button } from '@mui/material';
 
 const ProductCardStyles = {
@@ -28,13 +29,13 @@ export default function ProductCard({ product, currency }) {
 					<Typography variant="h6" noWrap>{name}</Typography>
 
 					<Typography variant="subtitle1" color="text.secondary">
-						{`${currency} ${price}`}
+						{`${currency} ${price.toFixed(2)}`}
 					</Typography>
 				</CardContent>
 			</CardActionArea>
 
 			<CardActions>
-				<Button component={Link} to={`/seller/${seller.first_name}`}>
+				<Button component={Link} to={`/users/${seller.id}`}>
 					{seller.first_name}
 				</Button>
 			</CardActions>

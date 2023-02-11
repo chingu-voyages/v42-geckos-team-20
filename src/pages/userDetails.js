@@ -103,11 +103,10 @@ const UserDetails = () => {
         const productBtn = currentUser === null || user.id !== userId? 
         null
         :
-            <Link to={`/users/${user.id}/add-product`}>
-                <Button variant="contained" sx={buttonStyles}>
-                    Add Product
-                </Button>
-            </Link>
+
+              <Button component={Link} to={`/users/${user.id}/add-product`} variant="contained" sx={buttonStyles}>
+                  Add Product
+              </Button>
 
     // Sets if the user is selling items and displays them or not
     const items = userProducts.length !== 0 ? 
