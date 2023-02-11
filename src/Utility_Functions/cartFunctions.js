@@ -14,6 +14,9 @@ export const CartFunctions = () => {
         setCartContext(updatedCart)
         localStorage.setItem('cartContext', JSON.stringify(updatedCart));
     }
-    return { cartContext, setCartContext, addToCart, removeFromCart }
+
+    const totalPrice = parseFloat(cartContext.reduce((sum, item) => sum + item.price, 0)).toFixed(2);
+
+    return { cartContext, setCartContext, addToCart, removeFromCart, totalPrice }
 }
 

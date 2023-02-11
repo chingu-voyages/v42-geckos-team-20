@@ -1,9 +1,12 @@
 import { Container, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
+import { CartFunctions } from '../Utility_Functions/cartFunctions'
 
 const Total = () => {
   
+    const { totalPrice } = CartFunctions();
+
   const boxStyle = {
     display: 'flex',
     justifyContent: "space-between",
@@ -20,7 +23,7 @@ const Total = () => {
     return (
 
         <Container sx={ContainerStyles}>
-            <Box sx={boxStyle}>
+            {/* <Box sx={boxStyle}>
                 <Typography>Subtotal:</Typography>
                 <Typography>$00.00</Typography>
             </Box>
@@ -31,10 +34,10 @@ const Total = () => {
             <Box sx={boxStyle}>
                 <Typography>Tax:</Typography>
                 <Typography>$00.00</Typography>
-            </Box>
+            </Box> */}
             <Box sx={boxStyle}>
                 <Typography variant='h4'>Total</Typography>
-                <Typography sx={{fontWeight: "bold"}} variant="h4">$00.00</Typography>
+                <Typography sx={{fontWeight: "bold"}} variant="h4">${totalPrice}</Typography>
             </Box>
         </Container>
     )
