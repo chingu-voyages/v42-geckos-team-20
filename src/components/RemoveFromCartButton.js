@@ -1,11 +1,14 @@
 import { Button } from '@mui/material';
-import React, { useContext } from 'react'
+import React from 'react'
 import { CartFunctions } from '../Utility_Functions/cartFunctions';
 
 const RemoveFromCartButton = ({ productId }) => {
 
     const { removeFromCart } = CartFunctions();
 
+    const handleRemoveFromCart = () => {
+      removeFromCart(productId.id);
+    };
 
   return (
     <Button 
@@ -16,7 +19,7 @@ const RemoveFromCartButton = ({ productId }) => {
       width: "100%",
       padding: "0.75rem",
     }}
-    onClick={() => removeFromCart(productId)}
+    onClick={handleRemoveFromCart}
     >
         Remove Item
     </Button>

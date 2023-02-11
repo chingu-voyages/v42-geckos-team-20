@@ -1,13 +1,14 @@
-import React, { useState, useContext } from 'react';
-import { Context } from '../App';
+import React from 'react';
 import Button from '@mui/material/Button';
-import { supabase } from '../supabaseClient';
 import { CartFunctions } from '../Utility_Functions/cartFunctions'
-// import axios from 'axios'
 
 export default function AddToCartButton({ product }) {
   
-const { addToCart } = CartFunctions();
+  const { addToCart } = CartFunctions();
+
+  const handleAddTOCart = () => {
+    addToCart(product)
+  }
   
   return (
     <Button 
@@ -18,7 +19,7 @@ const { addToCart } = CartFunctions();
         width: "100%",
         padding: "0.75rem",
       }}
-      onClick={() => addToCart(product)}
+      onClick={handleAddTOCart}
     >
       Add to cart
     </Button>
