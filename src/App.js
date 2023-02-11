@@ -5,7 +5,7 @@ import { supabase } from './supabaseClient';
 import Heading from './components/Heading';
 import Footer from './components/Footer';
 
-import ProductDetail from './pages/productDetail';
+import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -211,8 +211,7 @@ function App() {
             <Route path="/profile" element={<Profile session={session} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
-            <Route path="/users/:userId" element={<UserDetails />} />
-            <Route path="/seller/:sellerName" element={<SellersPage />} />
+            <Route path="/users/:userId" element={<UserDetail />} />
             <Route path="/users/:userId/add-product" element={<AddProduct />} />
           </Routes>
 
