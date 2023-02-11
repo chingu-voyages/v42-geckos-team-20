@@ -130,7 +130,7 @@ const Heading = () => {
         <MenuItem onClick={() => navigate("/profile")}>
           Profile
         </MenuItem>
-        <MenuItem onClick={() => console.log("seller page here")}>
+        <MenuItem onClick={() => navigate(`/users/${session.user.id}`)}>
           Your Store
         </MenuItem>
         <MenuItem onClick={handleLogout}>

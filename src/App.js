@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import { createContext, useState, useMemo, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from './supabaseClient';
 
@@ -6,12 +6,11 @@ import Heading from './components/Heading';
 import Footer from './components/Footer';
 
 import ProductDetail from './pages/productDetail';
-import UserDetails from './pages/userDetails';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import SellersPage from './pages/SellerPage';
+import UserDetail from './pages/UserDetail';
 import Profile from './pages/Profile';
 
 import AddProduct from './components/AddProduct';
@@ -30,7 +29,7 @@ export const Context = createContext({
   setSession: null,
   products: null,
   categories: null,
-  productsByPage: null,
+  users: null,
   pageStart: null,
   setPageStart: null,
   pageEnd: null,
@@ -51,7 +50,7 @@ function App() {
   const [searchStatus, setSearchStatus] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [productsByPage, setProductsByPage] = useState([])
+  const [users, setUsers] = useState([])
   const [pageStart, setPageStart] = useState(0);
   const [pageEnd, setPageEnd] = useState(3);
 
@@ -137,47 +136,6 @@ function App() {
     setProducts(products)
   }
 
-  async function getProductsByPage() {
-    let { data, error } = await supabase
-      .from('products')
-      .select(`
-        *,
-        product_categories (
-          categories (
-            name
-          ),
-          subcategories (
-            name
-          )
-        ),
-        images (
-          id,
-          url
-        ),
-        profiles (
-          *
-        )
-      `)
-      .range(pageStart, pageEnd)
-
-    const products = data.map(({ product_categories, profiles, seller_id, ...product }) => (
-      Object.assign({
-        ...product,
-        categories: Object.assign({
-          category: [...new Set(product_categories.map((category) => (
-            category.categories.name
-          )))],
-          subcategories: product_categories.map((subcategory) => (
-            subcategory.subcategories.name
-          ))
-        }),
-        seller: profiles
-      })
-    ))
-
-    setProductsByPage(products)
-  }
-
   async function getCategories() {
     let { data, error } = await supabase
       .from('categories')
@@ -188,6 +146,14 @@ function App() {
       .select('name')
 
     setCategories(data.map((category) => category.name).concat(subcategories.map(subcategory => subcategory.name)))
+  }
+
+  async function getUsers() {
+    let { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+
+    setUsers(data)
   }
 
   useEffect(() => {
@@ -201,11 +167,8 @@ function App() {
 
     getProducts()
     getCategories()
+    getUsers()
   }, [])
-
-  useEffect(() => {
-    getProductsByPage()
-  }, [pageStart, pageEnd])
 
   useEffect(() => {
     if(session) getProfile()
@@ -221,8 +184,9 @@ function App() {
         session: session,
         setSession: setSession,
         products: products,
+        setProducts: setProducts,
         categories: categories,
-        productsByPage: productsByPage,
+        users: users,
         pageStart: pageStart,
         setPageStart: setPageStart,
         pageEnd: pageEnd,
@@ -246,8 +210,7 @@ function App() {
             <Route path="/profile" element={<Profile session={session} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
-            {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
-            <Route path="/seller/:sellerName" element={<SellersPage />}/>
+            <Route path="/users/:userId" element={<UserDetail />}/>
             <Route path="/users/:userId/add-product" element={<AddProduct />} />
           </Routes>
 

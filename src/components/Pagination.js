@@ -3,8 +3,8 @@ import { Context } from '../App';
 
 import { Pagination as Pages, Stack } from '@mui/material';
 
-export default function Pagination() {
-  const { products, setPageStart, setPageEnd } = useContext(Context);
+export default function Pagination({ products }) {
+  const { setPageStart, setPageEnd } = useContext(Context);
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 3;
@@ -12,7 +12,7 @@ export default function Pagination() {
 
   useEffect(() => {
     setPageStart((page * PER_PAGE) - PER_PAGE)
-    setPageEnd((page * PER_PAGE) - 1)
+    setPageEnd((page * PER_PAGE))
   }, [page])
 
   const handleChange = (event, value) => {
