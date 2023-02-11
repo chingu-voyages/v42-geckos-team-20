@@ -1,5 +1,5 @@
 import { useContext,useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Context } from '../App.js';
 
 import { showSearchResults } from '../Utility_Functions/searching_Utilities.js';
@@ -45,7 +45,7 @@ const SellersPage = () => {
 				)}
 
 				{session && userId === session.user.id ? (
-					<Button onClick={() => console.log("navigate to product form")} variant="contained">
+					<Button component={Link} to={`/users/${user.id}/add-product`} variant="contained">
 					Add Product
 				</Button>
 				) : (
