@@ -45,7 +45,7 @@ const SellersPage = () => {
 				)}
 
 				{session && userId === session.user.id ? (
-					<Button component={Link} to={`/users/${user.id}/add-product`} variant="contained">
+					<Button component={Link} to={`/users/${seller.id}/add-product`} variant="contained">
 					Add Product
 				</Button>
 				) : (
