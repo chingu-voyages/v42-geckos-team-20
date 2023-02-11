@@ -186,7 +186,6 @@ function App() {
         setSession: setSession,
         products: products,
         setProducts: setProducts,
-        setProducts: setProducts,
         categories: categories,
         users: users,
         pageStart: pageStart,
