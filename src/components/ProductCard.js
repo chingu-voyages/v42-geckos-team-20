@@ -1,14 +1,17 @@
-import React from "react";
+import { useContext } from 'react';
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Box, Button } from '@mui/material';
+import { Context } from '../App.js';
+
+import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Button } from '@mui/material';
 
 const ProductCardStyles = {
 	width: "300px",
 	height: "400px"
 }
 
-export default function ProductCard({ product, currency }) {
-	const { id, name, price, images } = product;
+export default function ProductCard({ product }) {
+	const { id, name, price, images, seller } = product;
+	const { currency } = useContext(Context);
 
 	return (
 		<Card raised={true} sx={ProductCardStyles}>
@@ -28,16 +31,16 @@ export default function ProductCard({ product, currency }) {
 					<Typography variant="h6" noWrap>{name}</Typography>
 
 					<Typography variant="subtitle1" color="text.secondary">
-						{`${currency} ${price}`}
+						{`${currency} ${price.toFixed(2)}`}
 					</Typography>
 				</CardContent>
 			</CardActionArea>
 
-			{/* <CardActions>
-				<Button component={Link} to={`/seller/${seller.name}`}>
-					{seller.name}
+			<CardActions>
+				<Button component={Link} to={`/users/${seller.id}`}>
+					{seller.first_name}
 				</Button>
-			</CardActions> */}
+			</CardActions> 
 		</Card>
 	)
 };

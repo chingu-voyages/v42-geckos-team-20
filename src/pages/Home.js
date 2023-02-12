@@ -1,18 +1,14 @@
-import { useContext,useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../App.js';
 import ProductPagination from '../components/ProductPagination';
 
 import Catalog from '../components/Catalog.js';
 import SubHeader from '../components/SubHeader';
-
-import products from '../data/products.json';
-
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import Pagination from '../components/Pagination';
 
 const Home = () => {
-  const { activeCategory, setActiveCategory } = useContext(Context);
-  const [ filteredProducts, setFilteredProducts ] = useState([]);
+  const { products, activeCategory, pageStart, pageEnd, searchWord } = useContext(Context);
+
   const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
   const [ page, setPage ] = useState(1);
   const PER_PAGE = 5;
@@ -37,22 +33,39 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory, count])
 
-  return (
-    <>
-      <SubHeader  />
-      
-      <Catalog filteredProducts={dataPage} currency={currency} />
+  const searchLower = searchWord.toLowerCase()
 
-      <Stack spacing={2} alignItems="center" marginTop="2%">
-        <Pagination
-          size="large"
-          color="primary"
-          count={count}
-          page={page}
-          onChange={handleChange}
-        />
-      </Stack>
-    </>
+  const searchFilteredProducts = searchWord === "" ? (
+    products
+  ) : (
+    products.filter((product) => (
+      (
+        product.name ? product.name.toLowerCase().includes(searchLower) : null
+      ) || (
+        product.description ? product.description.toLowerCase().includes(searchLower) : null
+      ) || (
+        product.seller.first_name ? product.seller.first_name.toLowerCase().includes(searchLower) : null
+      )
+    ))
+  )
+
+  const categoryFilteredProducts = activeCategory === "All" ? (
+    searchFilteredProducts
+  ) : (
+    searchFilteredProducts.filter((product) => (
+		product.categories.category.includes(activeCategory) || product.categories.subcategories.includes(activeCategory)
+	)))
+
+  const productsByPage = categoryFilteredProducts.slice(pageStart, pageEnd)
+
+  return (
+    <div className="Page">
+      <SubHeader />
+      
+      <Catalog products={productsByPage} currency={currency} />
+
+      <Pagination products={categoryFilteredProducts} />
+    </div>
   )
 }
 

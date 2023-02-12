@@ -1,9 +1,6 @@
-import { useContext, useState } from "react";
-import { Context } from '../App';
+import ProductCard from './ProductCard';
 
-import ProductCard from './ProductCard.js';
-
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 
 // import products from '../data/products.json';
 
@@ -16,26 +13,22 @@ const ContainerStyles = {
 	gap: "2rem"
 }
 
-export default function Catalog ({filteredProducts, currency}){
-  const { products } = useContext(Context);
+export default function Catalog ({ products }) {
 
-	const productsToView = filteredProducts.currentData().map((product) => (
-			<ProductCard 
-				key={product.id} 
-				product={product} 
-				currency={currency} 
-			/>
-		)
-	);
+	if(!products || products.length === 0) return (
+		<Typography align="center" variant="h4">
+			No Products Yet
+		</Typography>
+	)
+
 	return (
 		<Container maxWidth="lg" sx={ContainerStyles}>
 			{products.map((product) => (
 				<ProductCard 
 					key={product.id}
 					product={product}
-					currency={currency}
 				/>
-			))}{/* not filtered */}
+			))}
 		</Container>
 	)
 }

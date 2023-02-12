@@ -5,13 +5,7 @@ import {Box, TextField, MenuItem,Button, InputAdornment} from '@mui/material'
 import { Context } from '../App';
 import products from '../data/products.json'
 
-
-
 const AddProduct = () => {
-
-
-    
-
     const INIT_STATE = {
         productName: "",
         description: "",
@@ -36,19 +30,21 @@ const AddProduct = () => {
     const [formData, setFormData] = useState(INIT_STATE);
     const [priceError, setPriceError] = useState({text: null})
     const [nameError, setNameError] = useState({text: null})
+    const [quantityError, setQuantityError] = useState({text: null})
+    const {session, categories, products, setProducts, currency} = useContext(Context)
     const navigate = useNavigate();
     const {currentUser} = useContext(Context)
     const {userId} = useParams()
 
-    useEffect(() => {
-        function checkUser() {
-            if(currentUser.id !== parseInt(userId) || currentUser === null) {
-                navigate('/')
-            }
-        }
-       checkUser()
-    }, [])
+    if(user.id !== userId) {
+        navigate(`/`)
+    }
 
+    const subCategories = products.map(product => {
+        for(let cat of product.categories.subcategories) {
+            return cat
+        }
+    })
 
 
     const handleTextChange = (evt) => {
@@ -59,8 +55,6 @@ const AddProduct = () => {
         }))
         
     }
-
-    
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -149,7 +143,7 @@ const AddProduct = () => {
                 margin="normal"
                 InputProps={{startAdornment: (
                     <InputAdornment position='start'>
-                        $
+                        {currency}
                     </InputAdornment>
                 )}}
             />

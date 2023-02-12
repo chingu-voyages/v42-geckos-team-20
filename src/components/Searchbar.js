@@ -5,23 +5,26 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-const Searchbar = ({setSearchPattern}) => {
-  const [inputText, setInputText] = useState('');
+const Searchbar = ({ setSearchPattern }) => {
+  // const [inputText, setInputText] = useState('');
 
-  const { searching, setSearching } = useContext(Context);
+  const { searching, setSearching, searchWord, setSearchWord } = useContext(Context);
   
-  const onChangeInputText = useCallback((e) => {
-    let searchWord = "";
-    searchWord += e.target.value;
-    searchWord === "" ? setSearching(false) : setSearching(true)
-    setSearchPattern(sanitizeSearchPattern(searchWord));
-  }, []);
+  // const onChangeInputText = useCallback((e) => {
+  //   let searchWord = "";
+  //   searchWord += e.target.value;
+  //   searchWord === "" ? setSearching(false) : setSearching(true)
+  //   setSearchPattern(sanitizeSearchPattern(searchWord));
+  // }, []);
 
-  const sanitizeSearchPattern = (searchWord) => {
-    searchWord = searchWord.trim();
-    let searchRegEx = new RegExp(searchWord, "i")
-    return searchRegEx;
-  };
+  // const sanitizeSearchPattern = (searchWord) => {
+  //   searchWord = searchWord.trim();
+  //   let searchRegEx = new RegExp(searchWord, "i")
+  //   return searchRegEx;
+  // };
+  function handleChange(event) {
+    setSearchWord(event.target.value)
+  }
   
   return (
     <Paper
@@ -41,8 +44,10 @@ const Searchbar = ({setSearchPattern}) => {
       <InputBase
         sx={{ ml: 2, flex: 1 }}
         placeholder="Search products, categories, + users..."
-        value={inputText}
-        onChange={onChangeInputText}
+        // value={inputText}
+        // onChange={onChangeInputText}
+        value={searchWord}
+        onChange={handleChange}
       />
     </Paper>
   );
