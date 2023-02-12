@@ -13,7 +13,7 @@ import Signup from './pages/Signup';
 import UserDetail from './pages/UserDetail';
 import Profile from './pages/Profile';
 
-import AddProduct from './components/AddProduct';
+import AddProduct from './pages/AddProduct';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMediaQuery, CssBaseline } from '@mui/material';
@@ -31,12 +31,16 @@ export const Context = createContext({
   setProduct: null,
   categories: null,
   users: null,
+  currency: null,
+  setCurrency: null,
   pageStart: null,
   setPageStart: null,
   pageEnd: null,
   setPageEnd: null,
   searching: null,
   setSearching: null,
+  searchWord: null,
+  setSearchWord: null,
   themePreference: null,
   setThemePreference: null
 });
@@ -49,9 +53,11 @@ function App() {
   const [session, setSession] = useState(null);
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
+  const [searchWord, setSearchWord] = useState("");
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([])
+  const [currency, setCurrency] = useState("€")
   const [pageStart, setPageStart] = useState(0);
   const [pageEnd, setPageEnd] = useState(3);
 
@@ -188,12 +194,16 @@ function App() {
         setProducts: setProducts,
         categories: categories,
         users: users,
+        currency: currency,
+        setCurrency: setCurrency,
         pageStart: pageStart,
         setPageStart: setPageStart,
         pageEnd: pageEnd,
         setPageEnd: setPageEnd,
         searching: searchStatus,
         setSearching: setSearchStatus,
+        searchWord: searchWord,
+        setSearchWord: setSearchWord,
         themePreference: themePreference,
         setThemePreference: setThemePreference 
       }}

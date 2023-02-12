@@ -5,12 +5,7 @@ import {Box, TextField, MenuItem,Button, InputAdornment, Select, InputLabel} fro
 import { Context } from '../App';
 import { supabase } from '../supabaseClient';
 
-
-
-
-
 const AddProduct = () => {
-
     const INIT_STATE = {
         productName: "",
         description: "",
@@ -25,7 +20,7 @@ const AddProduct = () => {
     const [priceError, setPriceError] = useState({text: null})
     const [nameError, setNameError] = useState({text: null})
     const [quantityError, setQuantityError] = useState({text: null})
-    const {session, categories, products, setProducts} = useContext(Context)
+    const {session, categories, products, setProducts, currency} = useContext(Context)
     const navigate = useNavigate();
     const {user} = session
     const {userId} = useParams()
@@ -34,12 +29,10 @@ const AddProduct = () => {
         navigate(`/`)
     }
 
-
     const subCategories = products.map(product => {
         for(let cat of product.categories.subcategories) {
             return cat
         }
-    
     })
 
     const sortedSubCategories = [...new Set(subCategories)]
@@ -59,8 +52,6 @@ const AddProduct = () => {
     const handleSubCategoryChange = (evt) => {
         setSubCategory(evt.target.value)
     }
-
-    
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -200,7 +191,7 @@ const AddProduct = () => {
                 margin="normal"
                 InputProps={{startAdornment: (
                     <InputAdornment position='start'>
-                        $
+                        {currency}
                     </InputAdornment>
                 )}}
             />
