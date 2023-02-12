@@ -224,8 +224,6 @@ function App() {
             <Route path="/profile" element={<Profile session={session} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
-            {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
-            <Route path="/seller/:sellerName" element={<SellersPage />}/>
             <Route path="/users/:userId" element={<UserDetail />} />
             <Route path="/users/:userId/add-product" element={<AddProduct />} />
           </Routes>

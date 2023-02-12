@@ -40,7 +40,7 @@ export default function ProductCard({ product }) {
 				<Button component={Link} to={`/users/${seller.id}`}>
 					{seller.first_name}
 				</Button>
-			</CardActions> 
+			</CardActions>
 		</Card>
 	)
 };
