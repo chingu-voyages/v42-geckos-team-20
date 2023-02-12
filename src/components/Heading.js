@@ -127,9 +127,6 @@ const Heading = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate(`/users/${session.user.id}`)}>
-          Account
-        </MenuItem>
         <MenuItem onClick={() => navigate("/profile")}>
           Profile
         </MenuItem>

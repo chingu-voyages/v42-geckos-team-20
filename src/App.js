@@ -37,6 +37,8 @@ export const Context = createContext({
   setPageEnd: null,
   searching: null,
   setSearching: null,
+  searchWord: null,
+  setSearchWord: null,
   themePreference: null,
   setThemePreference: null
 });
@@ -49,6 +51,7 @@ function App() {
   const [session, setSession] = useState(null);
   const [user, setUser] = useState(null);
   const [searchStatus, setSearchStatus] = useState(false);
+  const [searchWord, setSearchWord] = useState("");
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([])
@@ -194,6 +197,8 @@ function App() {
         setPageEnd: setPageEnd,
         searching: searchStatus,
         setSearching: setSearchStatus,
+        searchWord: searchWord,
+        setSearchWord: setSearchWord,
         themePreference: themePreference,
         setThemePreference: setThemePreference 
       }}

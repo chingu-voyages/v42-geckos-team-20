@@ -12,9 +12,8 @@ import { Typography, Button, Stack } from '@mui/material'
 
 const SellersPage = () => {
 	const { userId } = useParams();
-	console.log(userId)
 
-  const { session, products, users, activeCategory, pageStart, pageEnd } = useContext(Context);
+  const { session, products, users, pageStart, pageEnd } = useContext(Context);
 
 	const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
 
@@ -44,7 +43,7 @@ const SellersPage = () => {
 					<></>
 				)}
 
-				{session && userId === session.user.id ? (
+				{session.user && userId === session.user.id ? (
 					<Button component={Link} to={`/users/${seller.id}/add-product`} variant="contained">
 					Add Product
 				</Button>
