@@ -1,8 +1,6 @@
-import { useContext,useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Context } from '../App.js';
-
-import { showSearchResults } from '../Utility_Functions/searching_Utilities.js';
 
 import Catalog from '../components/Catalog';
 import SubHeader from '../components/SubHeader';
@@ -10,12 +8,10 @@ import Pagination from '../components/Pagination';
 
 import { Typography, Button, Stack } from '@mui/material'
 
-const SellersPage = () => {
+export default function UserDetail() {
 	const { userId } = useParams();
 
   const { session, products, users, pageStart, pageEnd } = useContext(Context);
-
-	const [ currency, setCurrency ] = useState("€") //only a placeholder for now.
 
 	const [sellersProducts, setSellersProducts ] = useState([]);
 	const [seller, setSeller] = useState(null)
@@ -43,8 +39,8 @@ const SellersPage = () => {
 					<></>
 				)}
 
-				{session.user && userId === session.user.id ? (
-					<Button component={Link} to={`/users/${seller.id}/add-product`} variant="contained">
+				{session && userId === session.user.id ? (
+					<Button component={Link} to={`/users/${userId}/add-product`} variant="contained">
 					Add Product
 				</Button>
 				) : (
@@ -52,11 +48,9 @@ const SellersPage = () => {
 				)}
 			</Stack>
 
-			<Catalog products={productsByPage} currency={currency} />
+			<Catalog products={productsByPage} />
 
 			<Pagination products={sellersProducts} />
 	  </div>
 	)
-  }
-  export default SellersPage;
-  
+}

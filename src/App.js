@@ -13,7 +13,7 @@ import Signup from './pages/Signup';
 import UserDetail from './pages/UserDetail';
 import Profile from './pages/Profile';
 
-import AddProduct from './components/AddProduct';
+import AddProduct from './pages/AddProduct';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMediaQuery, CssBaseline } from '@mui/material';
@@ -31,6 +31,8 @@ export const Context = createContext({
   setProduct: null,
   categories: null,
   users: null,
+  currency: null,
+  setCurrency: null,
   pageStart: null,
   setPageStart: null,
   pageEnd: null,
@@ -55,6 +57,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([])
+  const [currency, setCurrency] = useState("€")
   const [pageStart, setPageStart] = useState(0);
   const [pageEnd, setPageEnd] = useState(3);
 
@@ -191,6 +194,8 @@ function App() {
         setProducts: setProducts,
         categories: categories,
         users: users,
+        currency: currency,
+        setCurrency: setCurrency,
         pageStart: pageStart,
         setPageStart: setPageStart,
         pageEnd: pageEnd,

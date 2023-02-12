@@ -1,5 +1,6 @@
-import React from "react";
+import { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { Context } from '../App.js';
 
 import { Card, CardContent, CardMedia, CardActionArea, CardActions, Typography, Button } from '@mui/material';
 
@@ -8,8 +9,9 @@ const ProductCardStyles = {
 	height: "400px"
 }
 
-export default function ProductCard({ product, currency }) {
+export default function ProductCard({ product }) {
 	const { id, name, price, images, seller } = product;
+	const { currency } = useContext(Context);
 
 	return (
 		<Card raised={true} sx={ProductCardStyles}>

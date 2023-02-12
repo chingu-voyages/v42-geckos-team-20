@@ -10,7 +10,8 @@ const ContainerStyles = {
 	gap: "2rem"
 }
 
-export default function Catalog ({ products, currency }) {
+export default function Catalog ({ products }) {
+
 	if(!products || products.length === 0) return (
 		<Typography align="center" variant="h4">
 			No Products Yet
@@ -23,7 +24,6 @@ export default function Catalog ({ products, currency }) {
 				<ProductCard 
 					key={product.id}
 					product={product}
-					currency={currency}
 				/>
 			))}
 		</Container>

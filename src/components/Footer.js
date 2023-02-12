@@ -1,4 +1,5 @@
-import React from "react";
+import { useContext } from 'react';
+import { Context } from '../App.js';
 
 import ThemeSelect from "./ThemeSelect";
 
@@ -8,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -16,6 +18,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import StoreMallDirectoryTwoToneIcon from "@mui/icons-material/StoreMallDirectoryTwoTone";
 
 const Footer = () => {
+  const { currency, setCurrency } = useContext(Context);
 
   return (
     <>
@@ -67,6 +70,15 @@ const Footer = () => {
                 Nearby Markets
               </Typography>
             </Box>
+
+            <ToggleButtonGroup
+              value={currency}
+              exclusive
+              onChange={(event, newValue) => setCurrency(newValue)}
+            >
+              <ToggleButton value="€">€</ToggleButton>
+              <ToggleButton value="$">$</ToggleButton>
+            </ToggleButtonGroup>
 
             <ThemeSelect />
           </Box>

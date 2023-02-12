@@ -8,7 +8,7 @@ import Counter from '../components/Counter';
 import { Box, Card, CardContent, Typography, Breadcrumbs } from '@mui/material';
 
 function ProductDetail() {
-  const { products } = useContext(Context);
+  const { products, currency } = useContext(Context);
   const { productId } = useParams();
   const thisProduct = products.find((product) => String(product.id) === productId);
 
@@ -69,7 +69,7 @@ function ProductDetail() {
                   variant="subtitle1" 
                   color="text.secondary" 
                   component={Link} 
-                  to={`/seller/${thisProduct.seller.first_name}`}
+                  to={`/users/${thisProduct.seller.id}`}
                 >
                   {thisProduct.seller.first_name}
                 </Typography>
@@ -90,7 +90,7 @@ function ProductDetail() {
                 }}
               >
                 <Typography variant="h6" color="text.secondary">
-                  $ {thisProduct.price.toFixed(2)}
+                  {currency} {thisProduct.price.toFixed(2)}
                 </Typography>
 
                 <Counter />
